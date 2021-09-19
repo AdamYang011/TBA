@@ -1,0 +1,653 @@
+<!DOCTYPE HTML>
+<html style="height: 100%">
+	<head>
+        <title>最佳動化_排列最佳化分析模式</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible"content="ie=edge">      <!--什麼版本IE 就用什麼版本的標準模式-->
+		<script src="./assets/js/jquery.min.js"></script><!--sidebar模式-->
+		<script src="./assets/js/bootstrap.min.js"></script><!--sidebar模式-->
+		<script src="./assets/js/c0cbf39b93.js" ></script><!--拿back.to.top的ICON-->
+		<script src="./assets/js/fontsize.js"></script>
+		<link rel="stylesheet" href="./assets/css/main.css" />
+		<link rel="stylesheet" href="./assets/css/spotlight.css" /><!--照片文字的css-->
+		<link rel="stylesheet" href="./assets/css/slide.css" /><!--跑馬燈的css?????-->
+		<link rel="stylesheet" href="./assets/css/Button.css" />
+		<link rel="stylesheet" href="./assets/css/darkmode.css"/>
+		<link rel="stylesheet" href="./assets/css/Bootstrap.css" />
+	</head>
+
+	<body style="height: 100%; margin: 0" class="is-preload">
+		<div id="wrapper">
+			<!--Sidebar-->
+			<nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                           <a class="navbar-brand" href="./index.html">最佳動化</a>
+                      </div>
+                      <ul class="nav navbar-nav">
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">數值最佳化 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="./數值最佳化分析模式.html">分析模式</a></li>
+                        </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">組合最佳化 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                            <li><a href="./組合最佳化分析模式.html">分析模式</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排列最佳化 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                            <li><a href="./排列最佳化分析模式.html">分析模式</a></li>
+                            <li><a href="./排列最佳化遊戲模式.html">遊戲模式</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">擺放最佳化 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                            <li><a href="./擺放最佳化分析模式.html">分析模式</a></li>
+                            <li><a href="./擺放最佳化遊戲模式.html">遊戲模式</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排行榜 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                            <li><a href="#">排列最佳化--遊戲模式</a></li>
+                            <li><a href="#">擺放最佳化--遊戲模式</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href="./setting.html">設定</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+
+			<!--Main-->
+			<div id="main">
+				<div class="inner">
+					<br><br>
+					<div class="row">
+						<div id="picture">
+							<canvas id="canvas" width="800" height="640"></canvas>
+							<div style="margin-top: 10px; margin-left: 20px ;width: 700px;" class="slidecontainer">
+								<input type="range" min="1" max="100" value="1" class="slider" id="myRange" oninput="">
+								<p>當代世代數: <span id="demo"></span></p>
+							</div>
+						</div>
+						<div class="col-4 col-4-medium">
+							<div class="table-wrapper">
+								<br><br>
+								<table>
+									<thead>
+										<tr>
+											<th>適應值</th>
+											<th>世代數</th>
+											<th>速度</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td id="fitness"></td>
+											<td id="test"></td>
+											<td id="speed"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div>
+								<input type="file" id="file" onchange="upload()">
+								<button style="position: relative; left:250px; top:-35px;" class="button " onclick="upload2()"><img src="./icon/file-alt-solid.svg"  width="30" height="20" >讀檔</button>		
+								<br>
+								
+								<button  class="button" onclick="screenshot()"><img src="./icon/camera.svg"  width="30" height="20" >拍照</button>
+								<button  class="button" id="startrecord" onclick="media()"><img src="./icon/video.svg"  width="30" height="20">錄影</button>
+								<br>
+								<h6></h6>
+								<button  class="button " onclick="stop()"><img src="./icon/stop.svg"  width="30" height="20" >重置</button>
+								<button  class="button " onclick="active_pause()" id="pause"><img src="./icon/pause.svg"  width="30" height="20" >暫停</button>
+								<br>
+								<h6></h6>
+								<button  class="button " onclick="slower()"><img src="./icon/backward-solid.svg"  width="30" height="20" >變慢</button>
+								<button  class="button " onclick="faster()"><img src="./icon/forward-solid.svg"  width="30" height="20" >變快</button>
+								<br>
+								<h6></h6>
+								<button  class="button " onclick="last_generation()"><img src="./icon/angle-left.svg" width="30" height="20" >上代</button>
+								<button  class="button " onclick="next_generation()"><img src="./icon/angle-right.svg" width="30" height="20">下代</button>
+								<br>
+								<h6></h6>
+								<input id="generation" type="text" style="top:-5px; padding-left:10px; padding-right: 10px; margin-left: 5px; width: 95px; height: 50px; font-family: cwTeXYen; font-size: 20px;" placeholder="輸世代數"/>
+								<button style="position: relative; left:105px; top:-50px;" class="button " onclick="go_to()"><img src="./icon/fighter-jet-solid.svg"  width="30" height="20">Go To</button>
+								
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Scripts -->
+		<script src="./assets/js/breakpoints.min.js"></script>
+		<script src="./assets/js/browser.min.js"></script>
+		<script src="./assets/js/jquery.min.js"></script>
+		<script src="./assets/js/main.js"></script>
+		<script src="./assets/js/util.js"></script>
+		<script src="./assets/js/slide.js"></script>
+		<script src="./assets/js/jquery-1.12.4.min.js"></script>
+		<script src="./assets/js/multislider.js"></script> 
+		<!-- <script src="./assets/js/darkmode.js"></script> -->
+		<script src="./assets/js/html2canvas.min.js"></script>
+		<script type="text/javascript">
+		var file_inside;
+		var file_array;
+		var data = new Array(3);
+		var orginal_data = new Array(3);
+		var X_max, X_min, Y_max, Y_min;
+		var symbolSize = 20;
+		var fitness;
+		var doct_number;
+		var generation_number;
+		var position_name = new Array();
+		var sequence = new Array();
+		var pause_counter;
+		var timer = null;
+		var test;
+		var speed;
+		var slider = document.getElementById("myRange");
+		var output = document.getElementById("demo");
+		var distance_max = new Array(3);
+		var distance_min = new Array(3);
+		var data_distance = new Array();
+		var canvas=document.getElementById("canvas");  //draw canvas
+        var context=canvas.getContext('2d');   			 //draw canvas
+		var x_edge = 50, y_edge = 25;  //canvas 左(x)&上(y)留多少空格
+		var canvas_width = 600, canvas_height = 600;  //框框內的大小
+		var long;
+		var fastest_speed = 31.25, slowest_speed = 2000; //以秒為單位
+		var startre = 0; //判斷有沒有在錄影
+
+		function upload() {
+			let reads = new FileReader();
+			file = document.getElementById('file').files[0];
+			reads.readAsText(file,'utf-8');
+			reads.onload = function (e) {
+				console.log(e);
+				file_inside = e.target.result;
+				file_inside = file_inside.toString();
+				file_array = file_inside.split("\n");
+			
+				speed = slowest_speed;
+				pause_counter = 0;
+				clearInterval(timer);
+				clearTimeout(timer);
+				//if(file_array[0] == 'TSP :'){
+				var tem = file_array[2].split(" ");
+				X_max = parseFloat(tem[2]);
+				X_min = parseFloat(tem[4]);
+				tem = file_array[3].split(" ");
+				Y_max = parseFloat(tem[2]);
+				Y_min = parseFloat(tem[4]);
+
+				tem = file_array[4].split(" ");
+				doct_number = tem.length-2;
+				var ttmp;
+				for(var i=1; i<=doct_number; i++){
+					ttmp = tem[i+1].split(",");
+					data[i] = new Array(3);
+					position_name[i] = ttmp[0];
+					data[i][0] = parseFloat(ttmp[1]);
+					data[i][1] = parseFloat(ttmp[2]);
+					
+					orginal_data[i] = new Array(3);
+					orginal_data[i][0] = parseFloat(ttmp[1]);
+					orginal_data[i][1] = parseFloat(ttmp[2]);
+				}
+				data[doct_number+1] = data[1];
+				
+				//different generation
+				generation_number = file_array.length-5;
+				slider.max = generation_number;
+				for(var i=1; i<=generation_number; i++){
+					sequence[i] = new Array();
+					tem = file_array[i+4].split(" ");
+					sequence[i][0] = tem[1];
+					ttmp = tem[3].split(",");
+					for(var j=1; j<=doct_number; j++){	
+						sequence[i][j] = ttmp[j-1]; //sequence start from 1
+					}
+					sequence[i][ttmp.length+1] = sequence[i][1];
+				}				
+				test = 1;
+				draw_line();
+			};//end read.onload	
+			reads.onloadstart = function(e) {
+				//console.log('onloadstart ---> ', e)
+			}
+			reads.onloadend = function(e) {
+				//console.log('onloadend ---> ', e)
+			}
+			reads.onprogress = function(e) {
+				//console.log('onprogress ---> ', e)
+			}	
+			console.log('get into');
+			
+		}	//end upload()
+		
+		function upload2(){
+			findMaxMin_distance();
+			if(data[1] != null){
+				test = 0;
+				pause_counter = 0;
+				active_pause();
+			}
+		}
+		
+		function draw_different_gneeration(){
+			test++;
+			//console.log(test);
+			if(test > generation_number){
+				clearTimeout(timer);
+				clearInterval(timer);
+				test = generation_number;
+				console.log('finish');
+			}
+			else if(test == 0){
+				clearInterval(timer);
+				console.log('first generation');
+			}	
+			else{
+				data = [];
+				for(var j=1; j<=doct_number; j++){
+					for(var k=1; k<=doct_number; k++){  
+						if(position_name[k] == sequence[test][j]){
+							data[j] = orginal_data[k];
+							break;
+						}
+					}
+				}
+				//console.log(test+"  "+sequence[test]);
+				data[doct_number+1] = data[1];
+				counting_distance();
+				draw_line();
+				tooltip();
+				slider.value = test;
+				output.innerHTML = slider.value + " / " + generation_number;
+			}	
+		}	
+
+//畫圖 function						
+		function draw(){	//draw the map
+			document.getElementById("test").innerHTML = test;
+			document.getElementById("speed").innerHTML = slowest_speed/speed + "倍";
+			document.getElementById("fitness").innerHTML = parseFloat(sequence[test][0]).toFixed(3);
+			
+			canvas=document.getElementById("canvas");
+			context=canvas.getContext('2d');
+			context.strokeStyle = 'rgb(0,0,0)';
+			context.strokeRect(x_edge,y_edge,canvas_width,canvas_height);
+			context.beginPath();
+			for(var i=1; i<=doct_number; i++){
+				context.moveTo((data[i][0]-X_min)*canvas_width/(X_max-X_min)+x_edge, (canvas_height+y_edge)-((data[i][1]-Y_min)*canvas_height/(Y_max-Y_min)));
+				context.arc((data[i][0]-X_min)*canvas_width/(X_max-X_min)+x_edge, (canvas_height+y_edge)-((data[i][1]-Y_min)*canvas_height/(Y_max-Y_min)),6,0,2*Math.PI);
+				context.fillStyle="black";
+				context.fill();
+			}
+			context.closePath();
+			colorbar();
+		}
+
+		function draw_line(){
+			setTimeout(function(){
+				context.clearRect(0,0,660,700);
+				context.fillStyle = "white";
+				context.fillRect(x_edge,y_edge,canvas_width,canvas_height);
+				drawgrid();
+				canvas=document.getElementById("canvas");
+				context=canvas.getContext('2d');
+				for(var i=1; i<doct_number; i++){
+					context.beginPath();
+					context.moveTo((data[i][0]-X_min)*canvas_width/(X_max-X_min)+x_edge,625-((data[i][1]-Y_min)*canvas_height/(Y_max-Y_min)));
+					context.lineTo((data[i+1][0]-X_min)*canvas_width/(X_max-X_min)+x_edge,625-((data[i+1][1]-Y_min)*canvas_height/(Y_max-Y_min)));
+					context.lineWidth=2.5;
+					long = data_distance[i];
+					drawcolor(long);
+					context.stroke();
+					context.closePath();
+				}
+				context.beginPath();
+				context.moveTo((data[doct_number][0]-X_min)*canvas_width/(X_max-X_min)+x_edge,625-((data[doct_number][1]-Y_min)*canvas_height/(Y_max-Y_min)));
+				context.lineTo((data[doct_number+1][0]-X_min)*canvas_width/(X_max-X_min)+x_edge,625-((data[doct_number+1][1]-Y_min)*canvas_height/(Y_max-Y_min)));
+				context.lineWidth=2.5;
+				long = data_distance[doct_number];
+				drawcolor(long);
+				context.stroke();
+				context.closePath();
+				draw();
+			});
+		}
+
+		function colorbar(){
+			canvas=document.getElementById("canvas");
+			context=canvas.getContext("2d");
+			grd=context.createLinearGradient(0,0,0,600);
+			context.beginPath();
+			grd.addColorStop(0,'rgb(255,0,0)');
+			grd.addColorStop(0.25,'rgb(255,255,0)');
+			grd.addColorStop(0.5,'rgb(0,255,0)');
+			grd.addColorStop(0.75,'rgb(0,255,255)');
+			grd.addColorStop(1,'rgb(0,0,255)');
+			context.fillStyle = grd;
+			context.fillRect(670,y_edge,20,canvas_height);
+			context.font="20px cwTeXYen";
+			context.fillText(distance_max[0].toFixed(2),700,35);
+			context.fillText(distance_min[0].toFixed(2),700,620);
+			context.font="12px cwTeXYen";
+			canvas.addEventListener("mousemove",function(evt){
+				var clickx,clicky,calcolor=0;;
+				rect=canvas.getBoundingClientRect();
+				clickx=evt.clientX-rect.left;
+				clicky=evt.clientY-rect.top;
+				for(i=distance_max[0];i>=distance_min[0];i=i-0.1/(distance_max[0]-distance_min[0]))
+				{
+					if(670<clickx  && 690>clickx &&  (distance_max[0]-i)/(distance_max[0]-distance_min[0])*canvas_height+y_edge < clicky  &&  (distance_max[0]-i+0.1)/(distance_max[0]-distance_min[0])*canvas_height+y_edge >= clicky)
+					{
+						document.getElementById("bar").innerHTML=Math.floor(i*100)/100;
+						document.getElementById("bar").style.left=evt.clientX + scrollX-25+"px";
+						document.getElementById("bar").style.top=evt.clientY + scrollY+"px";
+						calcolor=1;
+					}
+				}
+				if(calcolor==0){
+					document.getElementById("bar").style.display="none";
+				}
+				else{
+					document.getElementById("bar").style.display="";
+					calcolor=0;
+				}
+			});
+		}
+
+		function drawcolor(long){
+			var part=0;
+			for(var c=0; c<4; c++){
+				if(distance_min[0]+c*(distance_max[0]-distance_min[0])/4<long&&long<=distance_min[0]+(c+1)*(distance_max[0]-distance_min[0])/4){
+					part=c;
+					break;
+				}
+			}
+			if(part==0){
+				context.strokeStyle='rgb(0,'+ Math.floor(((long-0)/(distance_max[0]/4))*255)+',255)';
+			}
+			else if(part==1){
+				context.strokeStyle='rgb(0,255,'+ (255-Math.floor(((long-(1*distance_max[0]/4))/(distance_max[0]/4))*255)) +')';
+			}
+			else if(part==2){
+				context.strokeStyle='rgb('+ Math.floor(((long-(2*distance_max[0]/4))/(distance_max[0]/4))*255)+',255,0)';
+			}
+			else{
+				context.strokeStyle='rgb(255,'+(255-Math.floor(((long-(3*distance_max[0]/4))/(distance_max[0]/4))*255))+',0)';
+			}
+		}
+
+		function tooltip(){
+			canvas.addEventListener("mousemove",function(evt){
+				var movex,movey,calmove=0;
+				rect = canvas.getBoundingClientRect();
+
+				//dots tip
+				for(var i=1; i<=doct_number;i++){
+					movex = (data[i][0]-X_min)*canvas_width/(X_max-X_min)+x_edge - evt.clientX + rect.left;
+					movey = 625-((data[i][1]-Y_min)*canvas_height/(Y_max-Y_min)) - evt.clientY + rect.top;
+					var distance = Math.sqrt(movex*movex + movey*movey);
+					if(distance<8)
+					{
+						//console.log(distance);
+						document.getElementById("jump").innerHTML = "名稱:" + sequence[test][i] + "<br>" + "x:" + data[i][0] + "  y:" + data[i][1];
+						document.getElementById("jump").style.left = evt.clientX + scrollX + 10 + "px";
+						document.getElementById("jump").style.top = evt.clientY + scrollY + 10 + "px";
+					}
+					else{
+						calmove++;
+					}
+				}
+				if(calmove == doct_number){
+					document.getElementById("jump").style.display='none';
+				}
+				else{
+					document.getElementById("jump").style.display="";
+				}
+				calmove=0;
+            });
+		}
+
+		function drawgrid(){
+			context.beginPath();
+			context.font="cwTeXYen";
+			for(var i=1; i<5; i++){
+				context.moveTo(x_edge+i/5*canvas_width, y_edge);
+				context.lineTo(x_edge+i/5*canvas_width, y_edge+canvas_height);
+				context.moveTo(x_edge, y_edge+i/5*canvas_height);
+				context.lineTo(x_edge+canvas_width, y_edge+i/5*canvas_height);
+				context.lineWidth=2;
+				context.strokeStyle = 'rgb(230,230,230)';
+				context.stroke();
+			}	
+			for(var i=0; i<=5; i++){
+				context.fillStyle = 'black';
+				context.font="12px cwTeXYen";
+				context.fillText(X_min+i/5*(X_max-X_min), x_edge+i/5*canvas_width-2, y_edge+612);
+				context.fillText(Y_max-i/5*(Y_max-Y_min), x_edge-22, y_edge+i/5*canvas_height+1);
+			}
+			context.closePath();
+		}
+
+//功能 function
+		function stop(){
+			test = 1;	
+			pause_counter = 1;
+			slider.value = test;
+			output.innerHTML = slider.value + " / " + generation_number;
+			//draw();
+			draw_line();
+			active_pause();
+		}
+
+		function pause(){
+			if(pause_counter%2 == 0){
+				clearInterval(timer);
+				clearTimeout(timer);
+			}
+			else{
+				timer = setInterval(draw_different_gneeration,speed);
+			}		
+		}
+
+		function active_pause(){
+			pause_counter++;	
+			if(pause_counter%2 == 0){
+				document.getElementById("pause").innerHTML = '<img src="./icon/play.svg" width="30" height="20">開始';
+			}
+			else{
+				document.getElementById("pause").innerHTML = '<img src="./icon/pause.svg" width="30" height="20">暫停';
+			}					
+			pause();			
+		}
+		
+		function go_to(){
+			var a = document.getElementById("generation").value;
+			test = parseInt(a) - 1;
+			slider.value = test + 1;
+			//console.log(slider.value);
+			output.innerHTML = slider.value + " / " + generation_number;
+			draw_different_gneeration();
+		}
+		
+		function last_generation(){
+			test = test - 2;
+			document.getElementById("test").innerHTML =  test + 1;
+			draw_different_gneeration();
+		}
+
+		function next_generation(){
+			if((test + 1) <= generation_number){
+				document.getElementById("test").innerHTML =  test + 1;
+				draw_different_gneeration();
+			}
+			
+		}
+
+		function faster(){
+			speed = speed / 2;
+			if(speed < fastest_speed){
+				speed = speed * 2;   //fastest speed is 0.0625 s
+			}
+			else{
+				document.getElementById("speed").innerHTML =  slowest_speed/speed + "倍";
+				clearInterval(timer);
+				clearTimeout(timer);
+				pause();
+			}				
+		}
+
+		function slower(){
+			speed = speed * 2;
+			if(speed > 4000){
+				speed = speed / 2;   //slowest speed is 2s
+			}
+			else{
+				document.getElementById("speed").innerHTML =  slowest_speed/speed + "倍";
+				clearInterval(timer);
+				clearTimeout(timer);
+				pause();
+			}			
+		}		
+	
+		async function screenshot(){
+			html2canvas(document.querySelector("#picture")).then(function(canvas) {
+				//document.body.appendChild(canvas);
+				var a = document.createElement('a');
+				a.href = canvas.toDataURL("image/jpeg");
+				a.download = 'image.jpg';
+				a.click();
+			});
+		}
+
+		slider.oninput = function() {
+			output.innerHTML = this.value + " / " + generation_number;
+			test = this.value;
+			test--;
+			draw_different_gneeration();
+		}
+		
+		function media()
+            {
+                if(startre==0)
+                {
+
+                    document.getElementById("startrecord").innerHTML ='<img src="./icon/video.svg" width="30" height="20">停止錄影';
+                    var canvas = document.getElementById("canvas");
+                    // Optional frames per second argument.
+                    var stream = canvas.captureStream(1000);
+                    var recordedChunks = [];
+
+                    console.log(stream);
+                    var options = { mimeType: "video/webm; codecs=vp9" };
+                    mediaRecorder = new MediaRecorder(stream, options);
+
+                    mediaRecorder.ondataavailable = handleDataAvailable;
+                    mediaRecorder.start();
+
+                    async function handleDataAvailable(event) {
+                    console.log("data-available");
+                    if (event.data.size > 0) {
+                        recordedChunks.push(event.data);
+                        console.log(recordedChunks);
+                        download();
+                        } 
+                        else 
+                        {
+                            // ...
+                        }
+                    }
+                    async function download() {
+                    var blob = new Blob(recordedChunks, {
+                        type: "video/webm"
+                    });
+                    var url = URL.createObjectURL(blob);
+                    var a = document.createElement("a");
+                    document.body.appendChild(a);
+                    a.style = "display: none;";
+                    a.href= url;
+                    a.download = "test.mp4";
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    }
+                    startre++;
+                }
+                else
+                {
+                    document.getElementById("startrecord").innerHTML ='<img src="./icon/video.svg" width="30" height="20">錄影';
+                    console.log(startre);
+                    mediaRecorder.stop();
+                    startre=0;
+                }
+                
+            }
+
+		function findMaxMin_distance(){
+			distance_max[0] = 0;
+			distance_min[0] = 32767;
+			for (var i=1; i<=doct_number; i++){
+				for(var j=i+1; j<=doct_number; j++){
+					var a = Math.sqrt(Math.pow((orginal_data[i][0]-orginal_data[j][0]),2)+Math.pow((orginal_data[i][1]-orginal_data[j][1]),2));
+					if(a > distance_max[0]){
+						distance_max[0] = a;	//distance
+						distance_max[1] = i;	//first_posiiton
+						distance_max[2] = j;	//second_position
+					}
+					if(a < distance_min[0]){
+						distance_min[0] = a;	//distance
+						distance_min[1] = i;	//first_position
+						distance_min[2] = j;	//second_position
+					}
+				}
+			}
+			//console.log(distance_max);
+			//console.log(distance_min);
+		}
+		
+		function counting_distance(){
+			for(var i=1; i<=doct_number; i++){
+				data_distance[i] = Math.sqrt(Math.pow((data[i][0]-data[i+1][0]),2)+Math.pow((data[i][1]-data[i+1][1]),2));
+			}
+		}
+
+		</script>
+
+		<div id="jump" 
+			style="position: absolute;
+				border:1px solid #ccc;
+				padding:0px 3px;
+				color:#000;
+				height:42px;
+				line-height:21px;
+				background-color: #ffd988;
+				opacity: 0.8;
+				font-family: cwTeXYen;
+				font-weight: bold; ">
+		</div>
+
+		<div id="bar" 
+			style="position: absolute;
+				border:1px solid #ccc;
+				margin-left: 40px;
+				padding:0px 3px;
+				color:white;
+				height:20px;
+				line-height:20px;
+				background:rgba(0, 0, 0, 0.4);
+				font-family: cwTeXYen;
+				font-weight: bold; ">
+		</div>
+	</body>
+</html>
+

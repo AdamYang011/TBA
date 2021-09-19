@@ -1,0 +1,1493 @@
+<!DOCTYPE >
+<html>
+<head>
+	<title>最佳動化_組合最佳化模式</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<script src="./assets/js/jquery.min.js"></script>
+	<script src="./assets/js/RecordRTC.min.js"></script>
+	<script src="./assets/js/fix-webm-duration.js"></script>
+	<script src="./assets/js/html2canvas.min.js"></script>
+	
+	<script src="./assets/js/breakpoints.min.js"></script>
+	<script src="./assets/js/browser.min.js"></script>
+	<script src="./assets/js/main.js"></script>
+	<script src="./assets/js/util.js"></script>
+	<script src="./assets/js/slide.js"></script>
+	<script src="./assets/js/jquery-1.12.4.min.js"></script>
+	<script src="./assets/js/multislider.js"></script> 
+	<script src="./assets/js/darkmode.js"></script>
+	<script src="./assets/js/bootstrap.min.js"></script><!--sidebar模式-->
+	<script src="./assets/js/c0cbf39b93.js" ></script><!--拿back.to.top的ICON-->
+	<script src="./assets/js/fontsize.js"></script>	
+	<script src="./assets/js/echarts.js"></script>
+	<link rel="stylesheet" href="./assets/css/main.css" />
+	<link rel="stylesheet" href="./assets/css/spotlight.css" /><!--照片文字的css-->
+	<link rel="stylesheet" href="./assets/css/slide.css" /><!--跑馬燈的css?????-->
+	<link rel="stylesheet" href="./assets/css/Button.css" />
+	<link rel="stylesheet" href="./assets/css/darkmode.css"/>
+	<link rel="stylesheet" href="./assets/css/Bootstrap.css" />
+	<link rel="stylesheet" href="./assets/css/font-awesome.min.css" />
+
+	</style>
+</head>
+
+<body style="height: 100%; margin: 0" class="is-preload">
+	<div id="wrapper">
+		<!--Sidebar-->
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					   <a class="navbar-brand" href="./index.html">最佳動化</a>
+				  </div>
+				  <ul class="nav navbar-nav">
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">數值最佳化 <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="./數值最佳化分析模式.html">分析模式</a></li>
+					</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">組合最佳化 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						<li><a href="./組合最佳化分析模式.html">分析模式</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排列最佳化 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						<li><a href="./排列最佳化分析模式.html">分析模式</a></li>
+						<li><a href="./排列最佳化遊戲模式.html">遊戲模式</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">擺放最佳化 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						<li><a href="./擺放最佳化分析模式.html">分析模式</a></li>
+						<li><a href="./擺放最佳化遊戲模式.html">遊戲模式</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排行榜 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						<li><a href="#">排列最佳化--遊戲模式</a></li>
+						<li><a href="#">擺放最佳化--遊戲模式</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a href="./setting.html">設定</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div id="main">
+			<div class="inner">
+				<div class="row">
+					<div id="TBA" class="col-10">
+						<div id="echart" style="width: 100%;height:100%;margin-top: 100px; margin-left: -100px; "></div>
+					</div>
+					<canvas id="background-canvas"
+						style="position:absolute; top:-99999999px; left:-9999999999px;"></canvas>
+					<div class="col-2 col-2-medium" style="margin-top:200px;margin-left:-145px; ">
+						<div class="table-wrapper" style="margin-right: -180px;">
+							<br><br>
+							<table>
+								<thead>
+									<tr>
+										<th>適應值</th>
+										<th>世代數</th>
+										<th>速度</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td id="fitness" style="width: 800px;"></td>
+										<td id="test" style="width: 800px;"></td>
+										<td id="speed" style="width: 800px;"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<ul class="actions">
+							<input type="file" id="myfile" onchange="load()">
+						</ul>
+						<ul class="actions">
+							<div>
+								<button  type="button" onclick="save_img()"><img src="./icon/camera.svg"  width="30" height="20" >拍照</button>
+							</div>
+							<div id="start-recording"> 
+								<button type="button" id="btn-start-recording" onclick="media()"><img src="./icon/video.svg"  width="30" height="20">錄影</button>
+							</div>
+							<div id="stop-recording">
+								<button  type="button" id="btn-stop-recording" onclick="media()"><img src="./icon/video.svg"  width="30" height="20">錄影</button>
+							</div>
+							<div>
+								<button  type="button" data-toggle="modal" data-target="#exampleModal"><img src="./icon/chart-line-solid.svg"  width="30" height="20">斂散圖</button>
+							</div>
+						</ul>
+								
+						<ul class="actions">
+							<div>
+								<button  type="button" onclick="Eraser()"><img src="./icon/stop.svg"  width="30" height="20" >重置</button>
+							</div>
+							<div id="play">
+								<button  id="play" onclick="play()" id="play"><img src="./icon/play.svg"  width="30" height="20" >開始</button>
+							</div>
+							<div id="pause">
+								<button  onclick="pause()" id="pause" class="btn-primary"><img src="./icon/pause.svg"  width="30" height="20" >暫停</button>
+							</div>
+							<div id="zoom">
+								<button  onclick="zoom_in()" id="zoom"><img src="./icon/search-plus-solid.svg"  width="30" height="20" >放大</button>
+							</div>
+							<div id="unzoom">
+								<button  onclick="zoom_in()" id="unzoom" class="btn-primary"><img src="./icon/search-plus-solid.svg"  width="30" height="20" >放大</button>
+							</div>
+						</ul>
+						
+						<ul class="actions">
+							<div>
+								<button type="button" onclick="slow()"><img src="./icon/backward-solid.svg"  width="30" height="20" >變慢</button>
+							</div>
+							<div>
+								<button type="button" onclick="fast()"><img src="./icon/forward-solid.svg"  width="30" height="20" >變快</button>
+							</div>
+							<div id="dice">
+								<button id="dice" onclick="Dice()"><img src="./icon/dice-solid.svg"  width="30" height="20" >機率</button>
+							</div>
+							<div id="undice">
+								<button id="undice" onclick="UnDice()"><img src="./icon/dice-solid.svg"  width="30" height="20" >機率</button>
+							</div>
+						</ul>
+						
+						<ul class="actions">
+							<div>
+								<button type="button" onclick="previous()"><img src="./icon/chevron-left-solid.svg" width="30" height="20">上一代</button>
+							
+							</div>
+							<div>
+								<button type="button" onclick="next()"><img src="./icon/chevron-right-solid.svg" width="30" height="20">下一代</button>	
+							</div>
+						</ul>
+						
+						<ul class="actions">
+							<input id="generation" type="text" style="position: relative;top: 0px; left: 20px; width: 100px;"
+								placeholder="請輸入世代數" />
+								<div>
+									<button style="position: relative; left: 38px; top: -3px" class="button " onclick="to()"><img src="./icon/fighter-jet-solid.svg"  width="30" height="20">Go To</button>
+								</div>
+						</ul>
+						<ul style="margin-top: 10px; width: 400px;"  class="slidecontainer">  
+							<input type="range" min="1" max="100" value="1" class="slider" id="gen">
+							<p>當代世代數: <span id="demo"></span></p>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div id="modal" class="modal-dialog modal-sm" style="width: 70%;" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div id="echarts2" style="width: 1100px;height:500px;"></div>
+				</div>
+				<div class="modal-footer">
+					<a id="switch1"  class="button" onclick="switch_1()"><img src="./icon/toggle-off-solid.svg"  width="30" height="20" >切換</a>
+					<a id="switch2" class="button" onclick="switch_3()"><img src="./icon/toggle-on-solid.svg"  width="30" height="20" >切換:全域</a>
+					<!-- <a id="switch3" class="button" onclick="switch_3()"><img src="./icon/toggle-off-solid.svg"  width="30" height="20" >切換:當代</a> -->
+					<a id="datazoom" class="button " onclick="datazoom()"><img src="./icon/search-plus-solid.svg"  width="30" height="20" >縮放</a>
+					<a id="undatazoom" class="button " onclick="datazoom()"><img src="./icon/search-plus-solid.svg"  width="30" height="20" >縮放</a>
+					<a class="button" onclick="save_img2()"><img src="./icon/save-solid.svg"  width="30" height="20" >保存</a>
+					<a class="button" data-dismiss="modal"><img src="./icon/times-solid.svg"  width="30" height="20" >取消</a>
+			
+					<!-- <a id="switch1" style="width: 100%;" class="button small icon solid fa-toggle-off" onclick="switch_1()">切換</a>
+					<a id="switch2" style="width: 100%;" class="button small icon solid fa-toggle-on" onclick="switch_2()">切換:全域</a>
+					<a id="switch3" style="width: 100%;" class="button small icon solid fa-toggle-on" onclick="switch_3()">切換:當代</a>
+					<a id="datazoom" class="button small icon solid fa-search-plus" onclick="datazoom()">縮放</a>
+					<a id="undatazoom" class="button small icon solid fa-search-plus primary" onclick="datazoom()">縮放</a>
+					<a class="button small icon solid fa-camera-retro" onclick="save_img2()">保存</a>
+					<a class="button small icon solid fa-stop" data-dismiss="modal">取消</a> -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Scripts -->
+
+	<script type="text/javascript">
+		var elementToRecord = document.getElementById('main');
+		var canvas2d = document.getElementById('background-canvas');
+		var context = canvas2d.getContext('2d');
+
+		canvas2d.width = elementToRecord.clientWidth;
+		canvas2d.height = elementToRecord.clientHeight;
+		var isRecordingStarted = false;
+		var isStoppedRecording = false;
+
+		(function looper() {
+			if (!isRecordingStarted) {
+				return setTimeout(looper, 500);
+			}
+
+			html2canvas(elementToRecord).then(function (canvas) {
+				context.clearRect(0, 0, canvas2d.width, canvas2d.height);
+				context.drawImage(canvas, 0, 0, canvas2d.width, canvas2d.height);
+
+				if (isStoppedRecording) {
+					return;
+				}
+				requestAnimationFrame(looper); // 速度太慢 暫時不知道怎麼解決
+			});
+		})();
+
+		var recorder = new RecordRTC(canvas2d, {
+			type: 'canvas',
+			mimeType: 'video/webm;codecs=vp9',
+			recorderType: CanvasRecorder,
+			getNativeBlob: true
+		});
+
+		document.getElementById('btn-start-recording').onclick = function () {
+			isStoppedRecording = false;
+			isRecordingStarted = true;
+
+			recorder.startRecording();
+			startTime = Date.now();
+			$('#start-recording').hide()
+			$('#stop-recording').show()
+		};
+
+		document.getElementById('btn-stop-recording').onclick = function () {
+			recorder.stopRecording(function (stream) {
+				var duration = Date.now() - startTime;
+				isRecordingStarted = false;
+				isStoppedRecording = true;
+				var blob = recorder.getBlob();
+				ysFixWebmDuration(blob, duration, function(fixedBlob) {
+					let downloadLink = document.createElement('a');
+					downloadLink.href = URL.createObjectURL(fixedBlob);
+					downloadLink.download = "video.mp4";
+					downloadLink.click();
+					recorder.screen.stop();
+					recorder.destroy();
+				});
+				// document.getElementById('preview-video').srcObject = null;
+				
+
+
+				// window.open(URL.createObjectURL(blob));
+			});
+			$('#start-recording').show()
+			$('#stop-recording').hide()
+		};
+		// slider bar
+		var generation_slider = document.getElementById("gen");
+		var _this = this
+		generation_slider.oninput = function () {
+			_this.param.index = this.value
+			_this.goto(_this.param.index)
+		}
+		//   var slider = new Slider('#ex1', {
+		// 	  formatter: function(value) {
+		// 		  return '第' + value + '世代'
+		// 	  }
+		//   });
+		//   slider.on("slide", function(sliderValue) {
+		//   this.param.index = sliderValue
+		//   this.goto(sliderValue)
+		//   });
+		// 基于准备好的dom，初始化echarts实例
+		var myChart = echarts.init(document.getElementById('echart'));
+		// 斂散圖實例
+		var myChart2 = echarts.init(document.getElementById('echarts2'))
+		var Generation = [
+			// {
+			//   Amount: null, // 當代檔案數量
+			//   Particle: null, // 當代粒子數
+			//   GBest: null, // 目前最佳解
+			//   GBest_gen: null, // 目前最佳解的代數
+			//   CBest: null, // 當代最佳解位置
+			//   CWorst: null, // 當代最差解位置
+			//   Evaluation: null,
+			//   X: [
+			//     {
+			//       Amount: null,
+			//       Fitness: null,
+			//       PInfo: null,
+			//       Bit: [],
+			//       Probability: [],
+			//       BitInfo: []
+			//     }
+			//   ]
+			// }
+		]
+		var param = {
+			dice_state: false, // 是否為幾率模式
+			zoom_state: false, // 是否為放大模式
+			play_state: false, // 播放狀態
+			datazoom_state: false, // 
+			index: 1 // 當前世代數
+		}
+		// 上傳文檔
+		var Upload = {
+			uploadFilename: null,
+			uploadFiles: [],
+			dialogVisible: false
+		}
+		var speed = 1
+		var timer = null
+		var startTime;
+		var option = {
+			title: {
+				text: '組合最佳化'
+			},
+			axisPointer: {
+				label: {
+					fontSize: 24
+				}
+			},
+			visualMap: [{
+				type: 'piecewise',
+				show: true,
+				min: 0,
+				max: 1,
+				left: 'center',
+				orient: 'horizontal',
+				backgroundColor: '#A9A9A9',
+				borderColor: '#000',
+				borderWidth: 1,
+				categories: [0, 1],
+				textStyle:{
+					fontWeight: 'bold',
+					fontSize: 24
+				},
+				pieces: [{
+						value: 0,
+						label: '不拿',
+						color: 'white'
+					},
+					{
+						value: 1,
+						label: '要拿',
+						color: '#000'
+					},
+					{
+						value: 1.1,
+						label: '全域最佳解',
+						color: 'red'
+					}
+				]
+			}],
+			tooltip: {},
+			xAxis: {
+				type: 'category',
+				position: 'top',
+				axisLabel: {
+					interval: 9
+				},
+				min: null,
+				max: null,
+				axisLabel: {
+						formatter: '{value}',
+						interval: 9,
+						fontSize: 24
+					},
+				splitArea: {
+					show: true
+				}
+			},
+			yAxis: [{
+					type: 'category',
+					inverse: true,
+					position: 'left',
+					min: 0,
+					data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, '全域最佳解'],
+					axisLabel: {
+						formatter: '{value}',
+						interval: 0,
+						fontSize: 24
+					},
+					splitArea: {
+						show: true
+					}
+				},
+				{
+					type: 'category',
+					inverse: true,
+					position: 'right',
+					boundaryGap: true,
+					data: ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+					axisLabel: {
+						formatter: '{value}',
+						interval: 0,
+						fontSize: 24
+					},
+					name: '適應值',
+					nameLocation: 'start',
+					nameTextStyle:{
+						fontWeight: 'bold',
+						fontSize: 24
+					}
+				}
+			],
+			animation:false,
+			series: [{
+					type: 'heatmap',
+					name: '組合最佳化',
+					data: [],
+					show: false,
+					progressive: 10000,
+					label: {
+						show: false
+					},
+					tooltip: {
+						formatter: function (param, ticket, callback) {
+							if (param.value[1] == '全域最佳解') {
+								return 'GBest,第'+ param.value[0] +'個bit,值:' + param.value[2].toFixed(0)
+							}
+							 return '第'+ param.value[0] +'個bit,'+ Generation[param.value[1]].X[Generation[param.value[1]].CBest].BitInfo[param.value[0]]
+						}
+					},
+					yAxisIndex: 0,
+					itemStyle: {
+						emphasis: {
+							shadowBlur: 1,
+							shadowColor: 'rgba(0, 0, 0, 0.5)'
+						},
+						borderWidth: 1,
+						borderColor: '#808080'
+					}
+				},
+				{
+					type: 'heatmap',
+					yAxisIndex: 1,
+					label: {
+						show: false
+					},
+					tooltip: {
+						formatter: function (param, ticket, callback) {
+							return 'gen1,bit' + param.value[0] + ':' + param.value[2].toFixed(0)
+						}
+					},
+					itemStyle: {
+						emphasis: {
+							shadowBlur: 1,
+							shadowColor: 'rgba(0, 0, 0, 0.5)'
+						},
+						borderWidth: 1,
+						borderColor: '#808080'
+					},
+					data: []
+				}
+			]
+		}
+		// 斂散圖配置
+		var option2 = {
+				title: {
+					text: '斂散圖'
+				},
+				toolbox:{
+					feature:{
+						dataZoom:{
+							show: true,
+							title: {
+								zoom: '區域縮放',
+								back: '還原'
+							},
+							yAxisIndex: false
+						}
+					}
+				},
+				legend:{
+					data:[]
+				},
+				color:['#0000FF',
+					'#FF0000',
+					'#FF8106',
+					'#FCC565',
+					'#8150C7',
+					'#5AAAFA',
+					'#F06060',
+					'#FFA5B4',
+					'#2468A2',
+					'#DB6EBA'],
+				tooltip: {
+					formatter: function (param, ticket, callback) {
+						return '第' + param.value[0] + '世代全域最佳解:' + param.value[1]
+					}
+				},
+				xAxis: {
+					type: 'value',
+					name:'世代數',
+					min: 1,
+					max: 2
+				},
+				yAxis: {
+					type: 'value',
+					name: '適應值',
+					max: 'dataMax',
+					min: 'dataMin'
+				},
+				dataZoom:[{
+					show: true,
+					realtime: true,
+					xAxisIndex: 0
+				},
+				{
+					type: 'inside',
+					xAxisIndex: 0
+				}],
+				animation: false,
+				series: []
+			}
+			var option3 = {
+				title: {
+					text: '斂散圖'
+				},
+				legend:{
+					data:[]
+				},
+				toolbox:{
+					feature:{
+						dataZoom:{
+							show: true,
+							title: {
+								zoom: '區域縮放',
+								back: '還原'
+							},
+							yAxisIndex: false
+						}
+					}
+				},
+				color:['#0000FF',
+					'#FF0000',
+					'#FF8106',
+					'#FCC565',
+					'#8150C7',
+					'#5AAAFA',
+					'#F06060',
+					'#FFA5B4',
+					'#2468A2',
+					'#DB6EBA'],
+				tooltip: {
+					formatter: function (param, ticket, callback) {
+						return '第' + param.value[0] + '世代當代最佳解:' + param.value[1]
+					}
+				},
+				xAxis: {
+					type: 'value',
+					name:'世代數',
+					min: 1,
+					max: 2
+				},
+				yAxis: {
+					type: 'value',
+					name: '適應值',
+					min: 'dataMin',
+					max: 'dataMax'
+				},
+				dataZoom:[{
+					show: true,
+					realtime: true,
+					xAxisIndex: 0
+				},
+				{
+					type: 'inside',
+					xAxisIndex: 0
+				}],
+				series: []
+			}
+			var option4 = {
+				title: {
+					text: '斂散圖'
+				},
+				legend:{
+					data:[]
+				},
+				toolbox:{
+					feature:{
+						dataZoom:{
+							show: true,
+							title: {
+								zoom: '區域縮放',
+								back: '還原'
+							},
+							yAxisIndex: false
+						}
+					}
+				},
+				color:['#0000FF',
+					'#FF0000',
+					'#FF8106',
+					'#FCC565',
+					'#8150C7',
+					'#5AAAFA',
+					'#F06060',
+					'#FFA5B4',
+					'#2468A2',
+					'#DB6EBA'],
+				tooltip: {
+					formatter: function (param, ticket, callback) {
+						return '第' + param.value[0] + '世代當代最佳解:' + param.value[1]
+					}
+				},
+				xAxis: {
+					type: 'value',
+					name:'世代數',
+					min: 1,
+					max: 2
+				},
+				yAxis: {
+					type: 'value',
+					name: '適應值',
+					min: 'dataMin',
+					max: 'dataMax'
+				},
+				dataZoom:[{
+					show: true,
+					realtime: true,
+					xAxisIndex: 0
+				},
+				{
+					type: 'inside',
+					xAxisIndex: 0
+				}],
+				series: []
+			}
+
+		function loadJsonFromFile(file, fileList) {
+			this.Upload.uploadFilename = file.name
+			this.Upload.uploadFiles = fileList
+		}
+
+		function load() { // 讀檔
+			var file = myfile.files[0];
+			this.Upload.uploadFilename = file.name
+			if (file) {
+				var reader = new FileReader();
+				reader.readAsText(file);
+				reader.onload = function (event) {
+					myChart.showLoading()
+					process(event.target.result);
+					document.getElementById("speed").innerHTML = 1
+					speed = 1
+					// myChart.hideLoading()
+				}
+			}
+		}
+
+		function process(txt) { // 處理文檔
+			var k = 0
+			var j = 0
+			var i = 0
+			this.Generation = [] // 處理文檔前重置
+			// document.getElementById('ex1').setAttribute("data-slider-max", txt.length)
+			var filename = this.Upload.uploadFilename.split('.')
+			if (filename[0] == 'Rastrigin') {
+				window.location.replace('./3d.html')
+			}
+			if (filename[filename.length - 1] !== 'json') { // 如果是檔
+				var eachline = txt.trim().split('\n') // 每一行的內容
+				if (eachline[0].trim() === 'Particle:'  || eachline[0].trim() === 'Particle :') {
+					var Bit_tmp = 1
+					for (j = 1; eachline[j] != null; j++) {
+						// [0]是世代数和GBest [1]是每世代的信息
+						var tokens1 = eachline[j].split(':')
+						// 切割成每个粒子的信息
+						var tokens2 = tokens1[1].trim().split('/')
+						if (tokens2[tokens2.length - 1] === '') {
+							tokens2.pop()
+						}
+						// [0]是世代數 [1]是當代最佳解
+						var tokens3 = tokens1[0].trim().split(' ')
+						// 粒子數
+						var Interval_tmp = tokens2.length
+						this.Generation.push({
+							Particle: Interval_tmp,
+							GBest: parseInt(tokens3[1]), // 文檔本來寫著的
+							GBest2: 0,  // 自己計算的
+							CBest: 0,
+							CWorst: 0,
+							Evaluation: null,
+							X: []
+						})
+						// 似乎用不到
+						if (i > 0) {
+							this.Generation[i].Evaluation = this.Generation[i - 1].Evaluation + Interval_tmp
+						} else {
+							this.Generation[0].Evaluation = Interval_tmp
+						}
+						//
+						for (k = 0; k < Interval_tmp; k++) {
+							var tokens4 = tokens2[k].trim().split(' ')
+							Bit_tmp = tokens4.length - 2 // 每個個體的bit數量
+							this.Generation[i].X.push({
+								Amount: Bit_tmp,
+								Fitness: parseInt(tokens4[0]),
+								PInfo: tokens4[1],
+								Bit: new Array(Bit_tmp),
+								BitInfo: new Array(Bit_tmp),
+								Probability: new Array(Bit_tmp)
+							})
+							// 當代最佳解
+							if (parseInt(this.Generation[i].X[k].Fitness) > parseInt(this.Generation[i].X[this.Generation[i]
+									.CBest].Fitness)) {
+								this.Generation[i].CBest = k
+							}
+							// 當代最差解
+							if (parseInt(this.Generation[i].X[k].Fitness) < parseInt(this.Generation[i].X[this.Generation[i]
+									.CWorst].Fitness)) {
+								this.Generation[i].CWorst = k
+							}
+							// 放入bit信息
+							for (var l = 0; l < Bit_tmp; l++) {
+								var tokens5 = tokens4[l + 2].trim().split(',')
+								this.Generation[i].X[k].Bit[l] = parseInt(tokens5[0])
+								this.Generation[i].X[k].Probability[l] = parseFloat(tokens5[1])
+								this.Generation[i].X[k].BitInfo[l] = tokens5[2]
+							}
+						}
+						// GBest
+						if (i > 0) {
+							if (parseInt(this.Generation[i].X[this.Generation[i].CBest].Fitness) > parseInt(this.Generation[i - 1].GBest2)) {
+								this.Generation[i].GBest2 = parseInt(this.Generation[i].X[this.Generation[i].CBest].Fitness)
+							} else {
+								this.Generation[i].GBest2 = parseInt(this.Generation[i - 1].GBest2)
+							}
+						} else {
+							this.Generation[i].GBest2 = parseInt(this.Generation[i].X[this.Generation[i].CBest].Fitness)
+						}
+						if (i > 0) {
+							var gbest_gen = this.Generation[i - 1].GBest_gen
+							if (this.Generation[i].X[this.Generation[i].CBest].Fitness >= this.Generation[gbest_gen].X[this
+									.Generation[gbest_gen].CBest].Fitness) {
+								this.Generation[i].GBest_gen = i
+							} else {
+								this.Generation[i].GBest_gen = this.Generation[i - 1].GBest_gen
+							}
+						} else {
+							this.Generation[i].GBest_gen = 0
+						}
+						i++
+					}
+					generation_slider.max = this.Generation.length
+				}
+			} else {
+				txt = JSON.parse(txt)
+				generation_slider.max = txt.length
+				for (i = 0; i < txt.length; i++) {
+					var Particle_tmp = txt[i].gen.length
+					this.Generation.push({
+						Particle: Particle_tmp,
+						GBest: txt[i].GBest,
+						GBest2: txt[i].GBest,
+						CBest: 0,
+						CWorst: 0,
+						Evaluation: null,
+						X: []
+					})
+					if (i > 0) {
+						this.Generation[i].Evaluation = this.Generation[i - 1].Evaluation + Particle_tmp
+					} else {
+						this.Generation[0].Evaluation = Particle_tmp
+					}
+					for (j = 0; j < Particle_tmp; j++) {
+						var Bit_Num = txt[i].gen[j].bit.length
+						var fitness = txt[i].gen[j].fitness
+						var PInfo = txt[i].gen[j].Info
+						// 存入粒子信息
+						this.Generation[i].X.push({
+							Amount: Bit_Num,
+							Fitness: fitness,
+							PInfo: PInfo,
+							Bit: new Array(Bit_Num),
+							BitInfo: new Array(Bit_Num),
+							Probability: new Array(Bit_Num)
+						})
+						// 尋找當代最佳解
+						if (this.Generation[i].X[j].Fitness > this.Generation[i].X[this.Generation[i].CBest].Fitness) {
+							this.Generation[i].CBest = j
+						}
+						// 當代最差解
+						if (this.Generation[i].X[j].Fitness < this.Generation[i].X[this.Generation[i].CWorst].Fitness) {
+							this.Generation[i].CWorst = j
+						}
+						for (k = 0; k < Bit_Num; k++) {
+							this.Generation[i].X[j].Bit[k] = txt[i].gen[j].bit[k].value
+							this.Generation[i].X[j].Probability[k] = txt[i].gen[j].bit[k].probability
+							this.Generation[i].X[j].BitInfo[k] = txt[i].gen[j].bit[k].Info
+						}
+					}
+					// GBest
+					if (i > 0) {
+							if (parseInt(this.Generation[i].X[this.Generation[i].CBest].Fitness) > parseInt(this.Generation[i - 1].GBest2)) {
+								this.Generation[i].GBest2 = parseInt(this.Generation[i].X[this.Generation[i].CBest].Fitness)
+							} else {
+								this.Generation[i].GBest2 = parseInt(this.Generation[i - 1].GBest2)
+							}
+						} else {
+							this.Generation[i].GBest2 = parseInt(this.Generation[i].X[this.Generation[i].CBest].Fitness)
+						}
+					if (i > 0) {
+						var GBest_gen = this.Generation[i - 1].GBest_gen
+						if (this.Generation[i].X[this.Generation[i].CBest].Fitness >= this.Generation[GBest_gen].X[this.Generation[GBest_gen].CBest].Fitness) {
+							this.Generation[i].GBest_gen = i
+						} else {
+							this.Generation[i].GBest_gen = this.Generation[i - 1].GBest_gen
+						}
+					} else {
+						this.Generation[i].GBest_gen = 0
+					}
+				}
+			}
+			this.param.index = 1
+			console.log(this.Generation)
+			this.goto(this.param.index)
+			myChart.hideLoading()
+			this.setechart2(filename[0])
+		}
+
+		function goto(val) { // 前往第val世代
+			// this.tableData[0].gen = this.param.index
+			document.getElementById('demo').innerText = this.param.index + '/' + this.Generation.length
+			var _this = this
+			var i = 0
+			var j = 0
+			var k = 0
+			var series_tmp = []
+			var series_tmp2 = []
+			var yAxis_tmp = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+			var yAxis2_tmp = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+			if (!this.param.dice_state && !this.param.zoom_state) { // 如果是一般模式
+				if (this.param.index < 20) {
+					for (i = 0; i < this.param.index; i++) {
+						this.Generation[i].X[this.Generation[i].CBest].Bit.map(function (item, index) {
+							series_tmp.push([index + 1, String(i + 1), item])
+						})
+						yAxis_tmp[i] = String(i + 1) // index軸
+						yAxis2_tmp[i] = (this.Generation[i].X[this.Generation[i].CBest].Fitness) // fitnes軸
+					}
+					this.Generation[this.Generation[this.param.index - 1].GBest_gen].X[this.Generation[this.Generation[this.param.index - 1].GBest_gen].CBest].Bit.map(function (item, index) {
+						series_tmp.push([index + 1, '全域最佳解', item * 1.1])
+					}) // GBest
+					yAxis_tmp[20] = '全域最佳解'
+					yAxis2_tmp[20] = (this.Generation[this.Generation[this.param.index - 1].GBest_gen].GBest)
+					option.yAxis[0].data = yAxis_tmp
+					option.yAxis[1].data = yAxis2_tmp
+					option.series[0].data = series_tmp
+					myChart.setOption(option)
+					// this.tableData[0].fitness = this.Generation[this.Generation[val].GBest_gen].GBest
+				} else if (val >= 20) {
+					for (i = val - 20, k = 0; i < val; i++, k++) {
+						this.Generation[i].X[this.Generation[i].CBest].Bit.map(function (item, index) {
+							series_tmp.push([index + 1, String(i + 1), item])
+						})
+						yAxis_tmp[k] = String(i + 1) // index軸
+						yAxis2_tmp[k] = (this.Generation[i].X[this.Generation[i].CBest].Fitness) // fitnes軸
+					}
+					this.Generation[this.Generation[this.param.index - 1].GBest_gen].X[this.Generation[this.Generation[this.param.index - 1].GBest_gen].CBest].Bit.map(function (item, index) {
+						series_tmp.push([index + 1, '全域最佳解', item * 1.1])
+					}) // GBest
+					yAxis_tmp[20] = '全域最佳解'
+					yAxis2_tmp[20] = (this.Generation[this.Generation[this.param.index - 1].GBest_gen].GBest)
+					option.yAxis[0].data = yAxis_tmp
+					option.yAxis[1].data = yAxis2_tmp
+					option.series[0].data = series_tmp
+					this.myChart.setOption(option)
+					// this.tableData[0].fitness = this.Generation[this.Generation[val].GBest_gen].GBest
+				}
+			} else if (this.param.dice_state && !this.param.zoom_state) { // 如果是几率模式
+				if (this.param.index < 20) {
+					for (i = 0; i < this.param.index; i++) {
+						this.Generation[i].X[this.Generation[i].CBest].Probability.map(function (item, index) {
+							series_tmp.push([index + 1, String(i + 1), item])
+						})
+						yAxis_tmp[i] = String(i + 1) // index軸
+						yAxis2_tmp[i] = (this.Generation[i].X[this.Generation[i].CBest].Fitness) // fitnes軸
+					}
+				} else if (this.param.index >= 20) {
+					for (i = this.param.index - 20, k = 0; i < this.param.index; i++, k++) {
+						this.Generation[i].X[this.Generation[i].CBest].Probability.map(function (item, index) {
+							series_tmp.push([index + 1, String(i + 1), item])
+						})
+						yAxis_tmp[k] = String(i + 1) // index軸
+						yAxis2_tmp[k] = (this.Generation[i].X[this.Generation[i].CBest].Fitness)// fitnes軸
+					}
+				}
+				this.Generation[this.Generation[this.param.index - 1].GBest_gen].X[this.Generation[this.Generation[this.param.index - 1].GBest_gen].CBest].Bit.map(function (item, index) {
+						series_tmp2.push([index + 1, 20, (item * -1) - 0.1])
+					}) // GBest
+				yAxis_tmp[20] = '全域最佳解'
+				yAxis2_tmp[20] = (this.Generation[this.Generation[this.param.index - 1].GBest_gen].GBest)
+				option.series[0].data = series_tmp
+				option.series[1].data = series_tmp2
+				option.yAxis[0].data = yAxis_tmp
+				option.yAxis[1].data = yAxis2_tmp
+				myChart.setOption(option)
+			} else {
+				var series_tmp = []
+				var yAxis_tmp = []
+				var yAxis2_tmp = []
+				for (var i = 0; i < this.Generation[this.param.index - 1].Particle; i++) {
+					if (this.Generation[this.param.index - 1].CBest == i) {
+						this.Generation[this.param.index - 1].X[i].Bit.map(function (item, index) {
+							series_tmp.push([index + 1, String(i + 1), item * 1.1])
+						})
+					} else if (this.Generation[this.param.index - 1].CWorst == i) {
+						this.Generation[this.param.index - 1].X[i].Bit.map(function (item, index) {
+							series_tmp.push([index + 1, String(i + 1), item * 0.9])
+						})
+					} else {
+						this.Generation[this.param.index - 1].X[i].Bit.map(function (item, index) {
+							series_tmp.push([index + 1, String(i + 1), item])
+						})
+					}
+					yAxis_tmp.push(String(i + 1))
+					yAxis2_tmp.push(this.Generation[this.param.index - 1].X[i].Fitness)
+				}
+				option.series[0].data = series_tmp
+				option.yAxis[0].data = yAxis_tmp
+				option.yAxis[1].data = yAxis2_tmp
+				myChart.setOption(option)
+			}
+			generation_slider.value = this.param.index
+			document.getElementById("test").innerHTML = this.param.index;
+			document.getElementById("fitness").innerHTML = this.Generation[this.Generation[this.param.index - 1].GBest_gen].GBest;
+		}
+
+		function Dice() { // 打開機率模式
+			var series_tmp = []
+			var series_tmp2 = []
+			var yAxis_tmp = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+			var yAxis2_tmp = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+			if (this.param.index < 20) {
+				for (var i = 0; i < this.param.index; i++) {
+					this.Generation[i].X[this.Generation[i].CBest].Probability.map(function (item, index) {
+						series_tmp.push([index + 1, String(i + 1), item])
+					})
+					yAxis_tmp[i] = String(i + 1) // index軸
+					yAxis2_tmp[i] = (this.Generation[i].X[this.Generation[i].CBest].Fitness) // fitnes軸
+				}
+			} else if (this.param.index >= 20) {
+				for (var j = this.param.index - 20, k = 0; j < this.param.index; j++, k++) {
+					this.Generation[j].X[this.Generation[j].CBest].Probability.map(function (item, index) {
+						series_tmp.push([index + 1, String(j + 1), item])
+					})
+					yAxis_tmp[k] = String(j + 1) // index軸
+					yAxis2_tmp[k] = (this.Generation[j].X[this.Generation[j].CBest].Fitness)// fitnes軸
+				}
+			}
+			this.Generation[this.Generation[this.param.index - 1].GBest_gen].X[this.Generation[this.Generation[this.param.index - 1].GBest_gen].CBest].Bit.map(function (item, index) {
+						series_tmp2.push([index + 1, 20, (item * -1) - 0.1])
+					}) // GBest
+			yAxis_tmp[20] = '全域最佳解'
+			yAxis2_tmp[20] = (this.Generation[this.Generation[this.param.index - 1].GBest_gen].GBest)
+			option.visualMap = [{
+				type: 'continuous',
+				show: true,
+				left: 'left',
+				text: ['1', '0'],
+				itemHeight: 600,
+				precision: 3,
+				bottom:'10%',
+				seriesIndex: 0,
+				inRange: {
+					color: ['#0000FF','#0000FF', '#00FFFF', '#00FF00', '#FFFF00', '#FF7F00', '#FF0000']
+				},
+				min: 0,
+				max: 1
+			},
+				{
+				type: 'piecewise',
+				show: true,
+				min: 0,
+				max: 1,
+				show:false,
+				seriesIndex: 1,
+				left: 'left',
+				right: 0,
+				top: 'bottom',
+				backgroundColor: '#A9A9A9	',
+				borderColor: '#000',
+				borderWidth: 1,
+				categories: [0, 1],
+				pieces: [{
+						value: -0.1,
+						label: '不拿',
+						color: 'white'
+					},
+					{
+						value: -1.1,
+						label: '要拿',
+						color: '#000'
+					}
+				]
+			}]
+			option.series[0].data = series_tmp
+			option.series[0].tooltip.formatter = function (param, ticket, callback) {
+							return '第'+ param.value[0] +'個bit,機率:' + param.value[2]
+						}
+			option.series[1].data = series_tmp2
+			option.series[1].tooltip.formatter = function (param, ticket, callback) {
+							return 'GBest,第'+ param.value[0] +'個bit,值:' + (param.value[2].toFixed(0) * -1)
+						}
+			option.yAxis[0].data = yAxis_tmp
+			option.yAxis[1].data = yAxis2_tmp
+			myChart.setOption(option)
+			this.param.dice_state = true
+			this.param.zoom_state = false
+			$('#zoom').show()
+			$('#unzoom').hide()
+			$('#undice').show()
+			$('#dice').hide()
+		}
+
+		function UnDice() { // 關閉幾率模式
+			var i = 0
+			var series_tmp = []
+			// var _this = this // 從幾率模式切換回一般模式
+			if (this.param.index < 20) {
+				for (i = 0; i < this.param.index; i++) {
+					this.Generation[i].X[this.Generation[i].CBest].Bit.map(function (item, index) {
+						series_tmp.push([index + 1, String(i + 1), item])
+					})
+				}
+				this.Generation[this.Generation[this.param.index].GBest_gen].X[this.Generation[this.Generation[this.param
+					.index - 1].GBest_gen].CBest].Bit.map(function (item, index) {
+					series_tmp.push([index + 1, '全域最佳解', item * 1.1])
+				}) // GBest
+			} else if (this.param.index >= 20) {
+				for (i = this.param.index - 20; i < this.param.index; i++) {
+					this.Generation[i].X[this.Generation[i].CBest].Bit.map(function (item, index) {
+						series_tmp.push([index + 1, String(i + 1), item])
+					})
+				}
+				this.Generation[this.Generation[this.param.index - 1].GBest_gen].X[this.Generation[this.Generation[this.param
+					.index - 1].GBest_gen].CBest].Bit.map(function (item, index) {
+					series_tmp.push([index + 1, '全域最佳解', item * 1.1])
+				}) // GBest
+			}
+			option.visualMap[0] = {
+				type: 'piecewise',
+				show: true,
+				min: 0,
+				max: 1,
+				left: 'center',
+				orient: 'horizontal',
+				backgroundColor: '#A9A9A9	',
+				borderColor: '#000',
+				borderWidth: 1,
+				categories: [0, 1],
+				textStyle:{
+					fontWeight: 'bold',
+					fontSize: 24
+				},
+				pieces: [{
+						value: 0,
+						label: '不拿',
+						color: 'white'
+					},
+					{
+						value: 1,
+						label: '要拿',
+						color: '#000'
+					},
+					{
+						value: 1.1,
+						label: '全域最佳解',
+						color: 'red'
+					}
+				]
+			}
+			option.series[0].data = series_tmp
+			option.series[0].tooltip.formatter = function (param, ticket, callback) {
+				if (param.value[1] == '全域最佳解') {
+					return 'GBest,第'+ param.value[0] +'個bit,值:' + param.value[2].toFixed(0)
+				}
+				return '第'+ param.value[0] +'個bit,'+ Generation[param.value[1]].X[Generation[param.value[1]].CBest].BitInfo[param.value[0]]
+			}
+			option.series[1].data = []
+			myChart.setOption(option)
+			this.param.dice_state = false
+			$('#dice').show()
+			$('#undice').hide()
+		}
+
+		function zoom_in() { //放大模式
+			var _this = this
+			var series_tmp = []
+			if (!this.param.zoom_state) { // 如果還沒放大
+				this.param.zoom_state = true
+				var yAxis_tmp = []
+				var yAxis2_tmp = []
+				for (var i = 0; i < this.Generation[this.param.index - 1].Particle; i++) {
+					if (this.Generation[this.param.index - 1].CBest == i) {
+						this.Generation[this.param.index - 1].X[i].Bit.map(function (item, index) {
+							series_tmp.push([index + 1, String(i + 1), item * 1.1])
+						})
+					} else if (this.Generation[this.param.index - 1].CWorst == i) {
+						this.Generation[this.param.index - 1].X[i].Bit.map(function (item, index) {
+							series_tmp.push([index + 1, String(i + 1), item * 0.9])
+						})
+					} else {
+						this.Generation[this.param.index - 1].X[i].Bit.map(function (item, index) {
+							series_tmp.push([index + 1, String(i + 1), item])
+						})
+					}
+					yAxis_tmp.push(String(i + 1))
+					yAxis2_tmp.push(this.Generation[this.param.index - 1].X[i].Fitness)
+				}
+				option.visualMap[0] = {
+					type: 'piecewise',
+					show: true,
+					min: 0,
+					max: 1,
+					left: 'center',
+					orient: 'horizontal',
+					backgroundColor: '#A9A9A9',
+					borderColor: '#000',
+					borderWidth: 1,
+					categories: ['不拿','要拿','當代最佳解', '當代最差解'],
+					textStyle:{
+					fontWeight: 'bold',
+					fontSize: 24,
+					},
+					pieces: [{
+							value: 0,
+							label: '不拿',
+							color: 'white'
+						},
+						{
+							value: 1,
+							label: '要拿',
+							color: '#000'
+						},
+						{
+							value: 1.1,
+							label: '當代最佳解',
+							color: 'red'
+						},
+						{
+							value: 0.9,
+							label: '當代最差解',
+							color: 'blue'
+						}
+					]
+				}
+				option.series[0].data = series_tmp
+				option.series[0].tooltip.formatter = function (param, ticket, callback) {
+					return '第'+ param.value[0] +'個bit,'+ Generation[param.value[1]].X[Generation[param.value[1]].CBest].BitInfo[param.value[0]]
+						}
+				option.series[1].data = []
+				option.yAxis[0].data = yAxis_tmp
+				option.yAxis[1].data = yAxis2_tmp
+				myChart.setOption(option)
+				$('#zoom').hide()
+				$('#unzoom').show()
+				$('#dice').show()
+				$('#undice').hide()
+			} else if (this.param.zoom_state) { // 如果已經放大並且原本處於一般模式
+				this.param.zoom_state = false
+				// 回到一般模式
+				option.visualMap[0] = {
+					type: 'piecewise',
+					show: true,
+					min: 0,
+					max: 1,
+					left: 'center',
+					orient: 'horizontal',
+					backgroundColor: '#A9A9A9',
+					borderColor: '#000',
+					borderWidth: 1,
+					categories: [0, 1],
+					textStyle:{
+					fontWeight: 'bold',
+					fontSize: 24
+				},
+					pieces: [{
+							value: 0,
+							label: '不拿',
+							color: 'white'
+						},
+						{
+							value: 1,
+							label: '要拿',
+							color: '#000'
+						},
+						{
+							value: 1.1,
+							label: '全域最佳解',
+							color: 'red'
+						}
+					]
+				}
+				var yAxis_tmp = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+				var yAxis2_tmp = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+				if (this.param.index < 20) {
+					for (i = 0; i < this.param.index; i++) {
+						this.Generation[i].X[this.Generation[i].CBest].Bit.map(function (item, index) {
+							series_tmp.push([index + 1, String(i + 1), item])
+						})
+						yAxis_tmp[i] = String(i + 1) // index軸
+						yAxis2_tmp[i] = (this.Generation[i].GBest) // fitnes軸
+					}
+					this.Generation[this.Generation[this.param.index].GBest_gen].X[this.Generation[this.Generation[this.param
+						.index].GBest_gen].CBest].Bit.map(function (item, index) {
+						series_tmp.push([index + 1, '全域最佳解', item * 1.1])
+					}) // GBest
+					yAxis_tmp[20] = '全域最佳解'
+					yAxis2_tmp[20] = (this.Generation[this.Generation[this.param.index].GBest_gen].GBest)
+					// this.tableData[0].fitness = this.Generation[this.Generation[val].GBest_gen].GBest
+				} else if (this.param.index >= 20) {
+					for (i = this.param.index - 20, k = 0; i < this.param.index; i++, k++) {
+						this.Generation[i].X[this.Generation[i].CBest].Bit.map(function (item, index) {
+							series_tmp.push([index + 1, String(i + 1), item])
+						})
+						yAxis_tmp[k] = String(i + 1) // index軸
+						yAxis2_tmp[k] = (this.Generation[i].GBest) // fitnes軸
+					}
+					this.Generation[this.Generation[this.param.index - 1].GBest_gen].X[this.Generation[this.Generation[this.param
+						.index - 1].GBest_gen].CBest].Bit.map(function (item, index) {
+						series_tmp.push([index + 1, '全域最佳解', item * 1.1])
+					}) // GBest
+					yAxis_tmp[20] = '全域最佳解'
+					yAxis2_tmp[20] = (this.Generation[this.Generation[this.param.index - 1].GBest_gen].GBest)
+					// this.tableData[0].fitness = this.Generation[this.Generation[val].GBest_gen].GBest
+				}
+				option.yAxis[0].data = yAxis_tmp
+				option.yAxis[1].data = yAxis2_tmp
+				option.series[0].data = series_tmp
+				option.series[1].data = []
+				option.series[0].tooltip.formatter = function (param, ticket, callback) {
+					if (param.value[1] == '全域最佳解') {
+						return 'GBest,第'+ param.value[0] +'個bit,值:' + param.value[2].toFixed(0)
+					}
+					return '第' + param.value[1] + '世代,第'+ param.value[0] +'個bit,值:' + param.value[2].toFixed(0)
+				}
+				$('#zoom').show()
+				$('#unzoom').hide()
+				myChart.setOption(option)
+			}
+		}
+
+		function save_img() { // 主頁面圖片保存
+			const link = document.createElement('a')
+			link.href = myChart.getDataURL({
+				type: 'jpg',
+				backgroundColor: '#fff'
+			})
+			link.download = 'pic.jpg'
+			link.click()
+		}
+		// 斂散圖保存
+		function save_img2() {
+			const link = document.createElement('a')
+			link.href = myChart2.getDataURL({
+				type: 'jpg',
+				backgroundColor: '#fff'
+			})
+			link.download = 'pic.jpg'
+			link.click()
+		}
+
+		function play() { //播放
+			var _this = this
+			if (this.param.play_state == false) {
+				this.param.play_state = true
+				this.timer = setInterval(function () {
+					if(this.param.index >= _this.Generation.length) {
+							return _this.pause()
+						}
+						this.param.index++
+						goto(this.param.index)
+				}, 2000 / speed)
+				$('#play').hide()
+				$('#pause').show()
+			}
+		}
+
+		function pause() { //暫停
+			if (this.param.play_state == true) {
+				this.param.play_state = false
+				clearInterval(this.timer)
+				$('#play').show()
+				$('#pause').hide()
+			}
+		}
+
+		function fast() { // 加速
+			var _this = this
+			if (this.speed < 64) {
+				this.speed *= 2
+				if (this.param.play_state == true) {
+					clearInterval(this.timer)
+					this.timer = setInterval(function () {
+						if(this.param.index >= _this.Generation.length) {
+							return _this.pause()
+						}
+						this.param.index++
+						goto(this.param.index)
+					}, 2000 / speed)
+				}
+				document.getElementById("speed").innerHTML = this.speed;
+			}
+		}
+
+		function slow() { // 減速
+			if (this.speed > 0.25) {
+				this.speed /= 2
+				if (this.param.play_state == true) {
+					clearInterval(timer)
+					this.timer = setInterval(function () {
+						if(this.param.index >= _this.Generation.length) {
+							return _this.pause()
+						}
+						this.param.index++
+						goto(this.param.index)
+					}, 2000 / speed)
+				}
+				document.getElementById("speed").innerHTML = this.speed;
+			}
+		}
+
+		function previous() { // 上一代
+			if (this.param.index > 1) {
+				this.param.index--
+				goto(this.param.index)
+			}
+		}
+
+		function next() { // 下一代
+			if (this.param.index < this.Generation.length) {
+				this.param.index++
+				goto(this.param.index)
+			}
+		}
+
+		function setechart2(filename) { // 斂散圖
+			var series_tmp = this.Generation.map(function (item, index) {
+				return [index + 1, item.GBest2]
+			}) // 程式計算的GBest
+			var series2_tmp = this.Generation.map(function (item, index) {
+				return [index + 1, item.X[item.CBest].Fitness]
+			}) // 程式計算的PBest
+			var series3_tmp = this.Generation.map(function (item, index) {
+				return [index + 1, item.GBest]
+			}) // epin原本的GBest
+			this.option2.series.push (
+				{
+					name: filename,
+					type: 'line',
+					showAllSymbol: false,
+					data: series_tmp
+				}
+			)
+			this.option3.series.push (
+				{
+					name: filename,
+					type: 'line',
+					showAllSymbol: false,
+					data: series2_tmp
+				}
+			)
+			this.option4.series.push (
+				{
+					name: filename,
+					type: 'line',
+					showAllSymbol: false,
+					data: series3_tmp
+				}
+			)
+			this.option2.legend.data.push(filename)
+			this.option3.legend.data.push(filename)
+			this.option4.legend.data.push(filename)
+			if (this.Generation.length > this.option2.xAxis.max) {
+				this.option2.xAxis.max = this.Generation.length
+				this.option3.xAxis.max = this.Generation.length
+				this.option4.xAxis.max = this.Generation.length
+			}
+			myChart2.setOption(this.option4)
+		}
+		function switch_1() { // 切換pbest
+			myChart2.setOption(this.option2)
+			$('#switch1').hide()
+			$('#switch2').show()
+		}
+		function switch_2() { // 切換pbest
+			myChart2.setOption(this.option3)
+			$('#switch2').hide()
+			$('#switch1').show()
+		}
+		function switch_3() {
+			myChart2.setOption(this.option4)
+			$('#switch2').hide()
+			$('#switch1').show()
+		}
+		function datazoom() {
+			if (this.param.datazoom_state == false){
+			this.myChart2.dispatchAction({
+				type: 'takeGlobalCursor',
+				key: 'dataZoomSelect',
+				// 启动或关闭
+				dataZoomSelectActive: true
+			})
+			this.param.datazoom_state = true
+			$('#undatazoom').show()
+			$('#datazoom').hide()
+			} else {
+				this.myChart2.dispatchAction({
+				type: 'takeGlobalCursor',
+				key: 'dataZoomSelect',
+				// 启动或关闭
+				dataZoomSelectActive: false
+			})
+			this.param.datazoom_state = false
+			$('#undatazoom').hide()
+			$('#datazoom').show()
+			}
+		}
+		function to() {
+			this.param.index = parseInt(document.getElementById('generation').value)	
+			this.goto(parseInt(document.getElementById('generation').value))
+		}
+
+		function Eraser() { // 從頭
+			this.param.index = 1
+			this.goto(this.param.index)
+		}
+
+		window.addEventListener("resize", () => {
+			if (this.param.play_state == true) {
+				clearInterval(this.timer)
+				this.myChart.resize();
+				this.myChart2.resize();
+				this.timer = setInterval(function () {
+					if(this.param.index >= _this.Generation.length) {
+							return _this.pause()
+						}
+						this.param.index++
+						goto(this.param.index)
+				}, 2000 / speed)
+			}
+			else {
+			this.myChart.resize();
+			this.myChart2.resize();
+			}
+		})
+		
+		$('#undatazoom').hide()
+		$('#switch2').hide()
+		$('#switch3').hide()
+		$('#pause').hide()
+		$('#undice').hide()
+		$('#unzoom').hide()
+		$('#stop-recording').hide()
+		myChart.setOption(option);
+	</script>
+
+</body>
+
+</html>

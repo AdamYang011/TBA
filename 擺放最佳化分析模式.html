@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>最佳動化_擺放最佳化分析模式</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible"content="ie=edge">      <!--什麼版本IE 就用什麼版本的標準模式-->
+		<script src="./assets/js/jquery.min.js"></script><!--sidebar模式-->
+		<script src="./assets/js/bootstrap.min.js"></script><!--sidebar模式-->
+		<script src="./assets/js/c0cbf39b93.js" ></script><!--拿back.to.top的ICON-->
+		<script src="./assets/js/fontsize.js"></script>
+		<link rel="stylesheet" href="./assets/css/main.css" />
+		<link rel="stylesheet" href="./assets/css/spotlight.css" /><!--照片文字的css-->
+		<link rel="stylesheet" href="./assets/css/slide.css" /><!--跑馬燈的css?????-->
+		<link rel="stylesheet" href="./assets/css/Button.css" />
+		<link rel="stylesheet" href="./assets/css/darkmode.css"/>
+		<link rel="stylesheet" href="./assets/css/Bootstrap.css" />
+        <style>
+        #showcanvas
+		{
+			/*position: absolute;
+			margin: auto;
+			left: 200;
+			right: 0;
+			top: 0;
+			bottom: 0;*/
+			background :black;
+			float: left;	
+		}
+
+        #div1
+        {
+            float: left;
+            margin:0px 10px;
+        }
+
+        #div2
+        {
+            display: inline-block;
+        }
+        </style>	
+    </head>
+
+    <body class="is-preload">
+        <div id="wrapper">
+            <!--sidebar-->
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                           <a class="navbar-brand" href="./index.html">最佳動化</a>
+                      </div>
+                      <ul class="nav navbar-nav">
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">數值最佳化 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="./數值最佳化分析模式.html">分析模式</a></li>
+                        </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">組合最佳化 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                            <li><a href="./組合最佳化分析模式.html">分析模式</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排列最佳化 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                            <li><a href="./排列最佳化分析模式.html">分析模式</a></li>
+                            <li><a href="./排列最佳化遊戲模式.html">遊戲模式</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">擺放最佳化 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                            <li><a href="./擺放最佳化分析模式.html">分析模式</a></li>
+                            <li><a href="./擺放最佳化遊戲模式.html">遊戲模式</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排行榜 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                            <li><a href="#">排列最佳化--遊戲模式</a></li>
+                            <li><a href="#">擺放最佳化--遊戲模式</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href="./setting.html">設定</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div id="main">
+                <div class="inner">
+                    <div>
+                        <div id="div1">
+                            <br><br>
+                            <h4></h4>
+                            <canvas id="mycanvas" width="800" height="800"></canvas>
+                        </div> 
+                        
+                        <div style="float: left; margin-left: 50px; ">
+                            <br><br>
+                            <h4></h4>
+                            <canvas id="showcanvas" width="180" height="800"></canvas>
+                        </div>
+
+                        <div style="float: left; margin-left: 20px; margin-top: 150px; margin-right: -100px;">
+                            <ul>
+                                <div>
+                                    <br><br>
+                                    <br>
+                                    </div>
+                                        <p style="font-size: 35px;">感測器數：<span style="font-size: 35px;" id="number"></span></p>
+                                    <div>
+                                    <div>
+                                        <button onclick="screenshot()"><img src="./icon/camera.svg" width="30" height="20">拍照</button>
+                                        <button id="startrecord" onclick="media()"><img src="./icon/video.svg" width="30" height="20">錄影</button>
+                                        <button onclick="low()"><img src="./icon/exclamation.svg" width="30" height="20">低於限制</button>
+                                        <br>
+                                        <h6></h6>
+                                        
+                                        <button id="sandp" onclick="stoptem()"><img src="./icon/pause.svg" width="30" height="20">暫停</button>
+                                        <button onclick="allstop()"><img src="./icon/stop.svg" width="30" height="20">停止</button>
+                                        <button onclick="connect()"><img src="./icon/link.svg" width="30" height="20">連通性</button>
+                                        <br>
+                                        <h6></h6>
+                                        <button id="idchange" onclick="change()"><img src="./icon/sync-alt.svg" width="30" height="20">更改</button>
+                                        <button onclick="down()"><img src="./icon/save.svg" width="30" height="20">存檔</button>
+                                        <br>
+                                        <h6></h6>
+                                        <button onclick="backward()"><img src="./icon/angle-left.svg" width="30" height="20">上代</button>
+                                        <button onclick="forward()"><img src="./icon/angle-right.svg" width="30" height="20">下代</button>
+                                        <button id="fast" onclick="speed()"><img src="./icon/shipping.svg" width="30" height="20">速度：1</button>
+                                    </div>
+                                    <h6></h6>
+                                    <div id="div2"><input type="text" id="num" style="width: 100px;font-family: cwTeXYen; font-size: 20px;padding-left:10px; padding-right: 10px;" placeholder="輸世代數"></div>
+                                    <div id="div2"><button onclick="jump()"><img src="./icon/plane.svg" width="30" height="20">Go To</button></div>
+                                    <br>
+                                    <div id="div2">
+                                        <h6></h6>
+                                        <input id="myfile" type="file" onchange="load()" onclick="this.value=null"/>
+                                    </div>
+                                    <div style="margin-top: 10px ;width: 350px;" class="slidecontainer">
+                                        <input type="range" min="1" max="100" value="1" class="mixedSlider" id="myRange" oninput="">
+                                        <p>當代世代數: <span id="demo"></span></p>
+                                    </div>
+                                </div>
+                            </ul>         
+                        </div>
+                           
+                    </div>
+                </div>    
+            </div>
+        </div>
+        
+        <!-- Scripts -->
+        <script src="./assets/js/breakpoints.min.js"></script>
+        <script src="./assets/js/browser.min.js"></script>
+        <script src="./assets/js/jquery.min.js"></script>
+        <script src="./assets/js/main.js"></script>
+        <script src="./assets/js/util.js"></script>
+        <script src="./assets/js/slide.js"></script>
+        <!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> -->
+        <script src="./assets/js/multislider.js"></script> 
+        <script src="./assets/js/back_to_top.js"></script>
+        <script src="./assets/js/sweetalert.js"></script>
+        <script src="./assets/js/screenshot.js"></script>
+        <script>
+            var limit=[],put=[],pro=[],mapsize,each_rect;
+            var map_width,map_height,canvas_width,canvas_height;
+            var around=[],rate=0,gen=1,enter=0,startre=0,increase=0,stopindex=0,putnum=0,calrect=0,calchange=0,lowindex=0,connectindex=0,dot=0,sec=1000;
+            var color=["black","red","orange","yellow","greenyellow","aqua","blue","gray"];
+	        var percent=["感測器","90%","75%","60%","45%","30%","15%","0%"];
+            var slider = document.getElementById("myRange");
+		    var output = document.getElementById("demo");
+            var cal_num=document.getElementById("number");
+            //讀檔
+            function load()
+            {
+                var file = myfile.files[0];
+                if(file)
+                {
+                    var reader = new FileReader();
+                    reader.readAsText(file);
+                    reader.onload = function(event)
+                    {                            
+                       text(event.target.result);
+                    }   
+                }
+            }
+            function text(content)
+            {
+                limit=[];put=[];pro=[];around=[];rate=0;gen=1;enter=0;startre=0;increase=0;stopindex=0;putnum=0;calrect=0;
+                document.getElementById("sandp").innerHTML ='<img src="./icon/pause.svg" width="30" height="20">暫停';
+                map=content.split("\n");
+                mapsize=map[1].split("*");
+                map_width=parseInt(mapsize[0]);
+                map_height=parseInt(mapsize[1]);
+                //console.log(map);
+                for(var i=0;i<map_height;i++)
+                {
+                    limit[i]=new Array();
+                    limit[i]=map[i+3].split(" ");    
+                }
+                for(var j=map_height+4;j<map.length;j++)
+                {
+                    put[j]=new Array();
+                    put[j]=map[j].split(" ");
+                }
+                //console.log(put);
+                resizecanvas(map_width,map_height);
+                calgen();
+                click_bar();
+                
+                pause=setInterval(function(){full()},2000);            
+            }
+            //畫格子
+            function draw()
+            {
+                var canvas=document.getElementById("mycanvas");
+                var context=canvas.getContext("2d");
+                context.beginPath();
+                
+                for(i=0;i<=mapsize[0];i++)
+                {
+                    context.moveTo(canvas_width/mapsize[0]*i,0);
+                    context.lineTo(canvas_width/mapsize[0]*i,canvas_height);
+                }
+                for(j=0;j<=mapsize[1];j++)
+                {
+                    context.moveTo(0,canvas_height*j/mapsize[1]);
+                    context.lineTo(canvas_width,canvas_height*j/mapsize[1]);
+                }
+                context.lineWidth=4;
+                context.strokeStyle="black";
+                context.stroke();
+                context.closePath();
+            }
+            //設定canvas大小
+            function resizecanvas(a,b)
+            {
+                var canvas=document.getElementById("mycanvas");
+                canvas.setAttribute('width',800);
+                each_rect=800/a;
+                canvas.setAttribute('height',b*each_rect);
+                canvas_width=800;
+                canvas_height=b*each_rect;
+            }
+            //畫上去
+            function full()
+            {
+                var canvas=document.getElementById("mycanvas");
+                var context=canvas.getContext("2d");
+                
+                i=5+map_height+rate*(map_height+1);
+                //console.log(put);
+                if(i>=map.length)
+                {
+                    clearInterval(pause);
+                    rate--;
+                }
+                else
+                {
+                    //console.log(rate);
+                    context.clearRect(0,0,canvas_width,canvas_height+30);
+                    for(j=0;j<map_height;j++)
+                    {
+                        around[i+j]=new Array();
+                        pro[i+j]=new Array();
+                        for(k=0;k<map_width;k++)
+                        {
+                            around[i+j][k]=0;
+                            pro[i+j][k]=-1;
+                        }
+                    }
+                        
+                    for(m=0;m<map_height;m++)
+                    {
+                        for(n=0;n<map_width;n++)
+                        {
+                            cal_one(i+m,n,i);
+                            if(put[i+m][n]==1)
+                            {
+                                dot++;
+                            }
+                        }
+                    }
+                    console.log(dot);
+                    cal_num.innerHTML=dot;
+                    dot=0;
+                    //console.log(around);
+                    //console.log(pro);
+                    context.beginPath();
+                    for(var p=0;p<map_height;p++)
+                    {
+                        //console.log(i);
+                        //console.log(put[p+i]);
+                        for(var s=0;s<map_width;s++)
+                        {
+                            if(put[p+i][s]!=1)
+                            {
+                                //console.log((p+i)+" "+s);
+                                drawcolor(pro[p+i][s]);
+                            }
+                            else
+                            {
+                                context.fillStyle="black";
+                            }
+                            context.fillRect(each_rect*s,each_rect*p,each_rect,each_rect);
+                            context.fill();        
+                        }
+                    }
+                    context.closePath();
+
+                    draw();
+                }
+                rate++;
+                slider.value = rate;
+				output.innerHTML = slider.value + " / " + gen;
+                above();
+                //console.log(connectindex);
+                if(connectindex==1)
+                {
+                    connectall();
+                }
+                if(lowindex==1)
+                {
+                    lowall();
+                }
+                //console.log(rate);    
+            }
+            //畫顏色
+            function drawcolor(long)
+            {
+                var canvas=document.getElementById("mycanvas");
+                var context=canvas.getContext("2d");
+                for(c=0;c<4;c++)
+                {
+                    if(c*0.25<long&&long<=(c+1)*0.25)
+                    {
+                        part=c;
+                        break;
+                    }
+                }
+                if(long==0)
+                {
+                    context.fillStyle='gray';
+                }
+                else
+                {
+                    if(part==0)
+                    {
+                        context.fillStyle='rgb(0,'+ Math.floor(((long-0)/(0.25))*255)+',255)';
+                    }
+                    else if(part==1)
+                    {
+                        context.fillStyle='rgb(0,255,'+ (255-Math.floor(((long-(0.25))/(0.25))*255)) +')';
+                    }
+                    else if(part==2)
+                    {
+                        context.fillStyle='rgb('+ Math.floor(((long-(0.5))/(0.25))*255)+',255,0)';
+                    }
+                    else
+                    {
+                        context.fillStyle='rgb(255,'+(255-Math.floor(((long-(0.75))/(0.25))*255))+',0)';
+                    }
+                }//console.log(long);
+                
+            }
+            //計算機率
+            function cal_one(a,b,limit)
+            {
+                //console.log(a+" "+b+" "+limit);
+                var x=[];
+                var y=[];
+                for(var i=a-5;i<=a+5;i++)
+                {
+                    for(var j=b-5;j<=b+5;j++)
+                    {
+                        //console.log("in");
+                        if(i>=limit&&i<(limit+map_height)&&j>=0&&j<map_width)
+                        {
+                            /*if(put[i][j]==1)
+                            {
+                                console.log(Math.sqrt((i-a)*(i-a)+(j-b)*(j-b)));
+                            }*/
+                            if(put[i][j]==1 && Math.sqrt((i-a)*(i-a)+(j-b)*(j-b))<=5)
+                            {
+                                //console.log(i+" "+j);
+                                x.push(i);
+                                y.push(j);
+                                around[a][b]++;
+                            }
+                        }
+                    }
+                }
+                //console.log(around);
+                if(put[a][b]==0)
+                {
+                    if(x.length==1)
+                    {
+                        pro[a][b]=1/( Math.sqrt((a-x[0])*(a-x[0])+(b-y[0])*(b-y[0])));
+                    }
+                    else
+                    {
+                        tem=1;
+                        for(var i=0;i<x.length;i++)
+                        {
+                            tem=tem*(1-(1/(Math.sqrt((a-x[i])*(a-x[i])+(b-y[i])*(b-y[i])))));
+                        }
+                        pro[a][b]=1-tem;
+                    }
+                }
+                else
+                {
+                    pro[a][b]=Infinity;
+                }
+                //console.log(around);
+            }
+            //算有幾代
+            function calgen()
+            {
+                gen=1;
+                while(5+map_height+gen*(map_height+1)<map.length)
+                {
+                    gen++;
+                }
+                //console.log(gen);
+				slider.max = gen;
+            }
+            //暫停
+            function stoptem()
+            {
+                if(rate+1<=gen)
+                {
+                    //console.log(enter);
+                    if(enter%2==0)
+                    {
+                        //console.log( (document.getElementById("sandp").innerHTML.document.getElementById("image")));
+                        
+                        document.getElementById("sandp").innerHTML ='<img src="./icon/play.svg" width="30" height="20">開始';
+                        
+                        clearInterval(pause);
+                        stopindex=1;
+                    }
+                    else
+                    {
+                        //document.getElementById("sandp").innerHTML =" 暫停";
+                        document.getElementById("sandp").innerHTML ='<img src="./icon/pause.svg" width="30" height="20">暫停';
+                        pause=setInterval(function(){full()},sec);
+                        stopindex=0;
+                    }
+                    enter++;
+                }
+            }
+            //停止
+            function allstop()
+            {
+                rate=0;enter=1;
+                clearInterval(pause);
+                document.getElementById("sandp").innerHTML ='<img src="./icon/play.svg" width="30" height="20">開始';
+                var canvas=document.getElementById("mycanvas");
+                var context=canvas.getContext("2d");
+                context.clearRect(0,0,canvas_width,canvas_height);
+                slider.value = rate+1;
+				output.innerHTML = slider.value + " / " + gen;
+            }
+            //跳轉世代
+            function jump()
+            {
+                var integerElement=document.getElementById("num");
+                var integer=integerElement.value;
+                if(integer>0&&integer<=gen)
+                {
+                    
+                    slider.value = integer;
+                    output.innerHTML = slider.value + " / " + gen;
+                    rate=integer-1;
+                    full();
+                }
+            }
+            //下代
+            function forward()
+            {
+                
+                if(rate<=gen)
+                {
+                    slider.value = slider.value+1;
+                    output.innerHTML = slider.value + " / " + gen;
+                    full();
+                }
+            }
+            //上代
+            function backward()
+            {
+                //console.log(rate);
+                if(rate>=2)
+                {
+                    slider.value = slider.value-1;
+                    output.innerHTML = slider.value + " / " + gen;
+                    rate=rate-2;
+                    //console.log(rate);
+                    full();
+                }
+            }   
+            //世代軸
+            function click_bar()
+            {
+                slider.value = rate+1;
+				output.innerHTML = slider.value + " / " + gen;
+            }
+            //拍照
+            function screenshot()
+            {
+                html2canvas(document.getElementById('div1')).then(function(evt) {
+                //document.body.appendChild(evt);
+                var a = document.createElement('a');
+                a.href = evt.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+                a.download = 'image.jpg';
+                a.click();
+                });
+            }
+            //錄影
+            function media()
+            {
+                if(startre==0)
+                {
+
+                    document.getElementById("startrecord").innerHTML ='<img src="./icon/video.svg" width="30" height="20">停止錄影';
+                    var canvas = document.getElementById("mycanvas");
+                    // Optional frames per second argument.
+                    var stream = canvas.captureStream(1000);
+                    var recordedChunks = [];
+
+                    console.log(stream);
+                    var options = { mimeType: "video/webm; codecs=vp9" };
+                    mediaRecorder = new MediaRecorder(stream, options);
+
+                    mediaRecorder.ondataavailable = handleDataAvailable;
+                    mediaRecorder.start();
+
+                    async function handleDataAvailable(event) {
+                    console.log("data-available");
+                    if (event.data.size > 0) {
+                        recordedChunks.push(event.data);
+                        console.log(recordedChunks);
+                        download();
+                        } 
+                        else 
+                        {
+                            // ...
+                        }
+                    }
+                    async function download() {
+                    var blob = new Blob(recordedChunks, {
+                        type: "video/webm"
+                    });
+                    var url = URL.createObjectURL(blob);
+                    var a = document.createElement("a");
+                    document.body.appendChild(a);
+                    a.style = "display: none;";
+                    a.href= url;
+                    a.download = "test.mp4";
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    }
+                    startre++;
+                }
+                else
+                {
+                    document.getElementById("startrecord").innerHTML ='<img src="./icon/video.svg" width="30" height="20">錄影';
+                    console.log(startre);
+                    mediaRecorder.stop();
+                    startre=0;
+                }
+                
+            }
+            //低於最低感測值
+            function lowall()
+            {
+                var canvas=document.getElementById("mycanvas");
+                var context=canvas.getContext("2d");
+                context.beginPath();
+                for(i=0;i<limit.length;i++)
+                {
+                    k=5+map_height+(rate-1)*(map_height+1);
+                    for(j=0;j<limit[i].length;j++)
+                    {
+                        if(limit[i][j]>pro[k+i][j]&&pro[k+i][j]!=Infinity)
+                        {
+                            context.moveTo((j+1)*each_rect,i*each_rect);
+                            context.lineTo(j*each_rect,(i+1)*each_rect);
+                            context.strokeStyle="red";
+                            context.stroke();
+                        }
+                    }
+                }
+            }
+            function low()
+            {
+                console.log(lowindex);
+                if(lowindex==0)
+                {
+                    lowall();
+                    lowindex=1;
+                }
+                else
+                {
+                    rate--;
+                    lowindex=0;
+                    full();
+                }
+            }
+            //更改
+            function change()
+            {   
+                if(calchange==0)
+                {
+                    document.getElementById("idchange").innerHTML ='<img src="./icon/sync-alt.svg" width="30" height="20">更改中';
+                    calchange=1;
+                }
+                else
+                {
+                    document.getElementById("idchange").innerHTML ='<img src="./icon/sync-alt.svg" width="30" height="20">更改';
+                    calchange=0;
+                }
+                var canvas=document.getElementById("mycanvas");
+                var context=canvas.getContext("2d");
+                canvas.addEventListener("click",function(evt)
+                {
+                    rate--;
+                    //console.log(rate);
+                    var clickx,clicky;
+                    rect=canvas.getBoundingClientRect();
+                    clickx=evt.clientX-rect.left;
+                    clicky=evt.clientY-rect.top;
+                    for(i=0;i+1<=map_width;i++)
+                    {
+                        if(canvas_width/map_width*i<clickx&&canvas_width/map_width*(i+1)>=clickx)
+                        {
+                            for(j=0;j+1<=map_height;j++)
+                            {
+                                if(canvas_height/map_width*j<clicky&&canvas_height/map_width*(j+1)>=clicky)
+                                {
+                                    k=5+map_height+rate*(map_height+1);
+                                    
+                                    if(put[k+j][i]==1)
+                                    {
+                                        console.log(k+j+" "+i);
+                                        put[k+j][i]="0";
+                                    }
+                                    else
+                                    {
+                                        console.log(k+j+" "+i);
+                                        put[k+j][i]="1";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    full();
+                });
+            }
+            //儲存
+            function download(filename, text) 
+            {
+                var element = document.createElement('a');
+                element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+                element.setAttribute('download', filename);
+                element.style.display = 'none';
+                document.body.appendChild(element);
+                element.click();
+                document.body.removeChild(element);
+            }
+            function down()
+            {
+                // Generate download of hello.txt file with some content
+                downtext="";
+                downtext=downtext.concat("map:"+"\n");
+                downtext=downtext.concat(map_width+"*"+map_height+"\n"+"limit:"+"\n");
+                for(i=0;i<map_width;i++)
+                {
+                    for(j=0;j<map_height;j++)
+                    {
+                        downtext=downtext.concat(limit[i][j]);
+                        if(j<map_height-1)
+                        {
+                            downtext=downtext.concat(" ");
+                        }
+                    }
+                    if(i<put.length-1)
+                    {
+                        downtext=downtext.concat("\n");
+                    }
+                }
+                downtext=downtext.concat("Particle :"+"\n");
+                //console.log(put);
+                for(m=4+map_height;m<put.length;m++)
+                {
+                    for(n=0;n<put[m].length;n++)
+                    {
+                        downtext=downtext.concat(put[m][n]);
+                        if(n<put[m].length-1)
+                        {
+                            downtext=downtext.concat(" ");
+                        }
+                    }
+                    if(m<put.length-1)
+                    {
+                        downtext=downtext.concat("\n");
+                    }
+                }
+                var text = downtext;
+                var filename = "test.txt";
+                download(filename, text);
+            }
+            //速度
+            function speed()
+            {
+                console.log(increase);
+                if(increase%7==0)
+                {
+                    document.getElementById('fast').innerHTML='<img src="./icon/shipping.svg" width="30" height="20">速度：2';
+                    sec=2000;
+                    
+                    if(stopindex==0)
+                    {
+                        clearInterval(pause);
+                        pause=setInterval(full,sec);
+                    }
+
+                }
+                else if(increase%7==1)
+                {
+                    document.getElementById('fast').innerHTML='<img src="./icon/shipping.svg" width="30" height="20">速度：4';
+                    sec=1000;
+                   
+
+                    if(stopindex==0)
+                    {
+                        clearInterval(pause);
+                        pause=setInterval(full,sec);
+                    }
+                }
+                else if(increase%7==2)
+                {
+                    document.getElementById('fast').innerHTML='<img src="./icon/shipping.svg" width="30" height="20">速度：8';
+                    sec=500;
+                    
+
+                    if(stopindex==0)
+                    {
+                        clearInterval(pause);
+                        pause=setInterval(full,sec);
+                    }
+                }
+                else if(increase%7==3)
+                {
+                    document.getElementById('fast').innerHTML='<img src="./icon/shipping.svg" width="30" height="20">速度：16';
+                    sec=250;
+                    
+                    if(stopindex==0)
+                    {
+                        clearInterval(pause);
+                        pause=setInterval(full,sec);
+                    }
+                }
+                else if(increase%7==4)
+                {
+                    document.getElementById('fast').innerHTML='<img src="./icon/shipping.svg" width="30" height="20">速度：32';
+                    sec=125;
+                    
+
+                    if(stopindex==0)
+                    {
+                        clearInterval(pause);
+                        pause=setInterval(full,sec);
+                    }
+                }
+                else if(increase%7==5)
+                {
+                    document.getElementById('fast').innerHTML='<img src="./icon/shipping.svg" width="30" height="20">速度：64';
+                    sec=62;
+                    if(stopindex==0)
+                    {
+                        clearInterval(pause);
+                        pause=setInterval(full,sec);
+                    }
+                }
+                else
+                {
+                    document.getElementById('fast').innerHTML='<img src="./icon/shipping.svg" width="30" height="20">速度：1';
+                    sec=4000;
+                   
+
+                    if(stopindex==0)
+                    {
+                        clearInterval(pause);
+                        pause=setInterval(full,sec);
+                    }
+                }
+                
+                increase++;
+            }
+            //懸浮視窗
+            function above()
+            {
+                var canvas=document.getElementById("mycanvas");
+                var context=canvas.getContext("2d");
+                canvas.addEventListener("mousemove",function(e)
+                {
+                    var movex,movey;
+                    document.getElementById("bar").style.display="";
+                    rect=canvas.getBoundingClientRect();
+                    movex=e.clientX-rect.left;
+                    movey=e.clientY-rect.top;
+                    for(i=0;i+1<=map_width;i++)
+                    {
+                        k=5+map_height+(rate-1)*(map_height+1);
+                        for(j=0;j+1<=map_height;j++)
+                        {
+                            if(canvas_width/map_width*i<movex&&canvas_width/map_width*(i+1)>=movex&&canvas_height/map_height*j<movey&&canvas_height/map_height*(j+1)>=movey&&10<movex)
+                            {
+                                if(pro[k+j][i]==Infinity)
+                                {
+                                    console.log("1");
+                                    document.getElementById("bar").innerHTML="感測器"+"<br>"+"最低感測值："+limit[j][i];
+                                }
+                                else
+                                {
+                                    document.getElementById("bar").innerHTML="感測值："+Math.floor(pro[k+j][i]*100)/100+"<br>"+"最低感測值："+limit[j][i];
+                                }
+                                document.getElementById("bar").style.left=e.clientX + scrollX+25+"px";
+                                document.getElementById("bar").style.top=e.clientY + scrollY+"px";
+                            }
+                        }
+                    }
+                })
+                canvas.addEventListener("mouseout",function(e)
+                {
+                    document.getElementById("bar").style.display="none";
+                });
+            }            
+            //顏色列表
+            function draw_showcanvas()
+            {
+                var canvas1=document.getElementById("showcanvas");
+                var ctx=canvas1.getContext("2d");
+                for(i=0;i<color.length;i++)
+                {
+                    ctx.beginPath();
+                    ctx.moveTo(100,20+100*i);
+                    ctx.fillStyle=color[i];
+                    ctx.rect(20,20+100*i,50,50);
+                    ctx.fill();
+                    ctx.lineWidth = 3;
+                    ctx.strokeRect(20,20+100*i,50,50);
+                    ctx.strokeStyle="white";
+                    ctx.stroke();
+                    ctx.font="25px cwTeXYen";
+                    ctx.fillStyle="white";
+                    ctx.fillText(percent[i],90,60+100*i);
+                    ctx.closePath();
+                }
+            }
+            //連通性
+            function connectall()
+            {
+                k=5+map_height+(rate-1)*(map_height+1);
+                xput=[];yput=[];
+                for(i=0;i<map_width;i++)
+                {
+                    for(j=0;j<map_height;j++)
+                    {
+                        if(put[j+k][i]==1)
+                        {
+                            xput.push(j+k);
+                            yput.push(i);
+                        }
+                    }
+                }
+                console.log(xput);
+                console.log(yput);
+                var canvas=document.getElementById("mycanvas");
+                var context=canvas.getContext("2d");
+                context.beginPath();
+                var long=0;
+                for(m=0;m<xput.length;m++)
+                {
+                    for(n=m+1;n<xput.length;n++)
+                    {
+                        long=Math.sqrt((xput[m]-xput[n])*(xput[m]-xput[n])+(yput[m]-yput[n])*(yput[m]-yput[n]));
+                        //console.log(long);
+                        //console.log(each_rect*(xput[m]-k));
+                        if(long<7)
+                        {
+                            //console.log(each_rect/2+each_rect*yput[m]+" "+each_rect/2+each_rect*(xput[m]-k));
+                            context.moveTo(each_rect/2+each_rect*yput[m],each_rect/2+each_rect*(xput[m]-k));
+                            context.lineTo(each_rect/2+each_rect*yput[n],each_rect/2+each_rect*(xput[n]-k));
+                            context.lineWidth=4;
+                            context.strokeStyle="white";
+                            context.stroke();
+                        }
+                    }
+                }
+                context.beginPath();
+                for(var p=0;p<map_height;p++)
+                {
+                    for(var s=0;s<map_width;s++)
+                    {
+                        if(put[p+k][s]==1)
+                        {
+                            context.fillStyle="black";
+                            context.fillRect(each_rect*s,each_rect*p,each_rect,each_rect);
+                            context.fill();
+                        }
+                                
+                    }
+                }
+                context.closePath();
+            }
+            function connect()
+            {
+                console.log(connectindex);
+                if(connectindex==0)
+                {
+                    connectindex=1;
+                    connectall();
+                }
+                else
+                {
+                    rate--;
+                    connectindex=0;
+                    full();
+                }
+                
+            }
+            //main
+            draw_showcanvas();
+            slider.oninput = function() 
+            {
+                output.innerHTML = this.value + " / " + gen;
+                rate = this.value;
+                rate--;
+                full();
+		    }
+            load();
+        </script>
+
+        <div id="bar" style="position: absolute;
+        border:1px solid #ccc;
+        padding:0px 3px;
+        color:white;
+        height:40px;
+        line-height:20px;
+        background:rgba(0, 0, 0, 0.4);
+        font-family: cwTeXYen;
+        font-weight: bold;
+        ">
+        </div>
+    </body>
+</html>     

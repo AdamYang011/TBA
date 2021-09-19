@@ -1,0 +1,1576 @@
+<!DOCTYPE >
+<html>
+<head>
+	<title>最佳動化_擺放最佳化遊戲模式</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta http-equiv="X-UA-Compatible"content="ie=edge">      <!--什麼版本IE 就用什麼版本的標準模式-->
+	<script src="./assets/js/jquery.min.js"></script><!--sidebar模式-->
+	<script src="./assets/js/bootstrap.min.js"></script><!--sidebar模式-->
+	<script src="./assets/js/c0cbf39b93.js" ></script><!--拿back.to.top的ICON-->
+	<script src="./assets/js/fontsize.js"></script>	
+	<link rel="stylesheet" href="./assets/css/main.css" />
+	<link rel="stylesheet" href="./assets/css/spotlight.css" /><!--照片文字的css-->
+	<link rel="stylesheet" href="./assets/css/slide.css" /><!--跑馬燈的css?????-->
+	<link rel="stylesheet" href="./assets/css/Button.css" />
+	<link rel="stylesheet" href="./assets/css/darkmode.css"/>
+	<link rel="stylesheet" href="./assets/css/Bootstrap.css" />
+</head>
+<style type="text/css">
+		#mycanvas 
+		{
+			border: 2px dashed lightblue;
+			/*position: absolute;
+			margin: auto;
+			left: -600;
+			right: 0;
+			top: 0;
+			bottom: 0;*/
+			background :gray;
+			float: left;
+            margin:200px 200px;
+		}
+
+		#showcanvas
+		{
+			
+			/*position: absolute;
+			margin: auto;
+			left: 200;
+			right: 0;
+			top: 0;
+			bottom: 0;*/
+			background :black;
+			float: left;
+            margin:100px 0px ;	
+		}	
+
+		.button 
+        {
+            background-color:wheat;
+            border: black 2px bold;
+            color: black;
+            padding: 8px 8px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+		.button1
+        {
+            position: absolute;
+            top: 0px;
+        }
+		
+		.select
+		{
+			display: inline-flex;
+			align-items: center;
+			padding:5px 8px;
+			border-radius: 10px;
+		}
+		#div1
+        {
+			position: absolute;
+			margin: auto;
+			left: 200;
+			right: 0;
+			top: 500;
+			bottom: 0;
+        }
+		#div2
+        {
+            display: inline-block;
+        }
+
+	</style>
+	<script src="./assets/js/breakpoints.min.js"></script>
+	<script src="./assets/js/browser.min.js"></script>
+	<script src="./assets/js/jquery.min.js"></script>
+	<script src="./assets/js/main.js"></script>
+	<script src="./assets/js/util.js"></script>
+	<script src="./assets/js/slide.js"></script>
+	<script src="./assets/js/jquery-1.12.4.min.js"></script>
+	<script src="./assets/js/multislider.js"></script> 
+	<script src="./assets/js/darkmode.js"></script>
+	<script src="./assets/js/html2canvas.min.js"></script>
+	
+	<script src="./assets/js/sweetalert.js"></script>
+</head>
+<body class="is-preload">
+	<div id="wrapper">
+		<!--sidebar-->
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					   <a class="navbar-brand" href="./index.html">最佳動化</a>
+				  </div>
+				  <ul class="nav navbar-nav">
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">數值最佳化 <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="./數值最佳化分析模式.html">分析模式</a></li>
+					</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">組合最佳化 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						<li><a href="./組合最佳化分析模式.html">分析模式</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排列最佳化 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						<li><a href="./排列最佳化分析模式.html">分析模式</a></li>
+						<li><a href="./排列最佳化遊戲模式.html">遊戲模式</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">擺放最佳化 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						<li><a href="./擺放最佳化分析模式.html">分析模式</a></li>
+						<li><a href="./擺放最佳化遊戲模式.html">遊戲模式</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排行榜 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						<li><a href="#">排列最佳化--遊戲模式</a></li>
+						<li><a href="#">擺放最佳化--遊戲模式</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a href="./setting.html">設定</a></li>
+				</ul>
+			</div>
+		</nav>
+
+
+		<div id="main">
+			<div class="inner">
+				
+				<canvas id="mycanvas" width="800" height="800"style="margin-top:100px; margin-left: 20px;">
+					<p>Your Broswer not support canvas</p>
+				</canvas>
+				<canvas id="showcanvas" width="180" height="800" style="margin-top:100px; margin-left: -80px; margin-right: 30px;">
+					<p>Your Broswer not support canvas</p>
+				</canvas>
+
+				<div style="margin-right: -150px;">
+					<br><br><br><br>
+					<label style="color: black; font-family: cwTeXYen; font-size: 25px;">選擇地圖</label>
+					<div class="select">
+						<select name="maps" id="maps">
+							<option value="5">5*5</option>
+							<option value="10">10*10</option>
+							<option value="20">20*20</option>
+							<option value="50">50*50</option>
+						</select>
+						
+					</div>
+					<button onclick="confirm_map()">確認</button>
+					
+			
+					<br><br>
+
+					<button id="change_eye"  onclick="show_probability()"><img src="./icon/eye-slash-solid.svg" width="30" height="20">顯示機率</button>
+					<br><br>
+
+					<button id="change_cheese"  onclick="other()"><img src="./icon/black-cat.svg" width="30" height="20">切換感測器</button>
+					<br><br>
+
+					<button id="change_connect" onclick="draw_connect_line()"><img src="./icon/handshake-slash-solid.svg" width="30" height="20">顯示連通性</button>
+					<br><br>
+					<button onclick="down()"><img src="./icon/save.svg" width="15" height="15"> 儲存</button>
+					<br><br>
+
+					<h6></h6>
+					<input id="myfile" type="file" onchange="load()" onclick="this.value=null"/>
+					
+					<br><br>
+					<div class="table-wrapper">
+						<div class="select">
+							<br><br>
+							<table>
+								<thead>
+									<tr>
+										<th id="sensor_number"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td id="fitness"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				
+					<div class="table-wrapper">
+						<div class="select">
+						<br><br>
+						<table>
+							<thead>
+								<tr>
+									<th>最低感測值</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td id="min_detect"></td>
+								</tr>
+							</tbody>
+						</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	<script type="text/javascript">
+	var click_position_i=-1;		//尋找點擊在哪一格
+	var click_position_j=-1;
+	var position_row=[];			//橫向邊框點
+	var position_column=[];			//直向邊框點
+	var store_position_i=[];	    //儲存點擊過的位置
+	var store_position_j=[];
+	var click_times=0;				//點擊次數
+	var position_check=[];			//放置感測器的位置
+	var probability=[];				//感測機率
+	var space_check=[];				//記錄版面是否都有在感測機率之上
+	var probability_click_time=0;   //記錄點擊顯示機率幾次，藉此判斷甚麼時候變回來
+	var num=0;                      //記錄幾*幾畫布
+	var canvas_size;                //畫布大小調整
+    var sensor_position_move;       //感測器/貓 位置調整
+    var sensor_img_rate;            //感測器/貓 照片大小調整
+	var color=["red","orange","yellow","greenyellow","aqua"];
+	var percent=["90%","75%","60%","45%","30%"];
+	var change=0;                   //改測器切換
+	var connect_line_click_time=0;  //顯示連通性點擊次數
+	var station_img_rate;           //收訊建築縮放比例
+	var readfile=[];				//紀錄讀檔讀進來的資料
+	var mouse_position_move;		//老鼠位置調整
+	var mouse_img_rate;				//老鼠照片大小調整
+
+
+    	//讀檔
+		function load()
+        {
+            var file = myfile.files[0];
+            if(file)
+            {
+                var reader = new FileReader();
+                reader.readAsText(file);
+                reader.onload = function(event)
+                {                            
+                    text(event.target.result);
+                }   
+            }
+        }
+
+		function text(content)
+        {
+			document.getElementById("sensor_number").innerHTML =  "使用貓咪數量";
+			probability_click_time=0;
+			document.getElementById("change_eye").innerHTML = '<img src="./icon/eye-slash-solid.svg" width="30" height="20">顯示機率';
+			click_times=0;
+			document.getElementById("change_connect").innerHTML = '<img src="./icon/handshake-slash-solid.svg" width="30" height="20">顯示連通性';
+			connect_line_click_time=0;
+            map=content.split("\n");
+            for(i=0;i<map.length;i++)
+            {
+				readfile[i]=map[i].split(" ");
+            }
+			num=map.length; 
+
+			for(i=0;i<num;i++)
+			{
+				position_check[i]=[];
+				for(j=0;j<num;j++)
+				{
+					position_check[i][j]=0;
+				}
+			}
+			
+			for(i=0;i<num;i++)
+			{
+				probability[i]=[];
+				for(j=0;j<num;j++)
+				{
+					probability[i][j]=-1;
+				}
+			}
+			
+			for(i=0;i<num;i++)
+			{
+				space_check[i]=[];
+				for(j=0;j<num;j++)
+				{
+					space_check[i][j]=0;
+				}
+			}
+			position_row=[];
+			position_column=[];
+			store_position_i=[];
+			store_position_j=[]; 
+
+			check_picture_rate();
+			canvas_size=800;
+			station_position=num/2;
+			draw();
+			for(i=0;i<num;i++)
+			{
+				for(j=0;j<num;j++)
+				{
+					if(parseInt(readfile[i][j])==1)
+					{
+						position_check[i][j]=1;
+						space_check[i][j]=1;
+						store_position_i.push(i);
+            			store_position_j.push(j);
+						click_times++;
+					}
+				}
+			} 
+			cal_probability();
+			document.getElementById("fitness").innerHTML =  click_times;
+			document.getElementById("min_detect").innerHTML =  0.3;
+			for(i=0;i<num;i++)
+			{
+				for(j=0;j<num;j++)
+				{
+					if(position_check[i][j]==1)
+					{
+						drawcheese(i,j);
+					}
+				}
+			}
+			success_check();
+        }
+
+		//儲存
+		function download(filename, text) 
+        {
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', filename);
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+		function down()
+        {
+            // Generate download of hello.txt file with some content
+			downtext="";
+            for(m=0;m<num;m++)
+            {
+                for(n=0;n<num;n++)
+                {
+                    downtext=downtext.concat(position_check[m][n]);
+                    if(n<position_check[m].length-1)
+                    {
+                        downtext=downtext.concat(" ");
+                    }
+                }
+                if(m<position_check[m].length-1)
+                {
+                    downtext=downtext.concat("\n");
+                }
+            }
+            var text = downtext;
+            var filename = "test.txt";
+            download(filename, text);
+        }
+
+		//畫線
+        function draw()
+		{
+	        var canvas=document.getElementById('mycanvas');
+	        var context=canvas.getContext("2d");
+			context.clearRect(0, 0,1500, 1500);
+	        context.beginPath();
+			position_row.push(0);
+			position_column.push(0);
+	        for(i=1;i<num;i++)
+	        {
+	        	context.moveTo((canvas_size/num)*i,0);
+				position_row.push((canvas_size/num)*i);
+	        	context.lineTo((canvas_size/num)*i,canvas_size);
+	        	context.moveTo(0,(canvas_size/num)*i);
+				position_column.push((canvas_size/num)*i);
+	        	context.lineTo(canvas_size,(canvas_size/num)*i);
+	        }
+			position_row.push(canvas_size);
+			position_column.push(canvas_size);
+	        context.lineWidth=2;
+	        context.strokeStyle='black';
+	        context.stroke();
+			context.closePath();
+        }
+
+		//畫機率對照圖
+		function draw_showcanvas()
+		{
+			var canvas1=document.getElementById("showcanvas");
+            var ctx=canvas1.getContext("2d");
+			ctx.clearRect(0,0,180,800);
+			ctx.beginPath();
+			if(change==0)
+			{
+				var img1 = new Image();
+				img1.src="./images/cat.png";
+				img1.onload = function(){  
+				ctx.drawImage(img1, 15,30,img1.width*0.25, img1.height*0.25);
+				};
+			}
+			else
+			{
+				var img1 = new Image();
+				img1.src="./images/signal.svg";
+				img1.onload = function(){  
+				ctx.drawImage(img1, 15,30,img1.width*0.5, img1.height*0.5);
+				};
+			}
+			ctx.font="25px cwTeXYen";
+			ctx.fillStyle="white";
+			ctx.fillText("感測器",100,80);
+			ctx.closePath();
+
+			for(i=0;i<5;i++)
+			{
+				ctx.beginPath();
+				ctx.moveTo(115,20+100*(i+1));
+				ctx.fillStyle=color[i];
+				ctx.rect(30,50+100*(i+1),50,50);
+				ctx.fill();
+				ctx.strokeStyle="white";
+				ctx.lineWidth=3;
+				ctx.strokeRect(30,50+100*(i+1),50,50);
+                ctx.stroke();
+				ctx.font="25px DFKai-sb bold";
+				ctx.fillStyle="white";
+				ctx.fillText(percent[i],110,185+100*i);
+				ctx.closePath();
+			}
+
+			ctx.beginPath();
+			var img2 = new Image();
+			img2.src="./images/mouse.png";
+			img2.onload = function(){  
+			ctx.drawImage(img2, 20,660,img2.width*0.7, img2.height*0.7);
+			};
+			ctx.font="25px DFKai-sb bold";
+			ctx.fillStyle="white";
+			ctx.fillText("<30%",110,710);
+			ctx.closePath();
+
+		}
+
+		//點擊觸發事件
+		function clickdot()
+        {
+            var canvas=document.getElementById("mycanvas");
+            var context=canvas.getContext("2d");
+            canvas.addEventListener("click",function(e)
+            {
+				
+                var rect = canvas.getBoundingClientRect();
+                var mouse_x=e.clientX-rect.left;
+                var mouse_y=e.clientY-rect.top;
+
+				for(i=0;i<num+1;i++)
+				{
+					if(mouse_x>position_row[i] && mouse_x<position_row[i+1])
+					{
+						click_position_j=i;   //與方框橫向點座標相比 會是二維的橫向移動 也就是第二格
+						break;
+					}
+                }
+				for(i=0;i<num+1;i++)
+				{
+					if(mouse_y>position_column[i] && mouse_y<position_column[i+1])
+					{
+						click_position_i=i;    //與方框的縱向點座標相比 會是二維的縱向移動 也就是第一格
+						break;
+					}
+				}
+				
+                var ch=0;
+				for(i=0;i<num-1;i++)
+				{
+					if(-2+(canvas_size/num)*(i+1)<mouse_x && mouse_x<2+(canvas_size/num)*(i+1))
+					{
+						//swal("唉呦...","請點擊在方框內","error");
+                        ch=1;
+                        break;
+					}
+					else if(-2+(canvas_size/num)*(i+1)<mouse_y && mouse_y<2+(canvas_size/num)*(i+1))
+					{
+						//swal("唉呦...","請點擊在方框內","error");
+                        ch=1;
+                        break;
+					}
+				}
+				if(position_check[click_position_i][click_position_j]==0 && ch==0)
+				{
+					if(connect_line_click_time==0)
+					{
+						put_sensor();
+					}
+					else
+					{	
+						if(click_position_i!=Math.floor(num/2) || click_position_j!=Math.floor(num/2))
+						{
+							put_sensor();
+						}
+					}
+				}
+				else if(position_check[click_position_i][click_position_j]==1 && ch==0)
+				{
+					take_sensor();
+				}
+				cal_probability();
+				if(connect_line_click_time==1)
+				{
+					remain_connect_line();
+				}
+
+				for(i=0;i<num;i++)
+				{
+					for(j=0;j<num;j++)
+					{
+						if(position_check[i][j]==1)
+						{
+							drawcheese(i,j);
+						}
+					}
+				}
+				if(probability_click_time==1)
+				{
+					remain_probability();
+				}
+				if(ch!=1)
+				{
+					success_check();
+				}
+            });
+            
+            canvas.addEventListener("mousemove",function(e)
+            {
+				rect=canvas.getBoundingClientRect();
+                var mouse_x=e.clientX-rect.left;
+                var mouse_y=e.clientY-rect.top;
+				var click_position_i=-1;
+				var click_position_j=-1;
+                
+                if(store_position_i.length>0)
+                {
+                    var check=0;
+					for(i=0;i<num+1;i++)
+					{
+						if(mouse_x>position_row[i] && mouse_x<position_row[i+1])
+						{
+							click_position_j=i;   //與方框橫向點座標相比 會是二維的橫向移動 也就是第二格
+						}
+						if(mouse_y>position_column[i] && mouse_y<position_column[i+1])
+						{
+							click_position_i=i;    //與方框的縱向點座標相比 會是二維的縱向移動 也就是第一格
+						}
+						if(click_position_i!=-1 && click_position_j!=-1)
+						{
+							
+							document.getElementById("tip").innerHTML="此點機率 : "+Math.round(probability[click_position_i][click_position_j]*100)/100;
+							document.getElementById("tip").style.left=e.clientX + scrollX+10+"px";
+							document.getElementById("tip").style.top=e.clientY + scrollY+10+"px";
+							check=1;
+							break;
+						}
+					}
+					if(check==1)
+					{
+						document.getElementById("tip").style.display='';
+						check=0;
+					}
+					else
+					{
+						document.getElementById("tip").style.display='none';
+					}
+					
+				}
+			}
+			);
+			canvas.addEventListener("mouseout",function(e)
+            {
+                    document.getElementById("tip").style.display="none";
+            });
+		}
+
+		//檢查是否都擺滿了
+		function success_check()
+		{
+			for(i=0;i<num;i++)
+			{
+				var ch=-1;
+				for(j=0;j<num;j++)
+				{
+					if(space_check[i][j]==1)
+					{
+						ch=1;
+					}
+					else
+					{
+						ch=0;
+						break;
+					}
+				}
+				if(ch==0)
+				{
+					break;
+				}
+				else if(ch==1 && i==num-1)
+				{
+					setTimeout(function(){swal("終於抓到傑利鼠了!!!","使用起司數量 : "+click_times,"./images/老鼠被捉了.png")},300);
+				}
+			}
+		}
+
+		//畫起司 or 感測器
+		function drawcheese(a,b)
+		{
+			var canvas=document.getElementById("mycanvas");
+            var context=canvas.getContext("2d");
+			var x=position_row[b]+(canvas_size/(num*sensor_position_move));
+			var y=position_column[a]+(canvas_size/(num*sensor_position_move));
+			var img = new Image();
+			if(change==0)
+			{
+				img.src = "./images/cat.png";
+				img.onload = function(){  
+				context.drawImage(img, x,y,img.width*sensor_img_rate, img.height*sensor_img_rate);
+				};
+			}
+			else if(change==1)
+			{
+				img.src="./images/signal.svg";
+				img.onload = function(){  
+				context.drawImage(img, x,y,img.width*sensor_img_rate, img.height*sensor_img_rate);
+				};
+			}
+		}
+
+		//畫塔台
+		function draw_station()
+		{
+			var canvas=document.getElementById("mycanvas");
+            var context=canvas.getContext("2d");
+			var x=position_row[Math.floor(num/2)]+(canvas_size/(num*sensor_position_move));
+			var y=position_column[Math.floor(num/2)]+(canvas_size/(num*sensor_position_move));
+			var img = new Image();
+			img.src = "./images/company.svg";
+			img.onload = function(){  
+			context.drawImage(img, x,y,img.width*station_img_rate, img.height*station_img_rate);
+			};
+		}
+
+		//保持連通性線還在
+		function remain_connect_line()
+		{
+			var canvas=document.getElementById("mycanvas");
+            var ctx1=canvas.getContext("2d");
+			
+			if(store_position_i.length>1 && change==1 && connect_line_click_time==1)
+			{
+				for(i=0;i<store_position_i.length;i++)
+				{
+					var tmp=Math.sqrt(Math.pow((store_position_i[i]-station_position),2)+Math.pow((store_position_j[i]-station_position),2));
+					if(tmp<=10)
+					{
+						ctx1.beginPath();
+						ctx1.moveTo(position_row[store_position_j[i]]+(canvas_size/(num*2)), position_column[store_position_i[i]]+(canvas_size/(num*2)));
+						ctx1.lineTo(position_row[Math.floor(num/2)]+(canvas_size/(num*2)), position_column[Math.floor(num/2)]+(canvas_size/(num*2)));
+						ctx1.lineWidth=3;
+						ctx1.strokeStyle="white";
+						ctx1.stroke();
+					} 
+				}
+				for(i=0;i<store_position_i.length;i++)
+				{
+					for(j=i+1;j<store_position_i.length;j++)
+					{
+						var tmp=Math.sqrt(Math.pow((store_position_i[i]-store_position_i[j]),2)+Math.pow((store_position_j[i]-store_position_j[j]),2));
+						if(tmp<=10)
+						{
+							ctx1.beginPath();
+							ctx1.moveTo(position_row[store_position_j[i]]+(canvas_size/(num*2)), position_column[store_position_i[i]]+(canvas_size/(num*2)));
+							ctx1.lineTo(position_row[store_position_j[j]]+(canvas_size/(num*2)), position_column[store_position_i[j]]+(canvas_size/(num*2)));
+							ctx1.lineWidth=3;
+							ctx1.strokeStyle="white";
+							ctx1.stroke();
+						} 
+					}
+				}
+				draw_station();
+			}
+		}
+
+		//畫連通性的線
+		function draw_connect_line()
+		{
+			var canvas=document.getElementById("mycanvas");
+            var ctx1=canvas.getContext("2d");
+			var ch=0;
+
+			if(change==1)
+			{	
+				probability_click_time=0;
+				document.getElementById("change_eye").innerHTML = '<img src="./icon/eye-slash-solid.svg" width="30" height="20">顯示機率';
+				connect_line_click_time++;
+			}
+			
+			if(store_position_i.length>0 && change==1 && connect_line_click_time==1)
+			{
+				document.getElementById("change_connect").innerHTML = '<img src="./icon/handshake-regular.svg" width="30" height="20">顯示連通性';
+				ch=1;
+				ctx1.clearRect(0, 0,1500, 1500);
+				ctx1.beginPath();
+				for(i=1;i<num;i++)
+				{
+					ctx1.moveTo((canvas_size/num)*i,0);
+					ctx1.lineTo((canvas_size/num)*i,canvas_size);
+					ctx1.moveTo(0,(canvas_size/num)*i);
+					ctx1.lineTo(canvas_size,(canvas_size/num)*i);
+				}
+				ctx1.lineWidth=2;
+				ctx1.strokeStyle='black';
+				ctx1.stroke();
+				ctx1.closePath();
+				cal_probability();
+
+				if(position_check[Math.floor(num/2)][Math.floor(num/2)]==1)
+				{
+					position_check[Math.floor(num/2)][Math.floor(num/2)]=0;
+				}
+
+				for(i=0;i<store_position_i.length;i++)
+				{
+					var tmp=Math.sqrt(Math.pow((store_position_i[i]-station_position),2)+Math.pow((store_position_j[i]-station_position),2));
+					if(tmp<=10)
+					{
+						ctx1.beginPath();
+						ctx1.moveTo(position_row[store_position_j[i]]+(canvas_size/(num*2)), position_column[store_position_i[i]]+(canvas_size/(num*2)));
+						ctx1.lineTo(position_row[Math.floor(num/2)]+(canvas_size/(num*2)), position_column[Math.floor(num/2)]+(canvas_size/(num*2)));
+						ctx1.lineWidth=3;
+						ctx1.strokeStyle="white";
+						ctx1.stroke();
+					} 
+				}
+				for(i=0;i<store_position_i.length;i++)
+				{
+					for(j=i+1;j<store_position_i.length;j++)
+					{
+						var tmp=Math.sqrt(Math.pow((store_position_i[i]-store_position_i[j]),2)+Math.pow((store_position_j[i]-store_position_j[j]),2));
+						if(tmp<=10)
+						{
+							ctx1.beginPath();
+							ctx1.moveTo(position_row[store_position_j[i]]+(canvas_size/(num*2)), position_column[store_position_i[i]]+(canvas_size/(num*2)));
+							ctx1.lineTo(position_row[store_position_j[j]]+(canvas_size/(num*2)), position_column[store_position_i[j]]+(canvas_size/(num*2)));
+							ctx1.lineWidth=3;
+							ctx1.strokeStyle="white";
+							ctx1.stroke();
+						} 
+					}
+				}
+
+				if(ch==1)
+				{
+					for(i=0;i<num;i++)
+					{
+						for(j=0;j<num;j++)
+						{
+							if(position_check[i][j]==1)
+							{
+								drawcheese(i,j);
+							}
+						}
+					}
+				}
+				draw_station();
+			}
+			else if(connect_line_click_time==2)
+			{
+				document.getElementById("change_connect").innerHTML = '<img src="./icon/handshake-slash-solid.svg" width="30" height="20">顯示連通性';
+				connect_line_click_time=0;
+				ctx1.clearRect(0, 0,1500, 1500);
+				ctx1.beginPath();
+				
+				for(i=1;i<num;i++)
+				{
+					ctx1.moveTo((canvas_size/num)*i,0);
+					ctx1.lineTo((canvas_size/num)*i,canvas_size);
+					ctx1.moveTo(0,(canvas_size/num)*i);
+					ctx1.lineTo(canvas_size,(canvas_size/num)*i);
+				}
+				ctx1.lineWidth=2;
+				ctx1.strokeStyle='black';
+				ctx1.stroke();
+				ctx1.closePath();
+
+				cal_probability();
+				for(i=0;i<num;i++)
+				{
+					for(j=0;j<num;j++)
+					{
+						if(position_check[i][j]==1)
+						{
+							drawcheese(i,j);
+						}
+					}
+				}
+			}
+		}
+
+		//放感測器
+		function put_sensor()
+		{
+			var canvas=document.getElementById("mycanvas");
+            var context=canvas.getContext("2d");
+			click_times++;
+			document.getElementById("fitness").innerHTML =  click_times;
+			document.getElementById("min_detect").innerHTML =  0.3;
+			context.clearRect(0, 0,1500, 1500);
+			context.beginPath();
+			
+			for(i=1;i<num;i++)
+			{
+				context.moveTo((canvas_size/num)*i,0);
+				context.lineTo((canvas_size/num)*i,canvas_size);
+				context.moveTo(0,(canvas_size/num)*i);
+				context.lineTo(canvas_size,(canvas_size/num)*i);
+			}
+			context.lineWidth=2;
+			context.strokeStyle='black';
+			context.stroke();
+			context.closePath();
+
+			position_check[click_position_i][click_position_j]=1;
+			space_check[click_position_i][click_position_j]=1;
+			store_position_i.push(click_position_i);
+            store_position_j.push(click_position_j);
+		}
+
+		//拿掉感測器
+		function take_sensor()
+		{
+			var canvas=document.getElementById("mycanvas");
+            var context=canvas.getContext("2d");
+			click_times--;
+			document.getElementById("fitness").innerHTML =  click_times;
+			document.getElementById("min_detect").innerHTML =  0.3;
+			context.clearRect(0, 0,1500, 1500);
+			context.beginPath();
+			
+			for(i=1;i<num;i++)
+			{
+				context.moveTo((canvas_size/num)*i,0);
+				context.lineTo((canvas_size/num)*i,canvas_size);
+				context.moveTo(0,(canvas_size/num)*i);
+				context.lineTo(canvas_size,(canvas_size/num)*i);
+			}
+			context.strokeStyle='black';
+			context.lineWidth=2;
+			context.stroke();
+			context.closePath();
+			position_check[click_position_i][click_position_j]=0;
+
+			for(i=0;i<num;i++)
+			{
+				for(j=0;j<num;j++)
+				{
+					if(position_check[i][j]==1)
+					{
+						space_check[i][j]=1;
+					}
+					else
+					{
+						space_check[i][j]=0;
+					}
+				}
+			}
+
+			for(i=0;i<store_position_i.length;i++)
+			{
+				if(store_position_i[i]==click_position_i && store_position_j[i]==click_position_j)
+				{
+					store_position_i.splice(i,1);
+					store_position_j.splice(i,1);
+				}
+			}
+
+					
+			/*for(i=0;i<num;i++)
+			{
+				for(j=0;j<num;j++)
+				{
+					if(position_check[i][j]==1)
+					{
+						context.beginPath();
+						context.fillStyle="pink";
+						context.moveTo(position_row[j]+2,position_column[i]+2);
+						context.rect(position_row[j]+2,position_column[i]+2,(canvas_size/num)-4,(canvas_size/num)-4);
+						context.fill();
+						drawcheese(i,j);
+					}
+				}
+			}*/
+		}
+
+		//計算感測機率
+		function cal_probability()
+		{
+			for(i=0;i<num;i++)
+			{
+				for(j=0;j<num;j++)
+				{
+					probability[i][j]=1;
+				}
+			}
+            for(i=0;i<num;i++)
+            {
+                for(j=0;j<num;j++)
+                {
+                    var detect_sensor_num=0;      //高於最低感測值的基地台數
+                    var detect_sensor_position_i=[];    //基地台二維位置i
+                    var detect_sensor_position_j=[];    //基地台二維位置j
+
+                    for(k=4;k>=0;k--)
+                    {
+                        var detect_start_i=-1;
+
+                        if((i-k)>=0)
+                        {
+                            detect_start_i=i-k;
+                            break;
+                        }
+                    }
+                    for(k=4;k>=0;k--)
+                    {
+                        var detect_start_j=-1;
+
+                        if((j-k)>=0)
+                        {
+                            detect_start_j=j-k;
+                            break;
+                        }
+                    }
+                    for(k=4;k>=0;k--)
+                    {
+                        var detect_end_i=-1;
+
+                        if((i+k)<num)
+                        {
+                            detect_end_i=i+k;
+                            break;
+                        }
+                    }
+                    for(k=4;k>=0;k--)
+                    {
+                        var detect_end_j=-1;
+
+                        if((j+k)<num)
+                        {
+                            detect_end_j=j+k;
+                            break;
+                        }
+                    }
+
+                    for(p=detect_start_i;p<=detect_end_i;p++)
+                    {
+                        for(f=detect_start_j;f<=detect_end_j;f++)
+                        {
+                            if(position_check[p][f]==1 && Math.sqrt((i-p)*(i-p)+(j-f)*(j-f))<=5)
+                            {
+                                detect_sensor_num++;
+                                detect_sensor_position_i.push(p);
+                                detect_sensor_position_j.push(f);
+                            }
+                        }
+                    }
+                    if((i-5)>=0)
+                    {
+                        if(position_check[i-5][j]==1)
+                        {
+                            detect_sensor_num++;
+                            detect_sensor_position_i.push(i-5);
+                            detect_sensor_position_j.push(j);
+                        }
+                    }
+                    if((j-5)>=0)
+                    {
+                        if(position_check[i][j-5]==1)
+                        {
+                            detect_sensor_num++;
+                            detect_sensor_position_i.push(i);
+                            detect_sensor_position_j.push(j-5);
+                        }
+                    }
+                    if((i+5)<num)
+                    {
+                        if(position_check[i+5][j]==1)
+                        {
+                            detect_sensor_num++;
+                            detect_sensor_position_i.push(i+5);
+                            detect_sensor_position_j.push(j);
+                        }
+                    }
+                    if((j+5)<num)
+                    {
+                        if(position_check[i][j+5]==1)
+                        {
+                            detect_sensor_num++;
+                            detect_sensor_position_i.push(i);
+                            detect_sensor_position_j.push(j+5);
+                        }
+                    }
+
+                    
+
+                    for(p=0;p<detect_sensor_num;p++)
+					{
+                        if(detect_sensor_num>1)
+                        {
+                            var tmp=1.0-(1.0/Math.sqrt((i-detect_sensor_position_i[p])*(i-detect_sensor_position_i[p])+(j-detect_sensor_position_j[p])*(j-detect_sensor_position_j[p])));
+                            probability[i][j]=probability[i][j]*tmp;
+                        }
+                        else
+                        {
+                            probability[i][j]=1.0/Math.sqrt((i-detect_sensor_position_i[p])*(i-detect_sensor_position_i[p])+(j-detect_sensor_position_j[p])*(j-detect_sensor_position_j[p]));
+                        }
+                    }
+
+                    if(detect_sensor_num>1)
+					{
+						probability[i][j]=1-probability[i][j];
+					}
+					else if(detect_sensor_num==0)
+					{
+						probability[i][j]=0.000;
+					}
+					if(probability[i][j]==Infinity)
+					{
+						probability[i][j]=1;
+					}
+					if(isNaN(probability[i][j]))
+					{
+						probability[i][j]=1;
+					}
+                }
+            }
+			console.log(probability)
+			draw_rect();
+		}
+		
+		//畫老鼠
+		function draw_mouse(a,b)
+		{
+			var canvas=document.getElementById("mycanvas");
+            var context=canvas.getContext("2d");
+			var x=position_row[b]+(canvas_size/(num*mouse_position_move));
+			var y=position_column[a]+(canvas_size/(num*mouse_position_move));
+			var img = new Image();
+
+			img.src="./images/mouse.png";
+			img.onload = function(){  
+			context.drawImage(img, x,y,img.width*mouse_img_rate, img.height*mouse_img_rate);
+			};
+		}
+
+		//畫感測機率方塊
+		function draw_rect()
+		{
+			var canvas=document.getElementById("mycanvas");
+            var context=canvas.getContext("2d");
+			
+			for(i=0;i<num;i++)
+			{
+				for(j=0;j<num;j++)
+				{
+					if(position_check[i][j]!=1)
+					{
+						if(probability[i][j]>=0 && probability[i][j]<0.3)
+						{
+							check_picture_rate();
+							draw_mouse(i,j);
+						}
+						//else if(probability[i][j]>0.1 && probability[i][j]<=0.2)
+						//{
+							/*context.beginPath();
+							context.moveTo(position_row[j]+(canvas_size/(num*2)),position_column[i]+(canvas_size/(num*2)));
+							context.arc(position_row[j]+(canvas_size/(num*2)),position_column[i]+(canvas_size/(num*2)),5,0,2*Math.PI);
+							context.closePath();
+							context.fillStyle="royalblue";
+							context.strokeStyle="black";
+							context.stroke();
+							context.fill();*/
+						//}
+						//else if(probability[i][j]>0.2 && probability[i][j]<=0.3)
+						//{
+							/*context.beginPath();
+						    context.moveTo(position_row[j]+(canvas_size/(num*2)),position_column[i]+(canvas_size/(num*2)));
+							context.arc(position_row[j]+(canvas_size/(num*2)),position_column[i]+(canvas_size/(num*2)),5,0,2*Math.PI);
+							context.closePath();
+							context.fillStyle="dodgerblue";
+							context.strokeStyle="black";
+							context.stroke();
+							context.fill();*/
+						//}
+						else if(probability[i][j]>=0.3 && probability[i][j]<0.4)
+						{
+							context.beginPath();
+                            context.moveTo(position_row[j]+2,position_column[i]+2);
+                            context.rect(position_row[j]+2,position_column[i]+2,(canvas_size/num)-4,(canvas_size/num)-4);
+							space_check[i][j]=1;
+							context.closePath();
+							context.fillStyle="aqua";
+							context.strokeStyle="black";
+							context.stroke();
+							context.fill();
+						}
+						else if(probability[i][j]>=0.4 && probability[i][j]<0.5)
+						{
+							context.beginPath();
+                            context.moveTo(position_row[j]+2,position_column[i]+2);
+                            context.rect(position_row[j]+2,position_column[i]+2,(canvas_size/num)-4,(canvas_size/num)-4);
+							space_check[i][j]=1;
+							context.closePath();
+							context.fillStyle="springgreen";
+							context.strokeStyle="black";
+							context.stroke();
+							context.fill();
+						}
+						else if(probability[i][j]>=0.5 && probability[i][j]<0.6)
+						{
+							context.beginPath();
+                            context.moveTo(position_row[j]+2,position_column[i]+2);
+                            context.rect(position_row[j]+2,position_column[i]+2,(canvas_size/num)-4,(canvas_size/num)-4);
+							space_check[i][j]=1;
+							context.closePath();
+							context.fillStyle="greenyellow";
+							context.strokeStyle="black";
+							context.stroke();
+							context.fill();
+						}
+						else if(probability[i][j]>=0.6 && probability[i][j]<0.7)
+						{
+							context.beginPath();
+                            context.moveTo(position_row[j]+2,position_column[i]+2);
+                            context.rect(position_row[j]+2,position_column[i]+2,(canvas_size/num)-4,(canvas_size/num)-4);
+							space_check[i][j]=1;
+							context.closePath();
+							context.fillStyle="yellow";
+							context.strokeStyle="black";
+							context.stroke();
+							context.fill();
+						}
+						else if(probability[i][j]>=0.7 && probability[i][j]<0.8)
+						{
+							context.beginPath();
+                            context.moveTo(position_row[j]+2,position_column[i]+2);
+                            context.rect(position_row[j]+2,position_column[i]+2,(canvas_size/num)-4,(canvas_size/num)-4);
+							space_check[i][j]=1;
+							context.closePath();
+							context.fillStyle="orange";
+							context.strokeStyle="black";
+							context.stroke();
+							context.fill();
+						}
+						else if(probability[i][j]>=0.8 && probability[i][j]<0.9)
+						{
+							context.beginPath();
+                            context.moveTo(position_row[j]+2,position_column[i]+2);
+                            context.rect(position_row[j]+2,position_column[i]+2,(canvas_size/num)-4,(canvas_size/num)-4);
+							space_check[i][j]=1;
+							context.closePath();
+							context.fillStyle="sandybrown";
+							context.strokeStyle="black";
+							context.stroke();
+							context.fill();
+						}
+						else if(probability[i][j]>=0.9 && probability[i][j]<=1)
+						{
+							context.beginPath();
+                            context.moveTo(position_row[j]+2,position_column[i]+2);
+                            context.rect(position_row[j]+2,position_column[i]+2,(canvas_size/num)-4,(canvas_size/num)-4);
+							space_check[i][j]=1;
+							context.closePath();
+							context.fillStyle='red';
+							context.strokeStyle="black";
+							context.stroke();
+							context.fill();
+						}
+					}
+					else
+					{
+						context.beginPath();
+						context.moveTo(position_row[j]+2,position_column[i]+2);
+						context.rect(position_row[j]+2,position_column[i]+2,(canvas_size/num)-4,(canvas_size/num)-4);
+						context.closePath();
+						context.fillStyle="pink";
+						context.strokeStyle="black";
+						context.stroke();
+						context.fill();
+					}
+				}
+			}
+		}
+
+		//保持感測機率顯示
+		function remain_probability()
+		{
+			var canvas=document.getElementById("mycanvas");
+            var context=canvas.getContext("2d");
+			context.fillStyle='black';
+				context.font="10pt DFKai-sb";
+				for(i=0;i<num;i++)
+				{
+					for(j=0;j<num;j++)
+					{
+						if(position_check[i][j]!=1)
+						{
+							/*context.beginPath();
+							context.fillStyle="pink";
+							context.moveTo(position_row[j]+2,position_column[i]+2);
+							context.rect(position_row[j]+2,position_column[i]+2,(canvas_size/num)-4,(canvas_size/num)-4);
+							context.fill();
+							context.closePath();
+							drawcheese(i,j);*/context.fillStyle="black";
+							context.fillText(Math.round(probability[i][j]*100)/100,position_row[j]+(canvas_size/(num*2))-20,position_column[i]+(canvas_size/(num*2)));
+						}
+					}
+				}
+		}
+
+		//顯示感測機率
+		function show_probability()
+		{
+			var canvas=document.getElementById("mycanvas");
+            var context=canvas.getContext("2d");
+			if(change==1)
+			{
+				connect_line_click_time=0;
+				document.getElementById("change_connect").innerHTML = '<img src="./icon/handshake-slash-solid.svg" width="30" height="20">顯示連通性';
+			}
+
+			context.clearRect(0, 0, 1500, 1500);
+			context.beginPath();
+			for(i=1;i<num;i++)
+			{
+				context.moveTo((canvas_size/num)*i,0);
+				context.lineTo((canvas_size/num)*i,canvas_size);
+				context.moveTo(0,(canvas_size/num)*i);
+				context.lineTo(canvas_size,(canvas_size/num)*i);
+			}
+			context.strokeStyle='black';
+			context.lineWidth=2;
+			context.stroke();
+			context.closePath();
+            draw_rect();
+			probability_click_time++;
+			console.log("prob "+probability_click_time);
+			if(probability_click_time==1)
+			{
+				document.getElementById("change_eye").innerHTML = '<img src="./icon/eye-solid.svg" width="30" height="20">顯示機率';
+				context.fillStyle='black';
+				context.font="10pt DFKai-sb";
+				for(i=0;i<num;i++)
+				{
+					for(j=0;j<num;j++)
+					{
+						if(position_check[i][j]==1)
+						{
+							context.beginPath();
+							context.fillStyle="pink";
+							context.moveTo(position_row[j]+2,position_column[i]+2);
+							context.rect(position_row[j]+2,position_column[i]+2,(canvas_size/num)-4,(canvas_size/num)-4);
+							context.fill();
+							context.closePath();
+							drawcheese(i,j);
+						}
+						else
+						{
+							context.fillStyle="black";
+							context.fillText(Math.round(probability[i][j]*100)/100,position_row[j]+(canvas_size/(num*2))-20,position_column[i]+(canvas_size/(num*2)));
+						}
+					}
+				}
+			}
+			else if(probability_click_time==2)
+			{
+				document.getElementById("change_eye").innerHTML = '<img src="./icon/eye-slash-solid.svg" width="30" height="20">顯示機率';
+				probability_click_time=0;
+				for(i=0;i<num;i++)
+				{
+					for(j=0;j<num;j++)
+					{
+						if(position_check[i][j]==1)
+						{
+							context.beginPath();
+							context.fillStyle="pink";
+							context.moveTo(position_row[j]+2,position_column[i]+2);
+							context.rect(position_row[j]+2,position_column[i]+2,(canvas_size/num)-4,(canvas_size/num)-4);
+							context.fill();
+							drawcheese(i,j);
+						}
+					}
+				}
+				cal_probability();
+				//success_check();
+			}
+		}
+
+		//檢查圖片縮放比例
+		function check_picture_rate()
+		{
+			if(num==5)
+			{
+                sensor_position_move=8;
+                sensor_img_rate=0.4; 
+				station_img_rate=0.2;
+				mouse_img_rate=1;
+				mouse_position_move=6;
+				if(change==1)
+				{
+					sensor_img_rate=0.8;
+				}
+			}
+			else if(num==10)
+			{
+                sensor_position_move=7;
+                sensor_img_rate=0.2;  
+				station_img_rate=0.1;	
+				mouse_img_rate=0.5;
+				mouse_position_move=6;
+				if(change==1)
+				{
+					sensor_position_move=6;
+                    sensor_img_rate=0.4;
+				}
+			}
+			else if(num==20)
+			{
+                sensor_position_move=8;
+                sensor_img_rate=0.1; 
+				station_img_rate=0.05;
+				mouse_img_rate=0.25;
+				mouse_position_move=6;
+				if(change==1)
+				{
+					sensor_position_move=7;
+					sensor_img_rate=0.2;
+				}
+			}
+			else if(num==50)
+			{
+                sensor_position_move=9;
+                sensor_img_rate=0.04;  
+				station_img_rate=0.02;
+				mouse_img_rate=0.1;
+				mouse_position_move=6;	
+				if(change==1)
+				{
+					sensor_img_rate=0.08;  
+				}
+			}
+		}
+
+		//切換圖片
+		function other()
+		{
+			change=1-change;
+
+			if(change==1)
+			{
+				//$('#sensor_number').html('使用基地台數量');
+				document.getElementById("sensor_number").innerHTML =  "使用基地台數量";
+			}
+			else
+			{
+				//$('#sensor_number').html('使用貓咪數量');
+				 document.getElementById("sensor_number").innerHTML =  "使用貓咪數量";
+			}
+			draw_showcanvas();
+			/*if(num==5)
+			{
+                
+				if(change==1)
+				{
+					sensor_img_rate=0.8;
+				}
+				else
+				{
+					sensor_img_rate=2.5; 
+				}
+			}
+			else if(num==10)
+			{
+				if(change==1)
+				{
+					sensor_position_move=6;
+                    sensor_img_rate=0.4;
+				}
+				else
+				{
+					sensor_position_move=7;
+               		sensor_img_rate=1.3; 
+				}
+			}
+			else if(num==20)
+			{
+				if(change==1)
+				{
+					sensor_position_move=7;
+					sensor_img_rate=0.2;
+				}
+				else
+				{
+					sensor_position_move=8;
+                	sensor_img_rate=0.6;
+				}
+			}
+			else if(num==50)
+			{
+				if(change==1)
+				{
+					sensor_img_rate=0.08;  
+				}
+				else
+				{
+					sensor_img_rate=0.25;
+				}
+			}*/
+			check_picture_rate();
+
+			var canvas=document.getElementById("mycanvas");
+            var context=canvas.getContext("2d");
+			if(change==1)
+			{
+				document.getElementById("change_cheese").innerHTML ='<img src="./icon/satellite-dish-solid.svg" width="30" height="20">感測器';
+			}
+			else
+			{
+				document.getElementById("change_cheese").innerHTML ='<img src="./icon/black-cat.svg" width="30" height="20">感測器';
+				document.getElementById("change_connect").innerHTML = '<img src="./icon/handshake-slash-solid.svg" width="30" height="20">顯示連通性';
+				if(connect_line_click_time==1)
+				{
+					connect_line_click_time=0;
+				}
+			}
+			context.clearRect(0, 0, 1500, 1500);
+			context.beginPath();
+			for(i=1;i<num;i++)
+			{
+				context.moveTo((canvas_size/num)*i,0);
+				context.lineTo((canvas_size/num)*i,canvas_size);
+				context.moveTo(0,(canvas_size/num)*i);
+				context.lineTo(canvas_size,(canvas_size/num)*i);
+			}
+			context.strokeStyle='black';
+			context.lineWidth=2;
+			context.stroke();
+			context.closePath();
+			console.log(position_check)
+			for(i=0;i<num;i++)
+			{
+				for(j=0;j<num;j++)
+				{
+					if(position_check[i][j]==1)
+					{
+						drawcheese(i,j);
+					}
+				}
+			}
+			cal_probability();
+			if(probability_click_time==1)
+			{
+				remain_probability();
+			}
+		}
+
+		//選擇地圖大小
+		function confirm_map()
+		{
+			var canvas=document.getElementById("mycanvas");
+            var context=canvas.getContext("2d");
+			var form = document.getElementById("maps");
+			var range = form.selectedIndex;
+			num=form.options[range].value;
+			click_times=0;
+			connect_line_click_time=0;
+			document.getElementById("sensor_number").innerHTML =  "使用貓咪數量";
+			document.getElementById("fitness").innerHTML = click_times;
+			document.getElementById("min_detect").innerHTML =" ";
+			document.getElementById("tip").style.display='none';
+
+			for(i=0;i<num;i++)
+			{
+				position_check[i]=[];
+				for(j=0;j<num;j++)
+				{
+					position_check[i][j]=0;
+				}
+			}
+
+			
+			for(i=0;i<num;i++)
+			{
+				probability[i]=[];
+				for(j=0;j<num;j++)
+				{
+					probability[i][j]=0;
+				}
+			}
+
+			
+			for(i=0;i<num;i++)
+			{
+				space_check[i]=[];
+				for(j=0;j<num;j++)
+				{
+					space_check[i][j]=0;
+				}
+			}
+			position_row=[];
+			position_column=[];
+			store_position_i=[];
+			store_position_j=[];
+
+			check_picture_rate();
+			canvas_size=800;
+			station_position=num/2;
+			draw();
+			for(i=0;i<num;i++)
+			{
+				for(j=0;j<num;j++)
+				{
+					draw_mouse(i,j);
+				}
+			}
+			
+		}
+		//swal("歡迎進入擺放最佳化遊戲模式","嘗試運用最少起司佔領所有範圍吧!!!","./images/mouse1.svg");
+		draw_showcanvas();
+		clickdot();
+	</script>
+
+	<div id="tip" style="position: absolute;
+	border:1px solid #ccc;
+	padding:0px 3px;
+	color:#00f;
+	height:20px;
+	line-height:20px;
+	background:#d4d4d4;
+	font-family: cwTeXYen;
+	font-weight: bold;
+	">
+	</div>
+</body>
+</html>

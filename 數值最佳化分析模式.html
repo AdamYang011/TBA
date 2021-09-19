@@ -1,0 +1,2018 @@
+<!DOCTYPE >
+<html>
+<head>
+    <title>最佳動化_數值最佳化模式</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta http-equiv="X-UA-Compatible"content="ie=edge">      <!--什麼版本IE 就用什麼版本的標準模式-->
+	<script src="./assets/js/jquery.min.js"></script>
+	<script src="./assets/js/RecordRTC.min.js"></script>
+	<script src="./assets/js/fix-webm-duration.js"></script>
+	<script src="./assets/js/html2canvas.min.js"></script>
+	<script src="./assets/js/breakpoints.min.js"></script>
+	<script src="./assets/js/browser.min.js"></script>
+	<script src="./assets/js/main.js"></script>
+	<script src="./assets/js/util.js"></script>
+	<script src="./assets/js/slide.js"></script>
+	<script src="./assets/js/jquery-1.12.4.min.js"></script>
+	<script src="./assets/js/multislider.js"></script> 
+	<script src="./assets/js/darkmode.js"></script>
+	<script src="./assets/js/bootstrap.min.js"></script><!--sidebar模式-->
+	<script src="./assets/js/c0cbf39b93.js" ></script><!--拿back.to.top的ICON-->
+	<script src="./assets/js/fontsize.js"></script>	
+	<script src="./assets/js/echarts.js"></script>
+	<link rel="stylesheet" href="./assets/css/main.css" />
+	<link rel="stylesheet" href="./assets/css/spotlight.css" /><!--照片文字的css-->
+	<link rel="stylesheet" href="./assets/css/slide.css" /><!--跑馬燈的css?????-->
+	<link rel="stylesheet" href="./assets/css/Button.css" />
+	<link rel="stylesheet" href="./assets/css/darkmode.css"/>
+	<link rel="stylesheet" href="./assets/css/Bootstrap.css" />
+	<link rel="stylesheet" href="./assets/css/font-awesome.min.css" />
+    <style type="text/css">
+		canvas 
+		{
+			border: 2px solid #000000;
+			margin: auto;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+		}	
+
+	</style>
+</head>
+<body style="height: 100%; margin: 0" class="is-preload">
+	<div id="wrapper">
+		<!--Sidebar-->
+		<nav class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					   <a class="navbar-brand" href="./index.html">最佳動化</a>
+				  </div>
+				  <ul class="nav navbar-nav">
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">數值最佳化 <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="./數值最佳化分析模式.html">分析模式</a></li>
+					</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">組合最佳化 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						<li><a href="./組合最佳化分析模式.html">分析模式</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排列最佳化 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						<li><a href="./排列最佳化分析模式.html">分析模式</a></li>
+						<li><a href="./排列最佳化遊戲模式.html">遊戲模式</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">擺放最佳化 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						<li><a href="./擺放最佳化分析模式.html">分析模式</a></li>
+						<li><a href="./擺放最佳化遊戲模式.html">遊戲模式</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排行榜 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						<li><a href="#">排列最佳化--遊戲模式</a></li>
+						<li><a href="#">擺放最佳化--遊戲模式</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a href="./setting.html">設定</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div id="main">
+			<div class="inner">
+		
+				<div class="row">
+					<div id="TBA" class="col-8" >
+						<canvas id="mycanvas" width="840" height="750" style="position:absolute;left:-672px;top:50px"></canvas>
+						<canvas id="fg" width="700" height="700" onmousewheel="Zoom_in();" style="position:absolute;left:-735px;top:60px;z-index: 1;"></canvas> 
+						<canvas id="fg2" width="700" height="700" onmousewheel="Zoom_in();" style="position:absolute;left:-735px;top:60px;z-index: 2;"></canvas>
+					</div>
+					<canvas id="background-canvas" style="position:absolute; top:-99999999px; left:-9999999999px;"></canvas>
+					<div class="col-4 col-4-medium" style="margin-top:50px;margin-left:-100px;">
+						<div class="table-wrapper">
+							<br><br>
+							<table>
+								<thead>
+									<tr>
+										<th style="width: 200px;">適應值</th>
+										<th>世代數</th>
+										<th>速度</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td id="fitness"></td>
+										<td id="gener"></td>
+										<td id="speed"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<ul class="actions">
+							<input type="file" id="file" onchange="upload()">
+							<!-- <li><a id="btnSave" class="button small icon solid fa-file-alt" type="file" onclick="upload()">讀檔</a></li> -->
+						</ul>	
+						<br>
+
+						<ul class="actions">
+							<button  class="button" onclick="screenshot()"><img src="./icon/camera.svg"  width="30" height="20" >拍照</button>
+							<div id="start-recording">
+								<button id="btn-start-recording" class="btn-stop-recording"><img src="./icon/video.svg"  width="30" height="20" >錄影</button>
+							</div>
+							<div id="stop-recording">
+								<button id="btn-stop-recording" class="btn-stop-recording"><img src="./icon/video.svg"  width="30" height="20" >停止</button>
+							</div>
+							<button  class="button" onclick="compare_A()"class="fa-network-wired"><img src="./icon/network-wired-solid.svg"  width="30" height="20">比較</button>
+						</ul>
+
+						<ul class="actions">
+							<button  class="button " onclick="Eraser()"><img src="./icon/shoe-prints-solid.svg"  width="30" height="20" >軌跡</button>
+							<button  class="button " onclick="stop()" ><img src="./icon/stop.svg"  width="30" height="20" >重置</button>
+							<button  id="pause" class="button " onclick="active_pause()"><img src="./icon/pause.svg"  width="30" height="20" >暫停</button>
+							<button  id="play" class="button " onclick="active_pause()" ><img src="./icon/play.svg"  width="30" height="20" >播放</button>
+						</ul>
+						<ul class="actions">
+							<button  class="button " onclick="slower()"><img src="./icon/backward-solid.svg"  width="30" height="20" >變慢</button>
+							<button  class="button " onclick="faster()"><img src="./icon/forward-solid.svg"  width="30" height="20" >變快</button>
+							<button  class="button " onclick="Auto()"><img src="./icon/adjust-solid.svg"  width="30" height="20" >Auto</button>
+						</ul>
+						<ul class="actions">
+							<button  class="button " onclick="last_generation()"><img src="./icon/angle-left.svg" width="30" height="20" >上一代</button>
+							<button  class="button " onclick="next_generation()"><img src="./icon/angle-right.svg" width="30" height="20">下一代</button>
+							<button  type="button" data-toggle="modal" data-target="#exampleModal"><img src="./icon/chart-line-solid.svg"  width="30" height="20">斂散圖</button>
+						</ul>
+						<input id="generation" type="text" style="top:-5px; padding-left:10px; padding-right: 10px; margin-left: 5px; width: 95px; height: 50px; font-family: cwTeXYen; font-size: 20px;" placeholder="輸世代數"/>
+						<button style="position: relative; left:105px; top:-50px;" class="button " onclick="go_to()"><img src="./icon/fighter-jet-solid.svg"  width="30" height="20">Go To</button>
+						
+
+						<!-- <ul class="actions">
+							<li><a class="button small icon solid fa-camera-retro" onclick="screenshot()">拍照</a></li>
+							<div id="start-recording">
+								<li><a id="btn-start-recording" class="button small icon solid fa-video btn-start-recording">錄影</a></li>
+							</div>
+							<div id="stop-recording">
+								<li><a id="btn-stop-recording" class="button small icon solid fa-video btn-stop-recording">停止</a></li>
+							</div>
+							<li><a class="button small icon solid fa-network-wired"  onclick="compare_A()">比較</a></li>
+						</ul>
+						<ul class="actions">
+							<li><a class="button small icon solid fa-shoe-prints" onclick="Eraser()">軌跡</a></li>
+							<li><a class="button small icon solid fa-stop" onclick="stop()">重頭</a></li>
+							<li id="pause"><a id="pause" class="button small icon solid fa-pause" onclick="active_pause()">暫停</a></li>
+							<li id="play"><a id="play" class="button small icon solid fa-play" onclick="active_pause()">播放</a></li>
+						</ul>
+						<ul class="actions">
+							<li><a class="button small icon solid fa-backward" onclick="slower()">變慢</a></li>
+							<li><a class="button small icon solid fa-forward" onclick="faster()">變快</a></li>
+							<li><a class="button small icon solid fa-adjust" onclick="Auto()">Auto</a></li>
+						</ul>	
+						<ul class="actions">
+							<li><a class="button small icon solid fa-chevron-left" onclick="last_generation()">上一代</a></li>
+							<li><a class="button small icon solid fa-chevron-right" onclick="next_generation()">下一代</a></li>
+						</ul>
+						<ul class="actions">
+							<input id="generation" type="text" style="position: relative;top: -5px; left: 20px;" placeholder="請輸入世代數" />
+							<li><a style="position: relative; left: 18px;" class="button small icon solid fa-fighter-jet" onclick="go_to()">Go To</a></li>
+						</ul>	 -->
+						<div class="slidecontainer">
+							<input type="range" min="1" max="100" value="1" class="slider" id="gen">
+							<p> <span id="demo"></span></p>
+						</div>
+						<ul class="slidecontainer">
+							<input type="range" min="1" max="100" value="50" class="slider" id="light">
+							<p>明暗度調整: <span id="light_demo"></span></p>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div id="modal" class="modal-dialog modal-sm" style="width: 70%;" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div id="echarts2" style="width: 1100px;height:500px;"></div>
+				</div>
+				<div class="modal-footer">
+					<a id="datazoom" class="button small icon solid fa-search-plus" onclick="datazoom()">縮放</a>
+					<a id="undatazoom" class="button small icon solid fa-search-plus primary" onclick="datazoom()">縮放</a>
+					<a class="button small icon solid fa-camera-retro" onclick="save_img2()">保存</a>
+					<a class="button small icon solid fa-stop" data-dismiss="modal">取消</a>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+	</div>
+	
+	<!-- Scripts -->
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/slide.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script src="assets/js/multislider.js"></script> 
+	<script src="assets/js/back_to_top.js"></script>
+	
+
+
+	<script type="text/javascript">
+
+	//erace_tabulist
+	var tabulist = [];
+	
+	//---------------------------主要設定區
+	//版本號
+	var Version = "G3S22";
+	//解空間顯示的  細緻度
+	var midu=3;
+	//設定數字格式
+
+	//上限設定
+	var Image_T_MAX=45;           //功能圖片數量
+	var Point_MAX=10000;          //粒子數量
+	var Generation_MAX=400000;    //世代數量
+	var Fitness_JLabel_MAX=10;	  //左下黑框框
+	
+	//---------------------------視窗物件區
+	
+	//----------中間區域
+	//維度
+	var Dimension_Mode = 2;
+	var Funtion_Dimension = 2;
+	//1Dimension
+	var Resolution = 0.01;
+	var Resolution_flag =0 ;
+	var Resolution_count = 0;
+	
+	//顏色重新分配
+	var Auto_color = 0;
+
+	//解空間顏色
+	var Answer_Change=1;
+	
+	//橡皮擦
+	var eraser_change = 0;
+
+	//進度軸
+	var Progress_Change=1;
+	var int_Generation_Change=1;
+
+	//明暗度條整
+	var alpha = 'rgba(255,255,255,0)';
+	
+	//xy軸
+		
+	//----------播放控制區域
+	var Index_x1,Index_x2=0;
+	
+	//圓圓的那個
+	var Int_Index = 2;
+
+	//1 -> 2 -> 4 -> ......64
+	var int_Speed = 128;
+	var timer = null;
+	var Eraser_pick = 0;
+	
+	//移動時的 補間動畫
+	var see_dynamic = 30;
+	var see_move = 1;
+	
+	//Borderchange 觸發變數
+	var TraceBorder = 0;
+	//按tab會顯示詳細資訊
+	var Detail_Info = 0;
+	
+	//----------右邊區域
+
+	//自動調整顏色按鈕
+	
+	//顏色上下限設定
+
+	//---------------------------變數宣告區
+
+	//檔案名稱
+	var filename = [];
+	//世代數
+	var Point_Label = [];		//圖案存的地方
+	//結構Generation
+	var Generation = [];
+	var temp_Generation = [];
+	var temp2_Generation = [];
+	var class_Generation = {
+		Amount: 0,				//當代粒子數量
+		Info_Amount: 0,			//當代資訊數量
+		Particle: [],
+		Eval: [],
+			
+		X: [],					//一維座標
+		Y: [],					//二維座雕
+			
+		S: [],					//當代粒子的圖片
+		R: [],					//粒子的禁忌半徑
+		E: [],					//當代粒子的腳印
+		U: [],					//總計算次數
+			
+		Fitness: [],			//當代最佳fitness
+		Information: []			//當代資訊
+	};
+	
+	//結構Generation
+	var Now_Generation=1;
+	var Total_Generation=1;
+	var A_amount = 0;
+
+	//最佳解
+	var Fitness_Amount;  //適應值數量
+	var Fitness_JLabel_len=14;
+
+	//各世代的資訊
+	var Info_String = [];
+	
+	//粒子Fitness
+
+	//顏色對照工具輔助值
+	//Color顏色比重           藍  青  綠  黃  紅 黑
+	var Color_Proportion = [ 40, 40, 30, 20, 60,40]; 
+	var Color_P_Code 	 = [  0,210,245,255,255,70];
+	var Color_Caps=100;
+	var Color_Limit=0;
+
+	//圖片
+	var Img_sizw_x = [10,10,10,10,10,10,10,10,30,50,40,10,10,10,10,10,10,10,10,10];
+	var Img_sizw_y = [10,10,10,10,10,10,10,10,30,50,50,10,10,10,10,10,10,10,10,10];
+	var Img_S = [];
+	var Img_E = [];
+	var Img = new Image();
+	for(var i = 0; i < 21; i++){
+		if(i < 10) Img.src = './T1/P0' + i + '.png';
+		else Img.src = './T1/P' + i + '.png';
+		Img_S.push(Img);
+		Img = new Image();
+	}
+	for(var i = 0; i < 22; i++){
+		if(i < 10) Img.src = './T1/E0' + i + '.png';
+		else Img.src = './T1/E' + i + '.png';
+		Img_E.push(Img);
+		Img = new Image();
+	}
+
+	//播放
+	var Pause=0;
+	var speed_run = 1;
+
+	//視窗輔助值
+	var Outside_X=5;
+	var Outside_Y=0;
+	var Spacing=30;  //間隔區
+
+	var M_block_x=Outside_X+Spacing;
+	var M_block_y=Outside_Y+Spacing;
+	var M_block_w=700;
+	var M_block_w2 = 0;  //這裡改0 就會變成只有一個視窗
+	var M_block_l=700;
+
+	var R_block_x=M_block_x+M_block_w+M_block_w2+Spacing;
+	var R_block_y=M_block_y;
+	var R_block_w=35;
+	var R_block_l=700;
+
+	var Outline_x=R_block_x+R_block_w+Spacing-Outside_X+15;
+	var Outline_y=R_block_y+R_block_l+Spacing-Outside_Y;
+
+	//地圖輔助值
+	var Border_X=0;
+	var Border_Y=0;
+	var Border_L=100;
+
+	var Border_X_S=100;
+	var Border_X_M=100;
+	var Border_X_N=-100;
+
+	var Border_Y_S=100;
+	var Border_Y_M=100;
+	var Border_Y_N=-100;
+	var Border_Y_L=100;	//一維會用到
+	//---------------------------其他宣告區
+
+	var Postfix = new Array(100); //後置運算式   輸出時的後置int運算   Postfix[0]=Postfix陣列大小   -1～-7為運算元 -8為X -9為Y
+
+	var MouseMod=1;   //滑鼠點擊判斷
+	var MouseXago,MouseYago;
+
+	var compare = 0;
+
+	var temp_time=0; //滑鼠連點兩下判斷用
+
+	var N_Show_Title=1; //開頭EPanel文字的旗標
+
+	var JFrame_mod=0; //判斷當前是哪個JFrame
+	
+
+	var myChart2 = echarts.init(document.getElementById('echarts2'))
+
+	var option2 = {
+				title: {
+					text: '斂散圖'
+				},
+				toolbox:{
+					feature:{
+						dataZoom:{
+							show: true,
+							title: {
+								zoom: '區域縮放',
+								back: '還原'
+							},
+							yAxisIndex: false
+						}
+					}
+				},
+				legend:{
+					data:[]
+				},
+				color:['#0000FF',
+					'#FF0000',
+					'#FF8106',
+					'#FCC565',
+					'#8150C7',
+					'#5AAAFA',
+					'#F06060',
+					'#FFA5B4',
+					'#2468A2',
+					'#DB6EBA'],
+				tooltip: {
+					formatter: function (param, ticket, callback) {
+						return '第' + param.value[0] + '世代全域最佳解:' + param.value[1]
+					}
+				},
+				xAxis: {
+					type: 'value',
+					name:'世代數',
+					min: 1,
+					max: 2
+				},
+				yAxis: {
+					type: 'value',
+					name: '適應值',
+					max: 'dataMax',
+					min: 'dataMin'
+				},
+				dataZoom:[{
+					show: true,
+					realtime: true,
+					xAxisIndex: 0
+				},
+				{
+					type: 'inside',
+					xAxisIndex: 0
+				}],
+				animation: false,
+				series: []
+			}
+
+	var param = {
+		datazoom_state: false
+	}
+
+	Postfix = Expand_Equation("sum(Xi^2-10*cos(2*Pi*Xi)+10)/40",Postfix);
+	//Postfix = Expand_Equation("sum(|Xi|)", Postfix);
+	
+	timer = setInterval(function (){
+		
+		if(Answer_Change==1)
+		{
+			if(MouseMod == 1) midu = 3;
+			else if(MouseMod == 2) midu = 9;
+
+			if(Auto_color == 1) Adaptive_Color();
+
+			document.getElementById("gen").value = Now_Generation;
+			document.getElementById("gener").innerText = Now_Generation;
+			document.getElementById("speed").innerText = speed_run;
+			document.getElementById("demo").innerText = Now_Generation + " / " +Total_Generation;
+			Outline_Panel();
+			if(TraceBorder == 1) set_Border();
+			Answer_Panel();
+			Eraser_Panel();
+			Answer_Change=0;
+		}
+		if(Pause == 1){
+			Answer_Change=1;
+			if(see_move == 1)
+			{
+				see_move++;
+			}
+			else
+			{
+				if(see_move == see_dynamic)
+				{
+					see_move = 1;
+					Now_Generation++;
+				}
+				else
+				{
+					see_move++;
+				}
+			}
+			if(Now_Generation > Total_Generation){
+				Pause = 0;
+				Answer_Change=0;
+				Now_Generation = 1;
+			}
+		}
+	}, int_Speed);
+	//開始和暫停
+	function active_pause()
+	{
+		if(Pause == 1) {
+			Pause = 0;
+			$('#play').show()
+			$('#pause').hide()
+		}
+		else {
+			Pause = 1;
+			$('#play').hide()
+			$('#pause').show()
+		}
+	}
+	//加速
+	function faster()
+	{
+		clearInterval(timer)
+		if(int_Speed > 2) int_Speed = int_Speed / 2;
+		if(int_Speed > 2) speed_run = speed_run * 2;
+		console.log(speed_run);
+		document.getElementById("speed").innerText = speed_run;
+		timer = setInterval(function (){
+			if(Answer_Change==1)
+			{
+				if(MouseMod == 1) midu = 3;
+				else if(MouseMod == 2) midu = 9;
+
+				if(Auto_color == 1) Adaptive_Color();
+
+				document.getElementById("gen").value = Now_Generation;
+				document.getElementById("gener").innerText = Now_Generation;
+				document.getElementById("demo").innerText = Now_Generation + " / " +Total_Generation;
+				Outline_Panel();
+				if(TraceBorder == 1) set_Border();
+				Answer_Panel();
+				Eraser_Panel();
+				Answer_Change=0;
+			}
+			if(Pause == 1)
+			{
+				Answer_Change=1;
+				if(see_move == 1)
+				{
+					see_move++;
+				}
+				else
+				{
+					if(see_move == see_dynamic)
+					{
+						see_move = 1;
+						Now_Generation++;
+					}
+					else
+					{
+						see_move++;
+					}
+				}
+				if(Now_Generation > Total_Generation){
+					Pause = 0;
+					Answer_Change=0;
+					Now_Generation = 1;
+				}
+			}
+		}, int_Speed);
+	}
+	//減速
+	function slower()
+	{
+		clearInterval(timer)
+		if(int_Speed < 128) int_Speed = int_Speed * 2;
+		if(int_Speed < 128) speed_run = speed_run / 2;
+		console.log(speed_run);
+		document.getElementById("speed").innerText = speed_run;
+		timer = setInterval(function (){
+			if(Answer_Change==1)
+			{
+				if(MouseMod == 1) midu = 3;
+				else if(MouseMod == 2) midu = 9;
+
+				if(Auto_color == 1) Adaptive_Color();
+
+				document.getElementById("gen").value = Now_Generation;
+				document.getElementById("gener").innerText = Now_Generation;
+				document.getElementById("demo").innerText = Now_Generation + " / " +Total_Generation;
+				
+				Outline_Panel();
+				if(TraceBorder == 1) set_Border();
+				Answer_Panel();
+				Eraser_Panel();
+				Answer_Change=0;
+			}
+			if(Pause == 1)
+			{
+				Answer_Change=1;
+				if(see_move == 1)
+				{
+					see_move++;
+				}
+				else
+				{
+					if(see_move == see_dynamic)
+					{
+						see_move = 1;
+						Now_Generation++;
+					}
+					else
+					{
+						see_move++;
+					}
+				}
+				if(Now_Generation > Total_Generation){
+					Pause = 0;
+					Answer_Change=0;
+					Now_Generation = 1;
+				}
+			}
+		}, int_Speed);
+	}
+	//上一代
+	function last_generation()
+	{
+		Now_Generation--;
+		Answer_Change=1;
+		MouseMod = 1;
+	}
+	//下一代
+	function next_generation()
+	{
+		Now_Generation++;
+		Answer_Change=1;
+		MouseMod = 1;
+	}
+	//GOTO
+	function go_to()
+	{
+		Now_Generation = document.getElementById("generation").value;
+		Answer_Change=1;
+		MouseMod = 1;
+	}
+	//重頭
+	function stop()
+	{
+		//計算視窗中畫布範圍與位置
+		Border_X_S=(Border_X_M-Border_X_N)/2;
+		Border_Y_S=(Border_Y_M-Border_Y_N)/2;
+		Border_X=Border_X_N+Border_X_S;
+		Border_Y=Border_Y_N+Border_Y_S;
+
+		//顏色重新分配
+		Reset_Panel();
+		Adaptive_Color();
+
+		if(Border_X_S>=Border_Y_S) Border_L=Border_X_S;
+		else Border_L=Border_Y_S;
+		Now_Generation = 1;
+		Answer_Change=1;
+		MouseMod = 1;
+	}
+	//AUTO
+	function Auto()
+	{
+		if(Auto_color == 0) Auto_color = 1;
+		else Auto_color = 0;
+		
+		Answer_Change=1;
+		MouseMod = 1;
+	}
+	//歷史軌跡
+	function Eraser()
+	{
+		if(eraser_change == 1) eraser_change = 0;
+		else eraser_change = 1;
+		Answer_Change=1;
+		MouseMod = 1;
+	}
+	//比較
+	function compare_A()
+	{
+		if(compare == 0) compare = 1;
+		else compare = 0;
+		console.log(compare);
+	}
+	//第一層 外框輪廓
+	//第一層 輪廓外框
+	function Outline_Panel()
+	{
+		var g = document.getElementById('mycanvas');
+		var g2D = g.getContext('2d');
+
+		//數值都設為無小數
+		var df0;
+
+		//底部白
+		g2D.fillStyle = "rgb(255,255,255)";
+		g2D.fillRect(0,0,Outline_x+8,Outline_y+90);
+
+		//框線  黑色  粗(3)框
+		g2D.fillStyle = "rgb(0,0,0)";
+		g2D.lineWidth = 3;
+		g2D.font = "15px Arial";
+		
+		//下邊  數值
+		for(var i = 0; i <= 10; i++)
+			g2D.fillText((i*Border_L/5+Border_X-Border_L).toFixed(0),/*X*/M_block_x+M_block_w/10*i-6,/*Y*/M_block_y-5/*+M_block_l+20*/);
+		//System.out.println("Border_X = "+Border_X);
+		//System.out.println("Border_L = "+Border_L);
+		//左側邊  數值
+		for(var i = 0; i <= 10 ; i++)
+		{
+			if(Dimension_Mode==2)
+				g2D.fillText(((10-i)*Border_L/5+Border_Y-Border_L).toFixed(0),/*X*/M_block_x-Spacing,/*Y*/M_block_y+M_block_l/10*i+8);
+			else
+				g2D.fillText(((10-i)*Border_Y_L/5+Border_Y-Border_Y_L).toFixed(0),/*X*/M_block_x-Spacing,/*Y*/M_block_y+M_block_l/10*i+8);
+		}
+		//數值
+		for(var i = 0; i <= 10; i++){
+			g2D.fillText((Color_Caps-i*(Color_Caps-Color_Limit)/10).toFixed(0),R_block_x+R_block_w+5,R_block_l/10*i+R_block_y+4);
+		}
+			
+
+		//右邊顏色對照
+
+		var code_temp;
+		var temp;
+		var out_temp;
+		//右邊漸層
+		for(var i = 0; i < R_block_l; i++)
+		{
+			code_temp=ColorDeploy(Color_Caps-i*(Color_Caps-Color_Limit)/R_block_l);
+			g2D.strokeStyle = 'rgb(' + parseInt(code_temp/1000000) + ',' + parseInt((code_temp/1000)%1000) + ',' + parseInt(code_temp%1000) + ')';
+			g2D.beginPath();
+			g2D.moveTo(R_block_x,R_block_y+i);
+			g2D.lineTo(R_block_x+R_block_w-3,R_block_y+i);
+			g2D.stroke();
+		}
+
+		g2D.strokeStyle = "rgb(0,0,0)";
+		g2D.lineWidth = 3;
+		//Right block 右邊外框  (顏色對照用的框)
+		g2D.beginPath();
+		g2D.rect(R_block_x,R_block_y,R_block_w-3,R_block_l-1);
+		g2D.stroke();
+		g2D = g.getContext('2d');
+
+		for(var i = 0; i <= 10; i++)
+		{
+			//內側兩邊的標線
+			g2D.beginPath();
+			g2D.moveTo(R_block_x          ,  R_block_y+R_block_l/10*i);
+			g2D.lineTo(R_block_x+7          ,  R_block_y+R_block_l/10*i);
+			g2D.moveTo(R_block_x+R_block_w-3,  R_block_y+R_block_l/10*i);
+			g2D.lineTo(R_block_x+R_block_w-7-3,  R_block_y+R_block_l/10*i);
+			g2D.stroke();
+		}
+	}
+	//第二層 色版
+	function Answer_Panel()
+	{
+		var g = document.getElementById('fg');
+		var g2D = g.getContext('2d');
+
+		var code_temp;
+		var temp;
+		var out_temp;
+		
+		//底部白
+		g2D.fillStyle = "rgb(255,255,255)";
+		g2D.fillRect(0,0,M_block_w,M_block_l);
+		if(Dimension_Mode==2)
+		{
+			//畫機率分怖
+			for(var i=0;i<700;i+=midu)
+				for(var j=0;j<700;j+=midu)
+				{
+					temp=Fitness(i,j,1);
+					code_temp=ColorDeploy(temp);
+					if(i*Border_L/350+Border_X-Border_L>=Border_X_M || i*Border_L/350+Border_X-Border_L<=Border_X_N || j*Border_L/350+Border_Y-Border_L>=Border_Y_M || j*Border_L/350+Border_Y-Border_L<=Border_Y_N)
+						out_temp=150;
+					else
+						out_temp=255;
+	
+					g2D.fillStyle = 'rgba(' + code_temp/1000000 + ',' + (code_temp/1000)%1000 + ',' + code_temp%1000 + ',' + out_temp + ')';
+					g2D.fillRect(i-1,(700-1-j),midu,midu);
+					//g.fillRect(i-1 + M_block_w2,(700-1-j),midu,midu); // 中間右邊的圖型
+				}
+		}
+		//中間外框
+		//g2D.beginPath();
+		//g2D.rect(M_block_x,M_block_y,M_block_w,M_block_l);
+		//g2D.stroke();
+		//內部題目外框
+		g2D.strokeStyle = "rgb(255,255,255)";
+		g2D.lineWidth = 3;
+		//g2D.setStroke(new BasicStroke(2f,BasicStroke.CAP_BUTT,BasicStroke.JOIN_ROUND,10.0F,new float[]{30f,3f,2f,3f},0f));
+		var ax,ay,bx,by;
+
+		ax=parseInt((Border_X_N-Border_X+Border_L)*350/Border_L);
+		ay=700-parseInt((Border_Y_N-Border_Y+Border_L)*350/Border_L);
+
+		bx=parseInt((Border_X_M-Border_X+Border_L)*350/Border_L);
+		by=700-parseInt((Border_Y_M-Border_Y+Border_L)*350/Border_L);
+		if(Dimension_Mode==1)
+		{
+			ay=700-parseInt((Border_Y_N-Border_Y+Border_Y_L)*350/Border_Y_L);
+			by=700-parseInt((Border_Y_M-Border_Y+Border_Y_L)*350/Border_Y_L);
+		}
+		g2D.beginPath();
+		if(ax < 700){
+			g2D.moveTo(ax,ay); //左
+			g2D.lineTo(ax,by); 
+		}
+		if(bx > 700 && ax < 700)
+		{
+			g2D.moveTo(ax,by); //下
+			g2D.lineTo(700,by);
+			g2D.moveTo(ax,ay);
+			g2D.lineTo(700,ay);
+		}
+		else if(bx < 700)
+		{
+			g2D.moveTo(ax,by); //上
+			g2D.lineTo(bx,by);
+			
+			g2D.moveTo(ax,ay); //下
+			g2D.lineTo(bx,ay);
+		}
+		if(bx < 700){
+			g2D.moveTo(bx,ay); //右
+			g2D.lineTo(bx,by);
+		}
+		g2D.stroke();
+		//中間外框
+		g2D.beginPath();
+		g2D.rect(0,0,M_block_w,M_block_l);
+		g2D.stroke();
+		//明暗軸的遮片
+		g2D.fillStyle = alpha;		//透明度是0~1
+		g2D.fillRect(0,0,M_block_w,M_block_l);
+		//初始畫面
+		/*if(N_Show_Title==1)
+		{
+			g2D.strokeStyle = "rgba(0,0,0,255)";
+			//g2D.font(new Font("Nyala", Font.BOLD,parseInt(20000/Border_L)));
+			g2D.fillText("EPanel",parseInt((8-98-Border_X+Border_L)*350/Border_L+5-2000/Border_L),700-parseInt((-12-Border_Y+Border_L)*350/Border_L-30));
+
+			g2D.strokeStyle = "rgba(255,255,255,255)";
+			//g2D.font(new Font("Nyala", Font.BOLD,(int)(20000/Border_L)));
+			g2D.fillText("EPanel",parseInt((8-100-Border_X+Border_L)*350/Border_L+5-2000/Border_L),700-parseInt((-10-Border_Y+Border_L)*350/Border_L-30));
+		}*/
+
+	}
+	//第三層 範圍顯示   + 軌跡橡皮擦  中間圖片的左上起始位置是 35 30   +  最佳fitness + 計算次數
+	function Eraser_Panel()
+	{
+		var g = document.getElementById('fg2');
+		var g2D = g.getContext('2d');
+		g2D.fillStyle = "rgb(255,255,255)";
+		g2D.clearRect(0,0,M_block_w,M_block_l);
+
+		if(Total_Generation > 100){
+			var Rr=10
+			
+			if(eraser_change == 1){
+				var step_temp;
+				var foot_step;
+				var step_code_temp = Total_Generation / 9;
+				if(step_code_temp == 0) step_code_temp = 1;
+
+				for(var i = 0; i < Now_Generation-1; i++){
+					
+					foot_step = i / step_code_temp;    //讓腳印越來越深
+					if (foot_step == 9) foot_step = 8;
+					step_temp = Now_Generation / step_code_temp;
+					if (step_temp == 9) step_temp = 8;
+					for(var j = 0; j < Generation[i].Amount; j++){
+						try{
+						g2D.drawImage(Img_E[parseInt(Generation[i].E[j]) + parseInt(step_temp - foot_step)],
+						parseFloat((Generation[i].X[j]-Border_X+Border_L)*350/Border_L)-15/2,
+						700-parseFloat((Generation[i].Y[j]-Border_Y+Border_L)*350/Border_L)-15/2,
+						15,
+						15);
+						}catch(e) {
+							console.log(e)
+						}
+						
+					}
+				}
+			}
+
+
+			for(var i = 0; i < Generation[Now_Generation-1].Amount; i++){
+				if(Generation[Now_Generation-1].S[i] != 0){
+					if(see_move == 1){
+						g2D.drawImage(Img_S[Generation[Now_Generation-1].S[i]],
+						parseInt((Generation[Now_Generation-1].X[i]-Border_X+Border_L)*350/Border_L)-Img_sizw_x[Generation[Now_Generation-1].S[i]]/2,
+						700-parseInt((Generation[Now_Generation-1].Y[i]-Border_Y+Border_L)*350/Border_L)-Img_sizw_y[Generation[Now_Generation-1].S[i]]/2,
+						Img_sizw_x[Generation[Now_Generation-1].S[i]],
+						Img_sizw_y[Generation[Now_Generation-1].S[i]]);
+					}
+					else{
+						var tmp_x = parseFloat((Generation[Now_Generation].X[i] - Generation[Now_Generation-1].X[i]) * see_move/see_dynamic);
+						//console.log(parseInt((parseFloat(Generation[Now_Generation-1].X[i])+tmp_x-Border_X+Border_L)*350/Border_L)-Img_sizw_x[Generation[Now_Generation-1].S[i]]/2);
+						var tmp_y = (Generation[Now_Generation].Y[i] - Generation[Now_Generation-1].Y[i]) * see_move/see_dynamic;
+						g2D.drawImage(Img_S[Generation[Now_Generation-1].S[i]],
+						parseInt((parseFloat(Generation[Now_Generation-1].X[i])+tmp_x-Border_X+Border_L)*350/Border_L)-Img_sizw_x[Generation[Now_Generation-1].S[i]]/2,
+						700-parseInt((parseFloat(Generation[Now_Generation-1].Y[i])+tmp_y-Border_Y+Border_L)*350/Border_L)-Img_sizw_y[Generation[Now_Generation-1].S[i]]/2,
+						Img_sizw_x[Generation[Now_Generation-1].S[i]],
+						Img_sizw_y[Generation[Now_Generation-1].S[i]]);
+
+					}
+				}
+			}
+
+			var AP = 0;
+			for(var i = 0; i < A_amount; i++){
+				g2D.fillStyle = "rgba(0,0,0,0.5)";
+				var word_fit = Generation[Now_Generation-1].Fitness[i];
+				var word_count;
+				if(i > 0) AP += Generation[Now_Generation-1].Particle[i-1];
+				if(compare == 0) word_count = parseInt(Now_Generation) * parseInt(Generation[Now_Generation-1].Particle[i]);
+				else
+				{
+					word_count = parseInt(Now_Generation);
+					if(word_count > Generation[Now_Generation-1].U[i]) word_count = Generation[Now_Generation-1].U[i];
+				}
+				g2D.fillRect(3, M_block_l - 36 - 36*i, Img_sizw_x[Generation[Now_Generation-1].S[AP]] + (filename[i].length+3) * 16 + word_fit.length*16, 34);
+				g2D.fillRect(M_block_w - String(word_count).length*16 -90 -20, M_block_l - 36 - 36*i, String(word_count).length*16 + 90 + 20, 34);
+
+				g2D.fillStyle = "rgba(255,255,255,1)";
+				g2D.font = "29px Arial";
+				g2D.drawImage(Img_S[Generation[Now_Generation-1].S[AP]], 3, M_block_l - 7 - 36 -36*i,
+				 Img_sizw_x[Generation[Now_Generation-1].S[AP]], Img_sizw_y[Generation[Now_Generation-1].S[AP]]);
+				g2D.fillText(filename[i] + ": " + word_fit, 3 + Img_sizw_x[Generation[Now_Generation-1].S[AP]], M_block_l - 7 - 36*i);
+				g2D.drawImage(Img_E[Generation[Now_Generation-1].E[AP]], M_block_w - String(word_count).length*16 -90 -20, M_block_l - 7 - 30 -36*i,
+				 20, 30);
+				g2D.fillText("Eval: " + word_count, M_block_w - String(word_count).length*16 - 90, M_block_l - 7 - 36*i);
+			}
+		}
+	}
+	//邊界值調整 (隨著點的移動狀況)
+	function set_Border()
+	{
+		var X_M = -2147483648.0;			//javay最大跟最小的數值
+		var Y_M = -2147483648.0;
+		var X_N = 2147483647.0;
+		var Y_N = 2147483647.0;
+		var temp = Now_Generation+2;
+		if(temp > Total_Generation) {
+			temp = Total_Generation+1;
+			for(var i=Now_Generation-1; i<temp; i++) {
+				for(var j=0; j<Generation[i].Amount; j++) {
+					if(Generation[i].X[j] > X_M) X_M = Generation[i].X[j];		//找X的最大值			
+					if(Generation[i].X[j] < X_N) X_N = Generation[i].X[j];		//找X的最小值
+				
+					if(Dimension_Mode==1) {
+						var x1 = [0];
+						x1[0] = Generation[Now_Generation].X[j];
+						var tmp = Formula(Postfix,x1,1,0);
+						//double tmp = Double.parseDouble(Generation[i].Fitness[j]); //舊的 一維因為一直以來只有測JA 所以沒發現粒子變多時 他的FITNESS不會變一直是1個
+						if(tmp > Y_M) Y_M = tmp;
+						if(tmp < Y_N) Y_N = tmp;
+					}
+					else {
+						if(Generation[i].Y[j] > Y_M) Y_M = Generation[i].Y[j];		//找Y的最大值
+						if(Generation[i].Y[j] < Y_N) Y_N = Generation[i].Y[j];		//找Y的最小值
+					}
+				}
+			}
+		}
+		else {
+			for(var i=Now_Generation; i<temp; i++) {
+				for(var j=0; j<Generation[i].Amount; j++) {
+					if(Generation[i].X[j] > X_M) X_M = Generation[i].X[j];		//找X的最大值			
+					if(Generation[i].X[j] < X_N) X_N = Generation[i].X[j];		//找X的最小值
+				
+					if(Dimension_Mode==1) {
+						var x1 = [0];
+						x1[0] = Generation[Now_Generation].X[j];
+						var tmp = Formula(Postfix,x1,1,0);
+						if(tmp > Y_M) Y_M = tmp;
+						if(tmp < Y_N) Y_N = tmp;
+					}
+					else {
+						if(Generation[i].Y[j] > Y_M) Y_M = Generation[i].Y[j];		//找Y的最大值
+						if(Generation[i].Y[j] < Y_N) Y_N = Generation[i].Y[j];		//找Y的最小值
+					}
+				}
+			}
+		}
+		
+		//System.out.println("Old_X : " + X_M + " " + X_N);
+		//System.out.println("Old_Y : " + Y_M + " " + Y_N);
+		
+		//if(X_M > Border_X_M) X_M = Border_X_M;			//看X軸有沒有超出上下界
+		//if(X_N < Border_X_N) X_N = Border_X_N;
+		if(Dimension_Mode == 1) {
+			var x1 = [0];
+			for(var i = X_N; i<=X_M;i+=(X_M-X_N)/32768){
+				x1[0] = i;
+				if(Formula(Postfix,x1,1,0) < Y_N)
+				{
+					Y_N = Formula(Postfix,x1,1,0);
+				}
+			}
+		}
+		else {
+			if(Y_M > Border_Y_M) Y_M = Border_Y_M;		//看2維的Y軸有沒有超出上下界
+			if(Y_N < Border_Y_N) Y_N = Border_Y_N;
+		}
+		//計算視窗中畫布範圍與位置
+		Border_X_S=(X_M-X_N)/2.0 + (X_M-X_N)/5.0;
+		Border_Y_S=(Y_M-Y_N)/2.0 + (Y_M-Y_N)/5.0;
+		if(Border_X_S>=Border_Y_S)
+			Border_L=Border_X_S;
+		else
+			Border_L=Border_Y_S;
+			
+		if(Dimension_Mode==1)
+		{
+			if(Border_X_S>=Border_Y_S) {
+				Border_L=Border_X_S;
+				Border_Y_L=Border_X_S;
+			}
+			else {
+				Border_L=Border_Y_S;
+				Border_Y_L=Border_Y_S;
+			}
+				
+		}
+
+		Border_X=X_N - (X_M-X_N)/5.0 + Border_X_S;
+		Border_Y=Y_N - (Y_M-Y_N)/5.0 + Border_Y_S;
+	}
+	//max 255 x 5
+	//顏色轉換
+	function colorcode(int_color)
+	{
+		//int_color+=300;  //輸入0 ～1200      回傳 300～1500
+
+		// 0 0 <255
+		if(int_color<=255)return int_color;
+		// 0 <255 255
+		if(int_color<=255*2)return (int_color-255)*1000+255;
+		// 0 255 255>
+		if(int_color<=255*3)return 255000+255-(int_color-255*2);
+		// <255 255 0
+		if(int_color<=255*4)return (int_color-255*3)*1000000+255000;
+		// 255 255> 0
+		if(int_color<=255*5)return 255000000+(255-(int_color-255*4))*1000;
+		// 255> 0  0
+		if(int_color<=255*6)return (255-(int_color-255*5))*1000000;
+
+		return 0;
+	}
+	//顏色轉換
+	function ColorDeploy(double_color)
+	{
+		//輸入Color_Limit ～ Color_Caps
+		//獲得0 ～ 1200
+		if(double_color>Color_Caps)double_color=Color_Caps;
+		if(double_color<Color_Limit)double_color=Color_Limit;
+
+		var Color_Gap=Color_Caps-Color_Limit;
+		var Color_Amount,Color_temp;
+
+
+		var temp=0;
+		for(var i=0;i<6;i++)
+			temp+=Color_Proportion[i];
+
+		Color_Amount=double_color-Color_Limit;
+		Color_Amount=Color_Amount/Color_Gap*temp; //0~100
+
+
+		Color_temp=0;
+		var temp_i;
+		for(temp_i=0;temp_i<5;temp_i++)
+			if(Color_Amount>=Color_Proportion[temp_i])
+			{
+				Color_Amount-=Color_Proportion[temp_i];
+				Color_temp+=Color_P_Code[temp_i];
+			}
+			else
+			{
+				break;
+			}
+
+		//限制顏色上限
+		if(Color_Amount>Color_Proportion[temp_i])Color_Amount=Color_Proportion[temp_i];
+		Color_temp+=Color_Amount/Color_Proportion[temp_i]*Color_P_Code[temp_i];
+
+		return colorcode(parseInt(Color_temp+300));
+	}
+	//計算該位置適應值
+	function Fitness(X, Y, change)
+	{
+		var temp=0;
+
+		if(change==1)
+		{
+			X=X*Border_L/350+Border_X-Border_L;
+			if(Y==0)
+				Y=0;
+			else
+				Y=Y*Border_L/350+Border_Y-Border_L;
+		}
+
+		if(Postfix[0]>0)
+		{
+			var XYtoX =new Array(2);
+			XYtoX[0]=X;
+			XYtoX[1]=Y;
+			temp=Formula(Postfix,XYtoX,Funtion_Dimension,0);
+		}
+
+		return temp;
+	}
+	
+	//讀檔 切割字串
+	function upload(){
+		var _this = this
+		let reads = new FileReader();
+        let file = document.getElementById("file").files[0];
+        reads.readAsText(file, "ANSI");
+
+        reads.onload = function(epin) {
+			temp_Generation =[];
+			var filename1 = document.getElementById("file").value;
+			var filename2 = filename1.split("\\");
+			var filename3 = filename2[filename2.length-1].split(".");
+            file_inside = epin.target.result;
+            txt = file_inside.trim().split("\n");
+
+			//讀取維度 Dimension
+			var Dim = txt[0].split(":");
+			var Funtion_Dimension = parseInt(Dim[1]);
+			if (Funtion_Dimension == 1) Dimension_Mode = 1;
+			else if (Funtion_Dimension == 2) Dimension_Mode = 2;
+
+			//讀取方程式 Formula
+			var Formula = txt[1].split(":");
+			//轉化方程式
+			Postfix = Expand_Equation(Formula[1].trim(), Postfix);
+			Input_Formula = Formula[1].trim();
+
+			//範圍 Range
+			var tokens_X_range = txt[2].split(":");
+			var tokens_X_MN = tokens_X_range[1].split("~");
+			Border_X_N = parseFloat(tokens_X_MN[0]);
+			Border_X_M = parseFloat(tokens_X_MN[1]);
+			if(Dimension_Mode==2)
+			{
+				Border_Y_M = Border_X_M;
+				Border_Y_N = Border_X_N;
+			}
+
+			for(var i = 4; i < txt.length; i++){
+				var tmp = txt[i].split(": ");
+
+				var info_fit = tmp[0].split(" ");					//處理前半段的資訊和fit
+				var info = info_fit[0].split(",");
+				for(var j = 1; j < info_fit.length; j++){
+					class_Generation.Fitness.push(info_fit[j]);
+				}
+				class_Generation.Info_Amount = info.length-1;
+				for(var j = 1; j < info.length; j++){
+					class_Generation.Information.push(info[j]);
+				}
+				var pars = tmp[1].trim().split(" ");
+				class_Generation.Amount = pars.length;
+				class_Generation.Particle.push(pars.length);
+				for(var j = 0; j < pars.length; j++){
+					var par_tmp = pars[j].split(",");
+					class_Generation.X.push(par_tmp[0]);
+					class_Generation.Y.push(par_tmp[1]);
+					class_Generation.S.push(par_tmp[2]);
+					class_Generation.R.push(par_tmp[3]);
+					class_Generation.E.push(par_tmp[4]);
+				}
+				temp_Generation.push(class_Generation);
+
+				class_Generation = {			//清空再次使用
+						Amount: 0,				//當代粒子數量
+						Info_Amount: 0,			//當代資訊數量
+						Particle: [],
+						Eval: [],
+							
+						X: [],					//一維座標
+						Y: [],					//二維座雕
+							
+						S: [],					//當代粒子的圖片
+						R: [],					//粒子的禁忌半徑
+						E: [],					//當代粒子的腳印
+						U: [],
+							
+						Fitness: [],			//當代最佳fitness
+						Information: []			//當代資訊
+				}
+			}
+			//單檔
+			if(compare == 0)
+			{
+				filename = [];
+				filename.push(filename3[0]);
+				A_amount = 1;
+				Generation = temp_Generation;
+				Total_Generation = Generation.length;
+				document.getElementById("gen").max = Total_Generation;
+				document.getElementById("demo").innerText = Total_Generation;
+			}
+
+			//多檔
+			else
+			{
+				filename.push(filename3[0]);
+				A_amount++;
+				temp2_Generation = Generation;
+				Generation = [];
+				var temp2 = parseInt(temp2_Generation[0].Amount);
+				var temp = parseInt(temp_Generation[0].Amount);
+				if( temp2 * temp2_Generation.length > temp * temp_Generation.length) Total_Generation = temp2 * temp2_Generation.length;
+				else Total_Generation = temp * temp_Generation.length;
+				document.getElementById("gen").max = Total_Generation;
+				document.getElementById("demo").innerText = Total_Generation;
+
+				for(var i = 0; i < temp2 + temp; i++)
+				{
+					class_Generation.X.push(0);
+					class_Generation.Y.push(0);
+					class_Generation.S.push(0);
+					class_Generation.R.push(0);
+					class_Generation.E.push(0);
+				}
+				var temp2_g = 0, temp2_p = 0;
+				var temp_g = 0, temp_p = 0;
+
+				for(var i = 0; i < Total_Generation; i++)
+				{
+					class_Generation.Fitness.push(temp2_Generation[temp2_g].Fitness[0]);
+					class_Generation.Fitness.push(temp_Generation[temp_g].Fitness[0]);
+					class_Generation.Amount = temp2 + temp;
+					class_Generation.Particle.push(temp2);
+					class_Generation.Particle.push(temp);
+					class_Generation.U.push(temp2 * temp2_Generation.length);
+					class_Generation.U.push(temp * temp_Generation.length);
+					class_Generation.Info_Amount = temp2_Generation[temp2_g].Info_Amount + temp_Generation[temp_g].Info_Amount;
+					for(var j = 0; j < temp2_Generation[temp2_g].Info_Amount; j++)
+						class_Generation.Information.psuh(temp2_Generation[temp2_g].Information[j]);
+					for(var j = 0; j < temp_Generation[temp_g].Info_Amount; j++)
+						class_Generation.Information.psuh(temp_Generation[temp_g].Information[j]);
+
+					class_Generation.X[temp2_p] = temp2_Generation[temp2_g].X[temp2_p];
+					class_Generation.X[temp2 + temp_p] = temp_Generation[temp_g].X[temp_p];
+
+					class_Generation.Y[temp2_p] = temp2_Generation[temp2_g].Y[temp2_p];
+					class_Generation.Y[temp2 + temp_p] = temp_Generation[temp_g].Y[temp_p];
+
+					class_Generation.S[temp2_p] = temp2_Generation[temp2_g].S[temp2_p];
+					class_Generation.S[temp2 + temp_p] = temp_Generation[temp_g].S[temp_p];
+
+					class_Generation.R[temp2_p] = temp2_Generation[temp2_g].R[temp2_p];
+					class_Generation.R[temp2 + temp_p] = temp_Generation[temp_g].R[temp_p];
+
+					class_Generation.E[temp2_p] = temp2_Generation[temp2_g].E[temp2_p];
+					class_Generation.E[temp2 + temp_p] = temp_Generation[temp_g].E[temp_p];
+
+
+					
+					temp2_p++, temp_p++;
+					if(temp2_p == temp2)
+					{
+						temp2_g++;
+						if(temp2_g == temp2_Generation.length)
+						{
+							temp2_p--, temp2_g--;
+						}
+						else temp2_p = 0;
+					}
+					if(temp_p == temp)
+					{
+						temp_g++;
+						if(temp_g == temp_Generation.length)
+						{
+							temp_p--, temp_g--;
+						}
+						else temp_p = 0;
+					}
+					Generation.push(class_Generation);
+
+					class_Generation = {					//清空再次使用
+						Amount: temp2 + temp,				//當代粒子數量
+						Info_Amount: 0,						//當代資訊數量
+						Particle: [],
+						Eval: [],
+							
+						X: [],					//一維座標
+						Y: [],					//二維座雕
+							
+						S: [],					//當代粒子的圖片
+						R: [],					//粒子的禁忌半徑
+						E: [],					//當代粒子的腳印
+						U: [],
+							
+						Fitness: [],						//當代最佳fitness
+						Information: []						//當代資訊
+					}
+
+					for(var j = 0; j < temp2 + temp; j++)
+					{
+						class_Generation.X.push(Generation[i].X[j]);
+						class_Generation.Y.push(Generation[i].Y[j]);
+						class_Generation.S.push(Generation[i].S[j]);
+						class_Generation.R.push(Generation[i].R[j]);
+						class_Generation.E.push(Generation[i].E[j]);
+					}
+					
+				}
+			}
+			
+
+			Reset_Panel();
+			Adaptive_Color();
+			setechart2(filename3[0])
+		};
+		Answer_Change=1;
+		
+	}
+	//上下界重新設置
+	function Reset_Panel()
+	{
+
+		//Fitness_String[Fitness_Amount-1]=SRF_Name+" : ";
+		//世代數設為1
+		Now_Generation=1;
+		//Slider_Generation.setValue(1);
+		Round=0;
+
+		//重製解空間顏色
+		Answer_Change=1;
+		Progress_Change=1;
+
+		//計算視窗中畫布範圍與位置
+		Border_X_S=(Border_X_M-Border_X_N)/2;
+		Border_Y_S=(Border_Y_M-Border_Y_N)/2;
+
+		if(Border_X_S>=Border_Y_S)
+			Border_L=Border_X_S;
+		else
+			Border_L=Border_Y_S;
+
+		Border_X=Border_X_N+Border_X_S;
+		Border_Y=Border_Y_N+Border_Y_S;
+
+		//DecimalFormat df=new DecimalFormat("###0.00");
+		//Text_Fitness.setText(""+Generation[Now_Generation].Fitness[0]);
+
+		//第一代左下角顯示字串的地方
+		/*for(int i=0;i<Fitness_Amount;i++)
+		{
+			Fitness_JLabel[i].setText(Fitness_String[i]+Generation[Now_Generation].Fitness[i]);//+"    # of    :"+(Show.Generation[Show.Now_Generation].Amount*Show.Now_Generation));
+			int tmp = getStringWidth(Fitness_JLabel[i].getText());
+			if(tmp > 700) tmp = 700;
+			Fitness_JLabel[i].setSize(tmp+T1P[Generation[Now_Generation].S[i]].getIconWidth(),Fitness_JLabel[i].getHeight());
+			Fitness_JLabel[i].setIcon(T1P[Generation[Now_Generation].S[i]]);
+			
+			if(Overlapping_ToggleButton2.isSelected() )
+			{
+				Generation_JLabel[i].setText("Eval.:"+(Now_Generation));
+			}
+			else {
+				Generation_JLabel[i].setText("Eval.:"+(Generation[Now_Generation].Amount*Now_Generation));
+			}
+			int eval_w = Generation_JLabel[i].getText().length()*Fitness_JLabel_len;
+			Generation_JLabel[i].setBounds(M_block_x+M_block_w-eval_w,M_block_y+M_block_l-35-36*i,eval_w,Generation_JLabel[i].getHeight());
+			//Show.Generation_JLabel[i].setSize(Show.Generation_JLabel[i].getText().length()*Show.Fitness_JLabel_len,Show.Generation_JLabel[i].getHeight());
+			Generation_JLabel[i].setIcon(T1E[Generation[Now_Generation].E[i]]);
+		}
+		if(!Overlapping_ToggleButton2.isSelected() )
+		{
+			for(int i = 0; i < Generation[Now_Generation].Info_Amount; i++) {
+				Info_String[i].setText(Generation[Now_Generation].N_Information[i]);
+				int tmp = getStringWidth(Info_String[i].getText());
+				if(tmp > 700) tmp = 700;
+				Info_String[i].setSize(tmp,Info_String[i].getHeight());
+			}
+		}*/
+	}
+	//方程式處理
+	function Expand_Equation(Equation_S, Postfix) {
+        Equation_S += ";;;;;;";
+        Postfix = [];
+
+        //堆疊
+        var Stack = new Array(100);
+        var top = 0;
+        //               0  1   2   3  4   5    6   7 8sum 9prod 10s 11c 12t   13| 14PI  15X , 16i  17sum後  18prod後  19exp
+        var Priority = [0,3,2,2,1,1,0,0,3,3,3,3,3,0,0,3,0,0,0,3];
+
+        var temp = -1;
+        var dot_s = 0;
+
+        //前一個為  1=運算元  2=運算子
+        var Prev = 1;
+
+        Postfix[0] = 1;
+
+        for (var i = 0; i < Equation_S.length; i++) {
+            //各種函數
+            //sum
+            if (Equation_S[i] == "s" && Equation_S[i + 1] == "u" && Equation_S[i + 2] == "m") {
+                var tmp = parseInt(Postfix[0]);
+                Postfix[tmp] = -17;
+                Postfix[0] = tmp + 1;
+                Stack[top] = -8;
+                top++;
+                Prev = 2;
+                i += 3;
+            }
+            //prod
+            if (Equation_S[i] == "p" && Equation_S[i + 1] == "r" && Equation_S[i + 2] == "o" && Equation_S[i + 3] == "d") {
+                var tmp = parseInt(Postfix[0]);
+                Postfix[tmp] = -18;
+                Postfix[0] = tmp + 1;
+                Stack[top] = -9;
+                top++;
+                Prev = 2;
+                i += 4;
+            }
+            //sin
+            if (Equation_S[i] == "s" && Equation_S[i + 1] == "i" && Equation_S[i + 2] == "n") {
+                Stack[top] = -10;
+                top++;
+                Prev = 1;
+                i += 3;
+            }
+            //cos
+            if (Equation_S[i] == "c" && Equation_S[i + 1] == "o" && Equation_S[i + 2] == "s") {
+                Stack[top] = -11;
+                top++;
+                Prev = 1;
+                i += 3;
+            }
+            //tan
+            if (Equation_S[i] == "t" && Equation_S[i + 1] == "a" && Equation_S[i + 2] == "n") {
+                Stack[top] = -12;
+                top++;
+                Prev = 1;
+                i += 3;
+            }
+            //exp
+            if (Equation_S[i] == "e" && Equation_S[i + 1] == "x" && Equation_S[i + 2] == "p") {
+                Stack[top] = -19;
+                top++;
+                Prev = 1;
+                i += 3;
+            }
+            //pi
+            if (Equation_S[i] == "P" && Equation_S[i + 1] == "i") {
+                var tmp = parseInt(Postfix[0]);
+                Postfix[tmp] = -14;
+                Postfix[0] = tmp + 1;
+                Prev = 2;
+                i += 2;
+            }
+
+            if (Equation_S[i] == "X") {
+                Stack[top] = -15;
+                top++;
+                Prev = 1;
+            }
+
+            if (Equation_S[i] == "i") {
+                var tmp = parseInt(Postfix[0]);
+                Postfix[tmp] = -16;
+                Postfix[0] = tmp + 1;
+                Prev = 2;
+            }
+
+            //數字
+            if (Equation_S[i] >= "0" && Equation_S[i] <= "9") {
+                if (temp == -1) temp = 0;
+
+                //在小數點後  每一次除更大的數
+                if (dot_s > 0) {
+                    var tmp = parseFloat(Equation_S[i] - "0");
+                    temp = temp + tmp / dot_s;
+                    dot_s *= 10;
+                } else temp = temp * 10 + (Equation_S[i] - "0");
+                Prev = 2;
+            }
+            //小數點
+            else if (Equation_S[i] == ".") {
+                dot_s = 10;
+            }
+            //數字完結  塞進堆疊
+            else if (temp >= 0) {
+                var tmp = parseInt(Postfix[0]);
+                Postfix[tmp] = temp;
+                Postfix[0] = tmp + 1;
+                temp = -1;
+                dot_s = 0;
+            }
+            //絕對值
+            if (Equation_S[i] == "|") {
+                //判定為開頭
+                if (Prev == 1) {
+                    Stack[top] = -13; //push();
+                    top++;
+                }
+                //收尾
+                else {
+                    while (top > 0) {
+                        if (Stack[top - 1] != -13) {
+                            var tmp = parseInt(Postfix[0]);
+                            top--;
+                            Postfix[tmp] = Stack[top]; //pop();
+                            Postfix[0] = tmp + 1;
+                        } else {
+                            top--;
+                            break;
+                        }
+                    }
+
+                    Prev = 2;
+                    var tmp = parseInt(Postfix[0]);
+                    Postfix[tmp] = -13;
+                    Postfix[0] = tmp + 1;
+                }
+            }
+            //開頭括號
+            if (Equation_S[i] == "(" || Equation_S[i] == "[") {
+                Stack[top] = -6; //push();
+                top++;
+                Prev = 1;
+            }
+            //收尾括號
+            if (Equation_S[i] == ")" || Equation_S[i] == "]") {
+                while (top > 0) {
+                    if (Stack[top - 1] != -6) {
+                        var tmp = parseInt(Postfix[0]);
+                        top--;
+                        Postfix[tmp] = Stack[top]; //pop();
+                        Postfix[0] = tmp + 1;
+                    } else {
+                        top--;
+                        break;
+                    }
+                }
+                Prev = 2;
+            }
+
+            //其他運算元
+            var Operand = [" ", "^", "*", "/", "+", "-"];
+            for (var j = 1; j < 6; j++)
+                if (Equation_S[i] == Operand[j]) {
+                    while (top > 0) {
+                        var tmp2 = parseInt(Stack[top - 1]);
+                        if (Priority[-tmp2] >= Priority[j]) {
+                            var tmp = parseInt(Postfix[0]);
+                            top--;
+                            Postfix[tmp] = Stack[top]; //pop();
+                            Postfix[0] = tmp + 1;
+                        } else break;
+                    }
+                    Stack[top] = -j; //push();
+                    top++;
+                    Prev = 1;
+                }
+
+                //已到方程式結尾
+            if (Equation_S[i] == ";") break;
+        }
+        if (temp > 0) {
+            var tmp = parseInt(Postfix[0]);
+            Postfix[tmp] = temp;
+            Postfix[0] = tmp + 1;
+        }
+        while (top > 0) {
+            var tmp = parseInt(Postfix[0]);
+            top--;
+            Postfix[tmp] = Stack[top]; //pop();
+            Postfix[0] = tmp + 1;
+        }
+        return Postfix;
+    }
+
+    function Formula(Postfix, X, D, inn) {
+        var Answer = new Array(100);
+        var Answer_s = 0;
+
+        //-----
+
+        for (var i = 1; i < Postfix[0]; i++) {
+            //數字
+            if (Postfix[i] >= 0) {
+                Answer[Answer_s] = Postfix[i];
+                Answer_s++;
+            }
+            // i
+            else if (Postfix[i] == -16) {
+                Answer[Answer_s] = inn;
+                Answer_s++;
+            }
+            //圓周率pi
+            else if (Postfix[i] == -14) {
+                Answer[Answer_s] = Math.PI;
+                Answer_s++;
+            }
+            //sigma
+            else if (Postfix[i] == -17) {
+                var temp_j = i + 1;
+                var Postfix_n = new Array(100);
+                for (var j = i + 1; j < Postfix[0]; j++) {
+                    temp_j = j;
+                    if (Postfix[j] == -8) break;
+                    Postfix_n[j - i] = Postfix[j];
+                }
+                Postfix_n[0] = temp_j - i;
+
+                i = temp_j;
+
+                var Sum = 0;
+                for (var j = 1; j <= D; j++) Sum += Formula(Postfix_n, X, D, j);
+
+                Answer[Answer_s] = Sum;
+                Answer_s++;
+            }
+            //mcl
+            else if (Postfix[i] == -18) {
+                var temp_j = i + 1;
+                var Postfix_n = new Array(100);
+                for (var j = i + 1; j < Postfix[0]; j++) {
+                    temp_j = j;
+                    if (Postfix[j] == -9) break;
+                    Postfix_n[j - i] = Postfix[j];
+                }
+                Postfix_n[0] = temp_j - i;
+
+                i = temp_j;
+
+                var Sum = 1;
+                for (var j = 1; j <= D; j++) Sum *= Formula(Postfix_n, X, D, j);
+
+                Answer[Answer_s] = Sum;
+                Answer_s++;
+            }
+            //函數
+            else if (Postfix[i] == -10)
+                Answer[Answer_s - 1] = Math.sin(Answer[Answer_s - 1]);
+            else if (Postfix[i] == -11)
+                Answer[Answer_s - 1] = Math.cos(Answer[Answer_s - 1]);
+            else if (Postfix[i] == -12)
+                Answer[Answer_s - 1] = Math.tan(Answer[Answer_s - 1]);
+            else if (Postfix[i] == -13)
+                Answer[Answer_s - 1] = Math.abs(Answer[Answer_s - 1]);
+            else if (Postfix[i] == -19)
+                Answer[Answer_s - 1] = Math.exp(Answer[Answer_s - 1]);
+            //X  (從1開始到D)
+            else if (Postfix[i] == -15) {
+                var tmp = parseInt(Answer[Answer_s - 1]);
+                if (tmp < 1) Answer[Answer_s - 1] = D;
+                if (tmp > D) Answer[Answer_s - 1] = 1;
+                Answer[Answer_s - 1] = X[tmp - 1];
+            }
+            //其他運算元
+            else {
+                var tmp = parseFloat(Answer[Answer_s - 2]);
+                var tmp2 = parseFloat(Answer[Answer_s - 1]);
+                Answer[Answer_s - 2] = Operational(tmp, tmp2, Postfix[i]);
+                Answer_s--;
+            }
+        }
+
+        return Answer[0];
+    }
+
+    function Operational(a, b, Operand) {
+        if (Operand == -1) return Math.pow(a, b);
+        if (Operand == -2) return a * b;
+        if (Operand == -3) return a / b;
+        if (Operand == -4) return a + b;
+        if (Operand == -5) return a - b;
+        return 0;
+    }
+	//調整顏色上下界
+	function Adaptive_Color()
+	{
+		var XYtoX =new Array(2);
+		var Total_sum=0;
+		var Total_square=0;
+		var Standard_Deviation=0;
+		
+		var S=101;
+
+		var SB_X,SB_Y;
+
+		//SB_X
+
+		if(Dimension_Mode==2)
+		{
+			for(var i = 0; i < S; i++)
+			{
+				var tempY=0,tempX=0;
+				
+				tempX = i * Border_L / 50 + Border_X - Border_L;
+				//Border_Y_N+(Border_Y_M-Border_Y_N)/(S-1)*i;
+				for(var j = 0; j < S; j++)
+				{
+					tempY=(101 - j) * Border_L / 50 + Border_Y - Border_L;
+					//Border_X_N+(Border_X_M-Border_X_N)/(S-1)*j;
+	
+					XYtoX[0]=tempX;
+					XYtoX[1]=tempY;
+	
+					var temp = Formula(Postfix,XYtoX,2,0);
+					//System.out.print("  "+temp);
+					Total_sum += temp;
+					Total_square += temp*temp;
+				}
+				//System.out.println("");
+			}
+			Total_sum /= (S*S);
+			Total_square /= (S*S);
+			
+			Standard_Deviation = Math.sqrt(Total_square-Total_sum*Total_sum);
+		}
+
+		//設定顏色上下限
+		var tempa = Color_Limit, tempb = Color_Caps;
+
+		Color_Limit = Total_sum-Standard_Deviation*2;
+		Color_Caps = Total_sum+Standard_Deviation*2;
+
+
+		//Input_Color_Limit.setText("0");
+		//重製解空間顏色
+		Answer_Change=1;
+	}
+	//滑鼠判斷
+	
+	var mouseX = 0;
+	var mouseY = 0;
+	var offsetX = 0;
+	var offsetY = 0;
+	var isDown = false;
+	//按下滑鼠拖動
+	fg2.addEventListener('mousedown', function(e)
+	{
+		isDown = true
+		mouseX = e.pageX
+		mouseY = e.pageY
+		fg2.addEventListener('mousemove', move)
+	});
+	//放開滑鼠後就不拖動   上下兩個是一組的
+	fg2.addEventListener('mouseup', function(e)
+	{
+  		if (isDown) {
+			offsetX += e.pageX - mouseX
+			offsetY += e.pageY - mouseY
+ 		}
+		isDown = false
+		fg2.removeEventListener('mousemove',move)
+	});
+	//拖動的function
+	function move(e)
+	{
+		MouseMod = 2;
+		if (isDown) {
+			var dx = e.pageX - mouseX;
+			var dy = e.pageY - mouseY;
+			Border_X-=parseFloat(e.pageX - mouseX)*Border_L/350/100;
+			Border_Y+=parseFloat(e.pageY - mouseY)*Border_L/350/100;
+			//mouseX = e.pageX;
+			//mouseY = e.pageY;
+			Answer_Change = 1;
+		}
+	}
+	//偵測滑鼠給適應值
+	fg2.addEventListener('mousemove', function(e)
+	{
+		var XYtoX =new Array(2);
+		XYtoX[0] = (e.pageX-120)*Border_L/350+Border_X-Border_L;
+		XYtoX[1] = (e.pageY-145)*Border_L/350+Border_Y-Border_L;
+		//console.log(e.pageX,e.pageY);
+		document.getElementById("fitness").innerText = Formula(Postfix,XYtoX,Funtion_Dimension,0).toFixed(10);
+	});
+	//放大縮小解空間
+	function Zoom_in()
+	{
+		
+		MouseMod = 2;
+		if (event.wheelDelta >= 120)
+		{
+			Border_Y_S /=1.1;
+			Border_L/=1.1;
+			Border_Y_L/=1.1;
+			Resolution /=1.2;
+		}
+		else if (event.wheelDelta <= -120)
+		{
+			Border_Y_S *=1.1;					
+			Border_L*=1.1;
+			Border_Y_L*=1.1;
+			Resolution *=1.2;
+		}
+		Answer_Change =1;
+	}
+	//進度軸變動
+	var generation_slider = document.getElementById("gen");
+	generation_slider.oninput = function()
+	{
+  		Now_Generation = this.value;
+		Answer_Change = 1;
+	}
+	//明暗度調整
+	var light_slider = document.getElementById("light");
+	light_slider.oninput = function()
+	{
+  		if(this.value > 50)
+		{
+			alpha = 'rgba(255,255,255,' + (this.value-50)/50 + ')';
+		}
+		else
+		{
+			alpha = 'rgba(0,0,0,' + (50-this.value)/50 + ')';
+		}
+		Answer_Change = 1;
+	}
+
+	var elementToRecord = document.getElementById('TBA');
+	var canvas2d = document.getElementById('background-canvas');
+	var context = canvas2d.getContext('2d');
+
+	canvas2d.width = elementToRecord.clientWidth;
+	canvas2d.height = elementToRecord.clientHeight;
+	var isRecordingStarted = false;
+	var isStoppedRecording = false;
+
+	function setechart2(filename) { // 斂散圖
+			var series_tmp = this.Generation.map(function (item, index) {
+				return [index + 1, item.Fitness]
+			}) // epin原本的GBest
+			this.option2.series.push (
+				{
+					name: filename,
+					type: 'line',
+					showAllSymbol: false,
+					data: series_tmp
+				}
+			)
+			// this.option3.series.push (
+			// 	{
+			// 		name: filename,
+			// 		type: 'line',
+			// 		showAllSymbol: false,
+			// 		data: series2_tmp
+			// 	}
+			// )
+			// this.option4.series.push (
+			// 	{
+			// 		name: filename,
+			// 		type: 'line',
+			// 		showAllSymbol: false,
+			// 		data: series3_tmp
+			// 	}
+			// )
+			this.option2.legend.data.push(filename)
+			// this.option3.legend.data.push(filename)
+			// this.option4.legend.data.push(filename)
+			if (this.Generation.length > this.option2.xAxis.max) {
+				this.option2.xAxis.max = this.Generation.length
+				// this.option3.xAxis.max = this.Generation.length
+				// this.option4.xAxis.max = this.Generation.length
+			}
+			myChart2.setOption(this.option2)
+		}
+
+// 	(function looper() {
+//     if(!isRecordingStarted) {
+//         return setTimeout(looper, 500);
+//     }
+
+//     html2canvas(elementToRecord).then(function(canvas) {
+//         context.clearRect(0, 0, canvas2d.width, canvas2d.height);
+//         context.drawImage(canvas, 0, 0, canvas2d.width, canvas2d.height);
+
+//         if(isStoppedRecording) {
+//             return;
+//         }
+//         requestAnimationFrame(looper); // 速度太慢 暫時不知道怎麼解決
+//     });
+//   })();
+
+	var recorder = new RecordRTC(canvas2d, {
+    type: 'canvas',
+    mimeType: 'video/webm;codecs=vp9', 
+    recorderType: CanvasRecorder,
+    getNativeBlob: true,
+    timeSlice: 1000,
+    onTimeStamp: function(timestamp, timestamps) {
+      var duration = (new Date().getTime() - timestamps[0]) / 1000;
+      if(duration < 0) return;
+      document.querySelector('h1').innerHTML = 'Recording duration: ' + duration;
+  }
+});
+	//拍照
+	function screenshot(){
+		console.log(document.getElementById('TBA').clientWidth);
+        html2canvas(document.getElementById('TBA'), {
+			x: 50,
+			y: 50,
+			//width:2000,
+			//heigth:100,
+		}).then(function(canvas) {
+			document.body.appendChild(canvas);
+            var a = document.createElement('a');
+            a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+            a.download = 'image.jpg';
+            a.click();
+        });
+    }
+	//錄影
+	document.getElementById('btn-start-recording').onclick = function() {
+    isStoppedRecording =false;
+    isRecordingStarted = true;
+
+    recorder.startRecording();
+    $('#start-recording').hide()
+    $('#stop-recording').show()
+};
+
+	document.getElementById('btn-stop-recording').onclick = function() {    
+    recorder.stopRecording(function(stream) {
+        isRecordingStarted = false;
+        isStoppedRecording = true;
+        var blob = recorder.getBlob();
+        // document.getElementById('preview-video').srcObject = null;
+        let downloadLink = document.createElement('a');
+        downloadLink.href = URL.createObjectURL(recorder.getBlob());
+        downloadLink.download ="video.mp4";
+        downloadLink.click();
+        recorder.screen.stop();
+        recorder.destroy();
+        
+
+        // window.open(URL.createObjectURL(blob));
+    });
+    $('#start-recording').show()
+	$('#stop-recording').hide()
+}
+	function datazoom() {
+			if (this.param.datazoom_state == false){
+			this.myChart2.dispatchAction({
+				type: 'takeGlobalCursor',
+				key: 'dataZoomSelect',
+				// 启动或关闭
+				dataZoomSelectActive: true
+			})
+			this.param.datazoom_state = true
+			$('#undatazoom').show()
+			$('#datazoom').hide()
+			} else {
+				this.myChart2.dispatchAction({
+				type: 'takeGlobalCursor',
+				key: 'dataZoomSelect',
+				// 启动或关闭
+				dataZoomSelectActive: false
+			})
+			this.param.datazoom_state = false
+			$('#undatazoom').hide()
+			$('#datazoom').show()
+			}
+		}
+	$('#undatazoom').hide()
+	$('#stop-recording').hide()
+	$('#pause').hide()
+	</script>
+
+</body>
+</html>

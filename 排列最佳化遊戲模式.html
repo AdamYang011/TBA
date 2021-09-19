@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>最佳動化_排列最佳化遊戲模式</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible"content="ie=edge">      <!--什麼版本IE 就用什麼版本的標準模式-->
+		<script src="./assets/js/jquery.min.js"></script><!--sidebar模式-->
+		<script src="./assets/js/bootstrap.min.js"></script><!--sidebar模式-->
+		<script src="./assets/js/c0cbf39b93.js" ></script><!--拿back.to.top的ICON-->
+		<script src="./assets/js/fontsize.js"></script>
+		<link rel="stylesheet" href="./assets/css/main.css" />
+		<link rel="stylesheet" href="./assets/css/spotlight.css" /><!--照片文字的css-->
+		<link rel="stylesheet" href="./assets/css/slide.css" /><!--跑馬燈的css?????-->
+		<link rel="stylesheet" href="./assets/css/Button.css" />
+		<link rel="stylesheet" href="./assets/css/darkmode.css"/>
+		<link rel="stylesheet" href="./assets/css/Bootstrap.css" />
+        <style>
+            canvas
+            {
+                border: black solid 2px;
+                background-repeat: no-repeat;
+                background-size: contain;
+            }
+            #div1,#div2,#div4
+            {
+                display: inline-block;
+            }
+            #div3
+            {
+                float: left;
+                margin:0 4px;
+            }
+            #sumpath
+            {
+                font-size: 20px; 
+                text-align:center;
+            }
+        </style>
+
+    </head>
+    <body class="is-preload">
+        <div id="wrapper">
+            <!--sidebar-->
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                           <a class="navbar-brand" href="./index.html">最佳動化</a>
+                      </div>
+                      <ul class="nav navbar-nav">
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">數值最佳化 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="./數值最佳化分析模式.html">分析模式</a></li>
+                        </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">組合最佳化 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                            <li><a href="./組合最佳化分析模式.html">分析模式</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排列最佳化 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                            <li><a href="./排列最佳化分析模式.html">分析模式</a></li>
+                            <li><a href="./排列最佳化遊戲模式.html">遊戲模式</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">擺放最佳化 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                            <li><a href="./擺放最佳化分析模式.html">分析模式</a></li>
+                            <li><a href="./擺放最佳化遊戲模式.html">遊戲模式</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排行榜 <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                            <li><a href="#">排列最佳化--遊戲模式</a></li>
+                            <li><a href="#">擺放最佳化--遊戲模式</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href="./setting.html">設定</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div id="main">
+                <div class="inner">
+                    <br>
+                    <div id="div3">
+                        <br>
+                        <h6></h6>
+                        <canvas id="mycanvas" width="820" height="650"></canvas>
+                    </div>
+                    <br>
+                    <br>
+                    <div id="div4">
+                        <div id="div1">
+                            <table>
+                                <tr>
+                                    <td style="padding-bottom: 0px;"><div><img src="./images/dollar.png" width="50" height = "50"> </div></td>
+                                    <td style="vertical-align:middle;"><div id="sumpath"> 0 </div></td>    
+                                    
+                                        
+                                        
+                                </tr>    
+                            </table>
+                            <div id="div1">
+                                <select id="location" style="width: 100px; height:40px; padding-left: 15px; text-align:center; font-size: 18px;">
+                                    <option value="0">台灣</option>
+                                    <option value="1">美國</option>
+                                    <option value="2">歐洲</option>
+                                </select>
+                            </div>
+                            <div id="div2">
+                                <button onclick="decide()">選擇</button>
+                            </div>
+                            
+                        </div>
+                        
+                        <div>
+                            <br>
+                            <button onclick="draw(choose)"><img src="./icon/retry.svg" width="15" height = "15"> 重試</button>
+                            <button onclick="forward_step()"><img src="./icon/history.svg" width="15" height = "15"> 上一步</button>
+                            <br>
+                            <br>
+                            <div id="div3">
+                                <textarea id="area" cols="23" rows="11" style="font-size: 20px;"></textarea>
+                            </div>
+                                
+                                <!---
+                                <div id="div3">
+                                    <input style="width: 110px;" type="text" id="loc" placeholder="輸入加入城市">
+                                </div>
+                                <br>
+                                <br>
+                                <div id="div3">
+                                    <div>輸入形式如下</div>
+                                    <div>Ex：x_y_城市名(下底線)</div>
+                                    <button onclick="add()" class="fas fa-plus"> 新增點</button>
+                                </div>--->
+                        </div>
+                    </div>
+                        
+                </div>    
+            </div>
+        </div>
+        
+        <!-- Scripts -->
+        <script src="./assets/js/breakpoints.min.js"></script>
+        <script src="./assets/js/browser.min.js"></script>
+        <script src="./assets/js/jquery.min.js"></script>
+        <script src="./assets/js/main.js"></script>
+        <script src="./assets/js/util.js"></script>
+        <script src="./assets/js/slide.js"></script>
+        <!--<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> -->
+        <script src="./assets/js/multislider.js"></script> 
+        <script src="./assets/js/back_to_top.js"></script>
+        <script src="./assets/js/sweetalert.js"></script>
+        
+        <script>
+            var tw_city=["台北","桃園","新竹","苗栗","台中","彰化","南投","雲林","嘉義","台南","高雄","屏東","台東","花蓮","宜蘭"];
+            var tw_x=[515,445,440,395,365,305,415,295,360,305,390,375,466,515,545];
+            var tw_y=[70,85,135,165,225,280,295,335,380,435,435,535,455,280,165];
+            //var twlong=[25.037654,24.993361,24.810971,24.564875,24.161834,24.075537,23.902700,23.699271,23.481287,22.992344,22.620888,22.683037,22.755636,23.982067,24.730728];
+            //var twlat=[121.564407,121.301017,120.967790,120.820750,120.646857,120.544696,120.690511,120.526279,120.453600,120.185055,120.311864,120.487967,121.150277,121.606771,121.763116];
+            var usa_city=["華盛頓州","俄勒岡州","加利福尼亞州","內華達州","愛達荷州","猶他州","亞利桑那州","蒙大拿州","懷俄明州","科羅拉多州","新墨西哥州","北達科他州","南達科他州","內布拉斯加州","堪薩斯州","奧克拉荷馬州","德克薩斯州","明尼蘇達州","愛荷華州","密蘇里州","阿肯色州","路易斯安那州","威斯康辛州","伊利諾州","密西西比州","密西根州","印第安納州","俄亥俄州","肯塔基州","田納西州","阿拉巴馬州","佛羅里達州","喬治亞州","南卡羅來納州","北卡羅來納州","維吉尼亞州","西維吉尼亞州","馬里蘭州","德拉瓦州","賓夕法尼亞州","新澤西州","紐約州","康乃狄克州","羅德島州","麻薩諸塞州","佛蒙特州","新罕布夏州","緬因州"];
+            var usa_x=[105,85,65,115,165,185,170,245,255,275,265,355,365,365,375,395,375,435,455,475,475,480,505,515,525,575,565,615,595,575,575,665,645,665,685,695,655,710,735,685,740,715,750,770,770,740,760,775];
+            var usa_y=[70,150,320,280,180,290,420,120,220,320,430,110,190,260,340,420,530,160,250,340,425,510,190,290,470,210,290,280,350,395,470,560,470,430,380,330,300,280,285,240,250,180,200,205,180,150,150,100];
+            //var usalong=[46.108005,44.938632,34.720509,39.674277,43.618000,40.777611,33.758741,46.932361,41.140456,39.739490,35.682440,46.820997,44.367294,40.808257,39.048328,35.492933,30.274804,44.955294,41.591379,38.579454,35.317809,30.457258,43.074896,40.988518,32.304017,42.733753,39.768867,39.961576,38.186913,36.165954,32.377551,30.438208,33.749076,34.000539,35.780550,37.539016,38.336560,38.979109,39.157474,40.264451,40.625837,42.653009,41.764085,41.830958,42.358960,44.262802,43.207117,44.307327];
+            //var usalat=[-122.980643,-123.030903,-118.506797,-119.54895,-116.199551,-111.888199,-112.049615,-109.529357,-104.820415,-104.984807,-105.939606,-100.782830,-100.346444,-96.699791,-95.678027,-97.503240,-97.740361,-93.102222,-93.603607,-92.172905,-92.339159,-91.187389,-89.384052,-89.477588,-90.182079,-84.555362,-86.162867,-82.999047,-84.875308,-86.784249, -86.300459,-84.282039,-84.388172,-81.033041,-78.639183,-77.433573,-81.612113,-76.491093,-75.519688,-76.884002,-74.404190,-73.757207,-72.686065,-71.415250,-71.063778,-72.580442,-71.538117,-69.781806];
+            var eu_city=["冰島","愛爾蘭","葡萄牙","西班牙","安道爾","英國","法國","荷蘭","比利時","盧森堡","瑞士","德國","列支敦斯登","義大利","梵蒂岡","聖馬利諾","摩納哥","捷克","奧地利","斯洛維尼亞","克羅埃西亞","波士尼亞","塞爾維亞","蒙特內哥爾","阿爾巴尼亞","馬其頓","希臘","保加利亞","羅馬尼亞","匈牙利","斯洛伐克","波蘭","丹麥","挪威","瑞典","芬蘭","愛沙尼亞","拉脫維亞","立陶宛","烏克蘭","白俄羅斯","摩爾多瓦","土耳其","俄羅斯"];
+            var eu_x=[140,140,50,120,190,200,220,270,255,265,280,310,300,330,330,330,265,360,360,360,380,390,430,405,420,440,450,480,470,410,410,410,320,320,380,460,460,470,450,500,540,510,525,700];
+            var eu_y=[70,280,500,510,490,320,420,340,360,380,435,360,420,510,530,490,480,390,430,455,465,490,490,515,540,530,580,510,460,440,410,360,270,200,170,170,240,270,300,320,400,430,450,150];
+            var x=[],y=[],city=[],long=[],lat=[];
+            var dot=[],step=[]; //需初始化
+            var choose=0,sure=0,max=0,min=0;
+            var click=0,firstdot=0,time=0,sum=0,path="",rate=[],toolrate=1; //需初始化
+            var toolcity;
+
+            function maxmin()
+            {
+                for(i=0;i<x[choose].length;i++)
+                {
+                    for(j=i+1;j<x[choose].length;j++)
+                    {
+                        dis=Math.sqrt((x[choose][i]-x[choose][j])*(x[choose][i]-x[choose][j])+(y[choose][i]-y[choose][j])*(y[choose][i]-y[choose][j]));
+                        if(i==0&&j==1)
+                        {
+                            max=dis;
+                            min=dis;
+                        }
+                        else
+                        {
+                            if(max<dis)
+                            {
+                                max=dis;
+                            }
+                            if(min>dis)
+                            {
+                                min=dis;
+                            }
+                        }
+                    }
+                }
+                console.log(max+" "+min);
+            }
+
+            function combine() //將國家城市存成二維陣列
+            {
+                for(i=0;i<=2;i++)
+                {
+                    if(i==0)
+                    {
+                        x[i]=tw_x;
+                        y[i]=tw_y;
+                        city[i]=tw_city;
+                        //long[i]=twlong;
+                        //lat[i]=twlat;
+                    }
+                    else if(i==1)
+                    {
+                        x[i]=usa_x;
+                        y[i]=usa_y;
+                        city[i]=usa_city;
+                        //long[i]=usalong;
+                        //lat[i]=usalat;
+                    }
+                    else
+                    {
+                        x[i]=eu_x;
+                        y[i]=eu_y;
+                        city[i]=eu_city;
+                    }
+                    //console.log(x[i]);
+                }
+            }
+            
+            function decide() //決定選擇哪一國家
+            {
+                var myselect=document.getElementById("location");
+                var index=myselect.selectedIndex ;
+                name=myselect.options[index].value;
+                dot=[],step=[],rate=[];
+                click=0,firstdot=0,time=0,sum=0;
+                if(name=="0")
+                {
+                    var canvas =document.getElementById("mycanvas");
+                    var context =canvas.getContext("2d");
+                    context.clearRect(0,0,850,800);
+                    canvas.style.backgroundImage="url(images/Taiwan.jpg)";
+                    canvas.style.backgroundPosition="center";
+                    choose=parseInt(name);
+                    sure=1;
+                    draw(choose);
+                    maxmin();
+                    colorbar(max,min);
+                }
+                else if(name=="1")
+                {
+                    var canvas =document.getElementById("mycanvas");
+                    var context =canvas.getContext("2d");
+                    context.clearRect(0,0,850,800);
+                    canvas.style.backgroundImage="url(images/America.png)";
+                    canvas.style.backgroundPosition="center";
+                    choose=parseInt(name);
+                    sure=1;
+                    draw(choose);
+                    maxmin();
+                    colorbar(max,min);
+                }
+                else
+                {
+                    var canvas =document.getElementById("mycanvas");
+                    var context =canvas.getContext("2d");
+                    context.clearRect(0,0,850,800);
+                    canvas.style.backgroundImage="url(images/Eu.jpg)";
+                    canvas.style.backgroundPosition="center";
+                    choose=parseInt(name);
+                    sure=1;
+                    draw(choose);
+                    maxmin();
+                    colorbar(max,min);
+                }
+            }
+        
+            function draw(num) //畫城市初始長相
+            {
+                var canvas=document.getElementById("mycanvas");
+                var context=canvas.getContext('2d');
+                context.clearRect(0,0,850,800);
+                dot=[],step=[],rate=[];
+                click=0,firstdot=0,time=0,sum=0,path="";
+                context.beginPath();
+                for(i=0;i<x[num].length;i++)
+                {
+                    dot[i]=0;
+                    context.moveTo(x[num][i],y[num][i]);
+                    context.arc(x[num][i],y[num][i],8,0,2*Math.PI);
+                    context.fillStyle="blue";
+                    context.fill();
+                }
+                context.closePath();
+                document.getElementById("sumpath").innerHTML=0;
+                document.getElementById("area").value=path;
+                colorbar(max,min);
+                //speed();
+            }    
+            
+            function line() //透過點擊將城市連線
+            {
+                var canvas=document.getElementById("mycanvas");
+                var context=canvas.getContext('2d');
+                canvas.addEventListener("click",function(e)
+                {
+                    var clickx,clicky;
+                    rect=canvas.getBoundingClientRect();
+                    for(i=0;i<x[choose].length;i++)
+                    {
+                        clickx=x[choose][i]-e.clientX+rect.left;//想一下
+                        clicky=y[choose][i]-e.clientY+rect.top;//想一下
+                        var distance=Math.sqrt(clickx*clickx+clicky*clicky)
+                        if(distance<8)
+                        {
+                            if(firstdot==6&&i==13)
+                            {
+                                swal({
+                                    title: "糟糕 !? 禁止通行 !!!",
+                                    text: "遇到土石流了",
+                                    icon: "images/landslide.png"
+                                })
+                            }
+                            else
+                            {    
+                                context.beginPath();
+                                if(dot[i]==0)
+                                {
+                                    //console.log("in");
+                                    step.push(i);
+                                    dot[i]=1;
+                                    if(click==0)
+                                    {
+                                        firstdot=i;
+                                        click++;
+                                        path=path.concat(city[choose][i]+"\n");
+                                        //console.log(path);
+                                    }
+                                    else
+                                    {
+                                        context.moveTo(x[choose][i],y[choose][i]);
+                                        context.lineTo(x[choose][firstdot],y[choose][firstdot]);
+                                        context.lineWidth=3;
+                                        dis=Math.sqrt((x[choose][i]-x[choose][firstdot])*(x[choose][i]-x[choose][firstdot])+(y[choose][i]-y[choose][firstdot])*(y[choose][i]-y[choose][firstdot]));
+                                        //console.log(dis);
+                                        drawcolor(dis);
+                                        context.stroke();
+                                        dis=(Math.floor(dis*100)/100).toFixed(2);
+                                        //console.log(dis);
+                                        path=path.concat("→"+dis+"→");
+                                        path=path.concat(city[choose][i]+"\n");
+                                        sum=sum + parseFloat(dis);
+                                        console.log(sum);
+                                        sum=(Math.floor(sum*100)/100);
+                                        
+                                        context.moveTo(x[choose][firstdot],y[choose][firstdot]);
+                                        context.arc(x[choose][firstdot],y[choose][firstdot],8,0,2*Math.PI);
+                                        context.fillStyle='black';
+                                        context.fill();
+                                        firstdot=i;
+                                    }
+                                    context.moveTo(x[choose][i],y[choose][i]);
+                                    context.arc(x[choose][i],y[choose][i],8,0,2*Math.PI);
+                                    context.fillStyle='black';
+                                    context.fill();
+                                    time++;
+                                    //console.log(time);
+                                }
+                                context.closePath();
+                                context.beginPath();
+                                if(time==x[choose].length)
+                                {
+                                    console.log(i+" "+step[0]);
+                                    context.moveTo(x[choose][i],y[choose][i]);
+                                    context.lineTo(x[choose][step[0]],y[choose][step[0]]);
+                                    dis=Math.sqrt((x[choose][i]-x[choose][step[0]])*(x[choose][i]-x[choose][step[0]])+(y[choose][i]-y[choose][step[0]])*(y[choose][i]-y[choose][step[0]]));
+                                    //console.log(dis);
+                                    dis=(Math.floor(dis*100)/100).toFixed(2);
+                                    sum=sum+ parseFloat(dis);
+                                    sum=(Math.floor(sum*100)/100)
+                                    path=path.concat("→"+ dis+"→"+city[choose][step[0]]);
+                                    drawcolor(dis);
+                                    context.stroke();
+                                    context.closePath();
+                                    setTimeout(function(){swal("Good job","遊戲過關","success")},500);
+                                }
+                                document.getElementById("sumpath").innerHTML=sum;
+                                //console.log(path);
+                                document.getElementById("area").value=path;
+                            }
+                        } 
+                    }
+                    
+                });
+     
+                canvas.addEventListener("mousemove",function(evt)
+                {
+                    var movex,movey,calmove=0;
+                    rect=canvas.getBoundingClientRect();
+                    if(sure==1)
+                    {
+                        /*var message,messagex,messagey;
+                        messagex=evt.clientX-rect.left;
+                        messagey=evt.clientY-rect.top;
+                        message='(x,y) = (' + (Math.round(messagex)) + ',' + (Math.round(messagey))+')';
+                        context.clearRect(0,0,800,40);
+                        context.font = '18pt Calibri';
+                        context.fillStyle = 'black';
+                        context.fillText(message, 10, 25);*/
+                        for(i=0;i<x[choose].length;i++)
+                        {
+                            movex=x[choose][i]-evt.clientX+rect.left;//想一下
+                            movey=y[choose][i]-evt.clientY+rect.top;//想一下
+                            var distance=Math.sqrt(movex*movex+movey*movey)
+                            if(distance<8)
+                            {
+                                document.getElementById("jump").innerHTML=city[choose][i];
+                                document.getElementById("jump").style.left=evt.clientX + scrollX+10+"px";
+                                document.getElementById("jump").style.top=evt.clientY + scrollY+10+"px";
+                            }
+                            else
+                            {
+                                calmove++;
+                            }
+                        }
+                        if(calmove==x[choose].length)
+                        {
+                            document.getElementById("jump").style.display='none';
+                        }
+                        else
+                        {
+                            document.getElementById("jump").style.display="";
+                        }
+                        calmove=0;
+                    }
+                });
+            }
+            
+            function forward_step() //上一步
+            {
+                var canvas=document.getElementById("mycanvas");
+                var context=canvas.getContext("2d");
+                context.clearRect(0,0,850,800);
+                colorbar(max);
+                context.beginPath();
+                path="";
+                for(i=0;i<x[choose].length;i++)
+                {
+                    context.moveTo(x[choose][i],y[choose][i]);
+                    context.arc(x[choose][i],y[choose][i],8,0,2*Math.PI);
+                    context.fillStyle='blue';
+                    context.fill();
+                }
+                context.closePath();
+                sum=0;
+                dot[step[step.length-1]]=0;
+                time--;
+                step.splice(-1,1);
+                for(j=0;j<step.length;j++)
+                {
+                    context.beginPath();
+                    path=path.concat(city[choose][step[j]]+"\n");
+                    if(j+1<step.length)
+                    {
+                        context.moveTo(x[choose][step[j]],y[choose][step[j]]);
+                        context.lineTo(x[choose][step[j+1]],y[choose][step[j+1]]);
+                        dis=Math.sqrt((x[choose][step[j]]-x[choose][step[j+1]])*(x[choose][step[j]]-x[choose][step[j+1]])+(y[choose][step[j]]-y[choose][step[j+1]])*(y[choose][step[j]]-y[choose][step[j+1]]));
+
+                        dis=(Math.floor(dis*100)/100).toFixed(2);
+                        
+                        sum=sum+ parseFloat(dis);
+                        sum=Math.floor(sum*100)/100;
+                        path=path.concat("→"+dis+"→");
+                        drawcolor(dis);
+                        context.lineWidth=3;
+                        context.stroke();
+                        context.closePath();
+                    }
+                    context.beginPath();
+                    context.moveTo(x[choose][step[j]],y[choose][step[j]]);
+                    context.arc(x[choose][step[j]],y[choose][step[j]],8,0,2*Math.PI);
+                    context.fillStyle='black';
+                    context.fill();
+                    context.closePath();
+                }
+                document.getElementById("sumpath").innerHTML=sum;
+                document.getElementById("area").value=path;
+                if(step.length>0){firstdot=step[step.length-1];}else{click=0;}
+            }
+            
+            /*function add() //新增點
+            {
+                var check=0;//檢驗是否有這個點
+                var tem=document.getElementById("loc");
+                var site=tem.value;
+                addsite=site.split("_");
+                for(i=0;i<x[choose].length;i++)
+                {
+                    if(x[choose][i]==addsite[0]&&y[choose][i]==addsite[1])
+                    {
+                        check=1;
+                    }
+                }
+                console.log(check);
+                if(check!=1)
+                {
+                    x[choose].push(addsite[0]);
+                    y[choose].push(addsite[1]);
+                    city[choose].push(addsite[2]);
+                    dot.push(0);
+                    var canvas=document.getElementById("mycanvas");
+                    var context=canvas.getContext('2d');
+                    context.beginPath();
+                    context.clearRect(0,0,850,800);
+                    for(i=0;i<x[choose].length;i++)
+                    {
+                        context.moveTo(x[choose][i],y[choose][i]);
+                        context.arc(x[choose][i],y[choose][i],8,0,2*Math.PI);
+                        context.fillStyle="blue";
+                        context.fill();
+                        context.closePath();
+                    }
+                    context.beginPath();
+                    for(j=0;j<step.length;j++)
+                    {
+                        context.moveTo(x[choose][step[j]],y[choose][step[j]]);
+                        context.arc(x[choose][step[j]],y[choose][step[j]],8,0,2*Math.PI);
+                        context.fillStyle='rgba(253, 150, 38, 1)';
+                        context.fill();
+                        if(j+1<step.length)
+                        {
+                            context.moveTo(x[choose][step[j]],y[choose][step[j]]);
+                            context.lineTo(x[choose][step[j+1]],y[choose][step[j+1]]);
+                            context.strokeStyle='rgba(253, 150, 38, 1)';
+                            context.lineWidth=1;
+                            context.stroke();
+                        }
+                    }
+                    context.clearRect(10,600,180,50);
+                    context.font="20px Verdana";
+                    context.fillText("路徑長："+Math.floor(sum*100)/100,20,650);
+                    context.fill();
+                    context.closePath();
+                }
+                check=0;
+            }*/
+            
+            /*function speed()
+            {
+                //toolcity=Math.floor(Math.random() * x[choose].length);
+                toolcity=6;
+                for(i=0;i<x[choose].length;i++)
+                {
+                    rate.push(1);
+                }
+                console.log(rate);
+            }*/
+            
+            /*function space(lng1,lat1,lng2,lat2)
+            {
+                var radLat1 = Rad(lat1);
+                var radLat2 = Rad(lat2);
+                var a = radLat1 - radLat2;
+                var b = Rad(lng1) - Rad(lng2);
+                var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
+                s = s * 6378137.0;// 取WGS84標準參考橢球中的地球長半徑(單位:m)
+                s = Math.round(s * 10000) / 10000;
+                s=s/1000;
+                s=Math.floor(s*100)/100;
+                //alert(s);
+                return s;
+            }
+
+            function Rad(d)
+            {
+                return d * Math.PI / 180.0;
+            }*/
+            
+            function colorbar(max,min)
+            {
+                //console.log(max+" "+min);
+                var canvas=document.getElementById("mycanvas");
+                var context=canvas.getContext("2d");
+                var grd=context.createLinearGradient(0,0,0,650);
+                context.beginPath();
+                grd.addColorStop(1,'rgb(0,0,255)');
+                grd.addColorStop(0.75,'rgb(0,255,255)');
+                grd.addColorStop(0.5,'rgb(0,255,0)');
+                grd.addColorStop(0.25,'rgb(255,255,0)');
+                grd.addColorStop(0,'rgb(255,0,0)');
+                context.fillStyle=grd;
+                context.fillRect(800,0,20,650);
+                canvas.addEventListener("mousemove",function(e)
+                {
+                    var clickx,clicky,calcolor=0;;
+                    rect=canvas.getBoundingClientRect();
+                    clickx=e.clientX-rect.left;//想一下
+                    clicky=e.clientY-rect.top;//想一下
+                    for(i=max;i>=min;i=i-1/(max-min))
+                    {
+                        if(800<clickx&& (max-i)/(max-min)*650<clicky&&(max-i+1)/(max-min)*650>=clicky)
+                        {
+                            document.getElementById("bar").innerHTML=Math.floor(i*100)/100;
+                            document.getElementById("bar").style.left=e.clientX + scrollX-25+"px";
+                            document.getElementById("bar").style.top=e.clientY + scrollY+"px";
+                            calcolor=1;
+                        }
+                    }
+                    
+                    //console.log(max-min+" "+calcolor);
+                    if(calcolor==0)
+                    {
+                        document.getElementById("bar").style.display="none";
+                    }
+                    else
+                    {
+                        document.getElementById("bar").style.display="";
+                        calcolor=0;
+                    }
+                });
+            }
+            
+            function drawcolor(long)
+            {
+                var canvas=document.getElementById("mycanvas");
+                var context=canvas.getContext("2d");
+                part=0;
+                for(c=0;c<4;c++)
+                {
+                    if(min+c*(max-min)/4<long&&long<=min+(c+1)*(max-min)/4)
+                    {
+                        part=c;
+                        break;
+                    }
+                }
+                //console.log(part);
+                if(part==0)
+                {
+                    context.strokeStyle='rgb(0,'+ Math.floor(((long-0)/(max/4))*255)+',255)';
+                    //console.log(Math.floor(((long-0)/(max/4))*255));
+                }
+                else if(part==1)
+                {
+                    context.strokeStyle='rgb(0,255,'+ (255-Math.floor(((long-(1*max/4))/(max/4))*255)) +')';
+                    //console.log(255-Math.floor(((long-(1*max/4))/125)*255));
+                }
+                else if(part==2)
+                {
+                    context.strokeStyle='rgb('+ Math.floor(((long-(2*max/4))/(max/4))*255)+',255,0)';
+                    //console.log(Math.floor(((long-(2*max/4))/125)*255));
+                }
+                else
+                {
+                    context.strokeStyle='rgb(255,'+(255-Math.floor(((long-(3*max/4))/(max/4))*255))+',0)';
+                    //console.log(255-Math.floor(((long-(3*max/4))/125)*255));
+                    /*grd.addColorStop(0,'rgb(0,0,255)');
+                    grd.addColorStop(0.25,'rgb(0,255,255)');
+                    grd.addColorStop(0.5,'rgb(0,255,0)');
+                    grd.addColorStop(0.75,'rgb(255,255,0)');
+                    grd.addColorStop(1,'rgb(255,0,0)');*/
+                }
+            }
+            
+            //主函式
+            //swal("歡迎進入排列最佳化遊戲模式","想辦法運用最短路徑連接所有城市吧!!!","./images/globe.png");
+            
+            
+            combine();
+            line();
+            
+        </script>
+
+        <div id="jump" style="position: absolute;
+                            border:1px solid #ccc;
+                            padding:0px 3px;
+                            color:#00f;
+                            height:20px;
+                            line-height:20px;
+                            background:#d4d4d4;
+                            font-family: DFKai-sb;
+                            font-weight: bold;
+                            ">
+
+        </div>
+
+        <div id="bar" style="position: absolute;
+                            border:1px solid #ccc;
+                            padding:0px 3px;
+                            color:white;
+                            height:20px;
+                            line-height:20px;
+                            background:rgba(0, 0, 0, 0.4);
+                            font-family: DFKai-sb;
+                            font-weight: bold;
+                            ">
+
+        </div>
+    </body>
+</html>
