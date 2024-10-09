@@ -6,16 +6,16 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta http-equiv="X-UA-Compatible"content="ie=edge">      <!--什麼版本IE 就用什麼版本的標準模式-->
-		<script src="./assets/js/jquery.min.js"></script><!--sidebar模式-->
-		<script src="./assets/js/bootstrap.min.js"></script><!--sidebar模式-->
-		<script src="./assets/js/c0cbf39b93.js" ></script><!--拿back.to.top的ICON-->
-		<script src="./assets/js/fontsize.js"></script>
-		<link rel="stylesheet" href="./assets/css/main.css" />
-		<link rel="stylesheet" href="./assets/css/spotlight.css" /><!--照片文字的css-->
-		<link rel="stylesheet" href="./assets/css/slide.css" /><!--跑馬燈的css?????-->
-		<link rel="stylesheet" href="./assets/css/Button.css" />
-		<link rel="stylesheet" href="./assets/css/darkmode.css"/>
-		<link rel="stylesheet" href="./assets/css/Bootstrap.css" />
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><!--sidebar模式-->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script><!--sidebar模式-->
+		<script src="https://kit.fontawesome.com/c0cbf39b93.js" crossorigin="anonymous"></script><!--拿back.to.top的ICON-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/spotlight.css" /><!--照片文字的css-->
+		<link rel="stylesheet" href="assets/css/slide.css" /><!--跑馬燈的css-->
+		<link rel="stylesheet" href="assets/css/Button.css" /><!--返回頂端的css-->
+		<link rel="stylesheet" href="assets/css/back_to_top.css" /><!--返回頂端的css--> 
+		<link rel="stylesheet" href="assets/css/Bootstrap.css" /><!--返回頂端的css-->
         <style>
         #showcanvas
 		{
@@ -44,43 +44,43 @@
 
     <body class="is-preload">
         <div id="wrapper">
-            <!--sidebar-->
+            <!--Sidebar-->
             <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                           <a class="navbar-brand" href="./index.html">最佳動化</a>
-                      </div>
-                      <ul class="nav navbar-nav">
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">數值最佳化 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="./數值最佳化分析模式.html">分析模式</a></li>
-                        </ul>
-                        </li>
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">組合最佳化 <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                            <li><a href="./組合最佳化分析模式.html">分析模式</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排列最佳化 <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                            <li><a href="./排列最佳化分析模式.html">分析模式</a></li>
-                            <li><a href="./排列最佳化遊戲模式.html">遊戲模式</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">擺放最佳化 <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                            <li><a href="./擺放最佳化分析模式.html">分析模式</a></li>
-                            <li><a href="./擺放最佳化遊戲模式.html">遊戲模式</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排行榜 <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                            <li><a href="#">排列最佳化--遊戲模式</a></li>
-                            <li><a href="#">擺放最佳化--遊戲模式</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a href="./setting.html">設定</a></li>
-                    </ul>
+                   		<a class="navbar-brand" href="index.html">最佳動化</a>
+                  	</div>
+                  	<ul class="nav navbar-nav">
+						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">數值最佳化 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="數值最佳化分析模式.html">分析模式</a></li>
+						</ul>
+						</li>
+						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">組合最佳化 <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+							<li><a href="組合最佳化分析模式.html">分析模式</a></li>
+							</ul>
+						</li>
+						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排列最佳化 <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+							<li><a href="排列最佳化分析模式.html">分析模式</a></li>
+							<li><a href="排列最佳化遊戲模式.html">遊戲模式</a></li>
+							</ul>
+						</li>
+						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">擺放最佳化 <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+							<li><a href="擺放最佳化分析模式.html">分析模式</a></li>
+							<li><a href="擺放最佳化遊戲模式.html">遊戲模式</a></li>
+							</ul>
+						</li>
+						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排行榜 <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+							<li><a href="#">排列最佳化--遊戲模式</a></li>
+							<li><a href="#">擺放最佳化--遊戲模式</a></li>
+							</ul>
+						</li>
+						<li class="dropdown"><a href="setting.html">設定</a></li>
+					</ul>
                 </div>
             </nav>
 
@@ -90,52 +90,49 @@
                         <div id="div1">
                             <br><br>
                             <h4></h4>
-                            <canvas id="mycanvas" width="800" height="800"></canvas>
+                            <canvas id="mycanvas" width="600" height="600"></canvas>
                         </div> 
                         
-                        <div style="float: left; margin-left: 50px; ">
+                        <div style="float: left; margin-left: 50px;">
                             <br><br>
                             <h4></h4>
-                            <canvas id="showcanvas" width="180" height="800"></canvas>
+                            <canvas id="showcanvas" width="200" height="600"></canvas>
                         </div>
 
-                        <div style="float: left; margin-left: 20px; margin-top: 150px; margin-right: -100px;">
+                        <div style="float: left; margin-left: 50px; margin-top: 150px;">
                             <ul>
                                 <div>
                                     <br><br>
                                     <br>
-                                    </div>
-                                        <p style="font-size: 35px;">感測器數：<span style="font-size: 35px;" id="number"></span></p>
                                     <div>
-                                    <div>
-                                        <button onclick="screenshot()"><img src="./icon/camera.svg" width="30" height="20">拍照</button>
-                                        <button id="startrecord" onclick="media()"><img src="./icon/video.svg" width="30" height="20">錄影</button>
-                                        <button onclick="low()"><img src="./icon/exclamation.svg" width="30" height="20">低於限制</button>
+                                        <button onclick="screenshot()"><img src="./icon/camera.svg" width="15" height="15"> 拍照</button>
+                                        <button id="startrecord" onclick="media()"><img src="./icon/video.svg" width="15" height="15"> 錄影</button>
+                                        <button onclick="low()"><img src="./icon/exclamation.svg" width="15" height="15"> 低於限制</button>
                                         <br>
                                         <h6></h6>
                                         
-                                        <button id="sandp" onclick="stoptem()"><img src="./icon/pause.svg" width="30" height="20">暫停</button>
-                                        <button onclick="allstop()"><img src="./icon/stop.svg" width="30" height="20">停止</button>
-                                        <button onclick="connect()"><img src="./icon/link.svg" width="30" height="20">連通性</button>
+                                        <button id="sandp" onclick="stoptem()"><img src="./icon/pause.svg" width="15" height="15"> 暫停</button>
+                                        <button onclick="allstop()"><img src="./icon/stop.svg" width="15" height="15"> 停止</button>
+                                        <button onclick="connect()"><img src="./icon/link.svg" width="15" height="15"> 連通性</button>
                                         <br>
                                         <h6></h6>
-                                        <button id="idchange" onclick="change()"><img src="./icon/sync-alt.svg" width="30" height="20">更改</button>
-                                        <button onclick="down()"><img src="./icon/save.svg" width="30" height="20">存檔</button>
+                                        <button id="idchange" onclick="change()"><img src="./icon/sync-alt.svg" width="15" height="15"> 更改</button>
+                                        <button onclick="down()"><img src="./icon/save.svg" width="15" height="15"> 存檔</button>
                                         <br>
                                         <h6></h6>
-                                        <button onclick="backward()"><img src="./icon/angle-left.svg" width="30" height="20">上代</button>
-                                        <button onclick="forward()"><img src="./icon/angle-right.svg" width="30" height="20">下代</button>
-                                        <button id="fast" onclick="speed()"><img src="./icon/shipping.svg" width="30" height="20">速度：1</button>
+                                        <button onclick="backward()"><img src="./icon/angle-left.svg" width="15" height="15"> 上代</button>
+                                        <button onclick="forward()"><img src="./icon/angle-right.svg" width="15" height="15"> 下代</button>
+                                        <button id="fast" onclick="speed()"><img src="./icon/shipping.svg" width="15" height="15"> 速度：1</button>
                                     </div>
                                     <h6></h6>
-                                    <div id="div2"><input type="text" id="num" style="width: 100px;font-family: cwTeXYen; font-size: 20px;padding-left:10px; padding-right: 10px;" placeholder="輸世代數"></div>
-                                    <div id="div2"><button onclick="jump()"><img src="./icon/plane.svg" width="30" height="20">Go To</button></div>
+                                    <div id="div2"><input type="text" id="num" style="width: 70px;" placeholder="世代數"></div>
+                                    <div id="div2"><button onclick="jump()"><img src="./icon/plane.svg" width="15" height="15"> Go To</button></div>
                                     <br>
                                     <div id="div2">
                                         <h6></h6>
                                         <input id="myfile" type="file" onchange="load()" onclick="this.value=null"/>
                                     </div>
-                                    <div style="margin-top: 10px ;width: 350px;" class="slidecontainer">
+                                    <div style="margin-top: 10px ;width: 400px;" class="slidecontainer">
                                         <input type="range" min="1" max="100" value="1" class="mixedSlider" id="myRange" oninput="">
                                         <p>當代世代數: <span id="demo"></span></p>
                                     </div>
@@ -149,26 +146,25 @@
         </div>
         
         <!-- Scripts -->
-        <script src="./assets/js/breakpoints.min.js"></script>
-        <script src="./assets/js/browser.min.js"></script>
-        <script src="./assets/js/jquery.min.js"></script>
-        <script src="./assets/js/main.js"></script>
-        <script src="./assets/js/util.js"></script>
-        <script src="./assets/js/slide.js"></script>
-        <!-- <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> -->
-        <script src="./assets/js/multislider.js"></script> 
-        <script src="./assets/js/back_to_top.js"></script>
-        <script src="./assets/js/sweetalert.js"></script>
-        <script src="./assets/js/screenshot.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/slide.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="assets/js/multislider.js"></script> 
+        <script src="assets/js/back_to_top.js"></script>
+        <script src="assets/js/sweetalert.js"></script>
+        <script src="assets/js/screenshot.js"></script>
         <script>
             var limit=[],put=[],pro=[],mapsize,each_rect;
             var map_width,map_height,canvas_width,canvas_height;
-            var around=[],rate=0,gen=1,enter=0,startre=0,increase=0,stopindex=0,putnum=0,calrect=0,calchange=0,lowindex=0,connectindex=0,dot=0,sec=1000;
-            var color=["black","red","orange","yellow","greenyellow","aqua","blue","gray"];
-	        var percent=["感測器","90%","75%","60%","45%","30%","15%","0%"];
+            var around=[],rate=0,gen=1,enter=0,startre=0,increase=0,stopindex=0,putnum=0,calrect=0,calchange=0,lowindex=0,connectindex=0;
+            var color=["black","red","yellow","greenyellow","springgreen","rgb(0,204,255)","gray"];
+	        var percent=["感測器","100%","70%","50%","30%","20%","0%"];
             var slider = document.getElementById("myRange");
 		    var output = document.getElementById("demo");
-            var cal_num=document.getElementById("number");
             //讀檔
             function load()
             {
@@ -186,7 +182,7 @@
             function text(content)
             {
                 limit=[];put=[];pro=[];around=[];rate=0;gen=1;enter=0;startre=0;increase=0;stopindex=0;putnum=0;calrect=0;
-                document.getElementById("sandp").innerHTML ='<img src="./icon/pause.svg" width="30" height="20">暫停';
+                document.getElementById("sandp").innerHTML ='<img src="./icon/pause.svg" width="15" height="15"> 暫停';
                 map=content.split("\n");
                 mapsize=map[1].split("*");
                 map_width=parseInt(mapsize[0]);
@@ -235,10 +231,10 @@
             function resizecanvas(a,b)
             {
                 var canvas=document.getElementById("mycanvas");
-                canvas.setAttribute('width',800);
-                each_rect=800/a;
+                canvas.setAttribute('width',600);
+                each_rect=600/a;
                 canvas.setAttribute('height',b*each_rect);
-                canvas_width=800;
+                canvas_width=600;
                 canvas_height=b*each_rect;
             }
             //畫上去
@@ -274,15 +270,8 @@
                         for(n=0;n<map_width;n++)
                         {
                             cal_one(i+m,n,i);
-                            if(put[i+m][n]==1)
-                            {
-                                dot++;
-                            }
                         }
                     }
-                    console.log(dot);
-                    cal_num.innerHTML=dot;
-                    dot=0;
                     //console.log(around);
                     //console.log(pro);
                     context.beginPath();
@@ -307,6 +296,12 @@
                     }
                     context.closePath();
 
+                    context.beginPath();
+                    context.fillStyle="lightblue";
+                    context.fillRect(0,canvas_height+10,canvas_width/gen*(rate+1),20);
+                    context.fill();
+                    context.fillStyle="black";
+                    context.fillText((rate+1)+"/"+gen,280,625);
                     draw();
                 }
                 rate++;
@@ -433,7 +428,7 @@
                     {
                         //console.log( (document.getElementById("sandp").innerHTML.document.getElementById("image")));
                         
-                        document.getElementById("sandp").innerHTML ='<img src="./icon/play.svg" width="30" height="20">開始';
+                        document.getElementById("sandp").innerHTML ='<img src="./icon/play.svg" width="15" height="15"> 開始';
                         
                         clearInterval(pause);
                         stopindex=1;
@@ -441,8 +436,8 @@
                     else
                     {
                         //document.getElementById("sandp").innerHTML =" 暫停";
-                        document.getElementById("sandp").innerHTML ='<img src="./icon/pause.svg" width="30" height="20">暫停';
-                        pause=setInterval(function(){full()},sec);
+                        document.getElementById("sandp").innerHTML ='<img src="./icon/pause.svg" width="15" height="15"> 暫停';
+                        pause=setInterval(function(){full()},1000);
                         stopindex=0;
                     }
                     enter++;
@@ -453,7 +448,7 @@
             {
                 rate=0;enter=1;
                 clearInterval(pause);
-                document.getElementById("sandp").innerHTML ='<img src="./icon/play.svg" width="30" height="20">開始';
+                document.getElementById("sandp").innerHTML ='<img src="./icon/play.svg" width="15" height="15"> 開始';
                 var canvas=document.getElementById("mycanvas");
                 var context=canvas.getContext("2d");
                 context.clearRect(0,0,canvas_width,canvas_height);
@@ -501,6 +496,32 @@
             //世代軸
             function click_bar()
             {
+                /*var canvas=document.getElementById("mycanvas");
+                var context=canvas.getContext("2d");
+                canvas.addEventListener("click",function(e)
+                {
+                    var clickx,clicky;
+                    rect=canvas.getBoundingClientRect();
+                    clickx=e.clientX-rect.left;
+                    clicky=e.clientY-rect.top;
+                    for(i=0;i<gen;i++)
+                    {
+                        if(600/gen*i<clickx&&600/gen*(i+1)>=clickx&&clicky>610)
+                        {
+                            context.clearRect(0,0,canvas_width,canvas_height+30);
+                            context.beginPath();
+                            context.fillStyle="lightblue";
+                            context.fillRect(0,canvas_height+10,canvas_width/gen*(i+1),20);
+                            context.fill();
+                            context.fillStyle="black";
+                            context.fillText((i+1)+"/"+gen,280,625);
+                            rate=i;
+                            full();
+                            break;
+                        }
+                    }
+                    
+                });*/
                 slider.value = rate+1;
 				output.innerHTML = slider.value + " / " + gen;
             }
@@ -521,7 +542,7 @@
                 if(startre==0)
                 {
 
-                    document.getElementById("startrecord").innerHTML ='<img src="./icon/video.svg" width="30" height="20">停止錄影';
+                    document.getElementById("startrecord").innerHTML ='<img src="./icon/video.svg" width="15" height="15"> 停止錄影';
                     var canvas = document.getElementById("mycanvas");
                     // Optional frames per second argument.
                     var stream = canvas.captureStream(1000);
@@ -563,7 +584,7 @@
                 }
                 else
                 {
-                    document.getElementById("startrecord").innerHTML ='<img src="./icon/video.svg" width="30" height="20">錄影';
+                    document.getElementById("startrecord").innerHTML ='<img src="./icon/video.svg" width="15" height="15"> 錄影';
                     console.log(startre);
                     mediaRecorder.stop();
                     startre=0;
@@ -611,12 +632,12 @@
             {   
                 if(calchange==0)
                 {
-                    document.getElementById("idchange").innerHTML ='<img src="./icon/sync-alt.svg" width="30" height="20">更改中';
+                    document.getElementById("idchange").innerHTML ='<img src="./icon/sync-alt.svg" width="15" height="15"> 更改中';
                     calchange=1;
                 }
                 else
                 {
-                    document.getElementById("idchange").innerHTML ='<img src="./icon/sync-alt.svg" width="30" height="20">更改';
+                    document.getElementById("idchange").innerHTML ='<img src="./icon/sync-alt.svg" width="15" height="15"> 更改';
                     calchange=0;
                 }
                 var canvas=document.getElementById("mycanvas");
@@ -656,7 +677,7 @@
                     full();
                 });
             }
-            //儲存
+            //存檔
             function download(filename, text) 
             {
                 var element = document.createElement('a');
@@ -712,12 +733,10 @@
             //速度
             function speed()
             {
-                console.log(increase);
-                if(increase%7==0)
+                if(increase%5==0)
                 {
-                    document.getElementById('fast').innerHTML='<img src="./icon/shipping.svg" width="30" height="20">速度：2';
+                    document.getElementById('fast').innerHTML='<img src="./icon/shipping.svg" width="15" height="15"> 速度：2';
                     sec=2000;
-                    
                     if(stopindex==0)
                     {
                         clearInterval(pause);
@@ -725,57 +744,30 @@
                     }
 
                 }
-                else if(increase%7==1)
+                else if(increase%5==1)
                 {
-                    document.getElementById('fast').innerHTML='<img src="./icon/shipping.svg" width="30" height="20">速度：4';
+                    document.getElementById('fast').innerHTML='<img src="./icon/shipping.svg" width="15" height="15"> 速度：4';
                     sec=1000;
-                   
-
                     if(stopindex==0)
                     {
                         clearInterval(pause);
                         pause=setInterval(full,sec);
                     }
                 }
-                else if(increase%7==2)
+                else if(increase%5==2)
                 {
-                    document.getElementById('fast').innerHTML='<img src="./icon/shipping.svg" width="30" height="20">速度：8';
+                    document.getElementById('fast').innerHTML='<img src="./icon/shipping.svg" width="15" height="15"> 速度：8';
                     sec=500;
-                    
-
                     if(stopindex==0)
                     {
                         clearInterval(pause);
                         pause=setInterval(full,sec);
                     }
                 }
-                else if(increase%7==3)
+                else if(increase%5==3)
                 {
-                    document.getElementById('fast').innerHTML='<img src="./icon/shipping.svg" width="30" height="20">速度：16';
+                    document.getElementById('fast').innerHTML='<img src="./icon/shipping.svg" width="15" height="15"> 速度：16';
                     sec=250;
-                    
-                    if(stopindex==0)
-                    {
-                        clearInterval(pause);
-                        pause=setInterval(full,sec);
-                    }
-                }
-                else if(increase%7==4)
-                {
-                    document.getElementById('fast').innerHTML='<img src="./icon/shipping.svg" width="30" height="20">速度：32';
-                    sec=125;
-                    
-
-                    if(stopindex==0)
-                    {
-                        clearInterval(pause);
-                        pause=setInterval(full,sec);
-                    }
-                }
-                else if(increase%7==5)
-                {
-                    document.getElementById('fast').innerHTML='<img src="./icon/shipping.svg" width="30" height="20">速度：64';
-                    sec=62;
                     if(stopindex==0)
                     {
                         clearInterval(pause);
@@ -784,10 +776,8 @@
                 }
                 else
                 {
-                    document.getElementById('fast').innerHTML='<img src="./icon/shipping.svg" width="30" height="20">速度：1';
+                    document.getElementById('fast').innerHTML='<img src="./icon/shipping.svg" width="15" height="15"> 速度：1';
                     sec=4000;
-                   
-
                     if(stopindex==0)
                     {
                         clearInterval(pause);
@@ -819,11 +809,11 @@
                                 if(pro[k+j][i]==Infinity)
                                 {
                                     console.log("1");
-                                    document.getElementById("bar").innerHTML="感測器"+"<br>"+"最低感測值："+limit[j][i];
+                                    document.getElementById("bar").innerHTML="感測器"+"<br>"+"limit : "+limit[j][i];
                                 }
                                 else
                                 {
-                                    document.getElementById("bar").innerHTML="感測值："+Math.floor(pro[k+j][i]*100)/100+"<br>"+"最低感測值："+limit[j][i];
+                                    document.getElementById("bar").innerHTML="pro : "+Math.floor(pro[k+j][i]*100)/100+"<br>"+"limit："+limit[j][i];
                                 }
                                 document.getElementById("bar").style.left=e.clientX + scrollX+25+"px";
                                 document.getElementById("bar").style.top=e.clientY + scrollY+"px";
@@ -844,17 +834,17 @@
                 for(i=0;i<color.length;i++)
                 {
                     ctx.beginPath();
-                    ctx.moveTo(100,20+100*i);
+                    ctx.moveTo(100,20+80*i);
                     ctx.fillStyle=color[i];
-                    ctx.rect(20,20+100*i,50,50);
+                    ctx.rect(20,20+80*i,50,50);
                     ctx.fill();
                     ctx.lineWidth = 3;
-                    ctx.strokeRect(20,20+100*i,50,50);
+                    ctx.strokeRect(20,20+80*i,50,50);
                     ctx.strokeStyle="white";
                     ctx.stroke();
-                    ctx.font="25px cwTeXYen";
+                    ctx.font="25px DFKai-sb bold";
                     ctx.fillStyle="white";
-                    ctx.fillText(percent[i],90,60+100*i);
+                    ctx.fillText(percent[i],100,60+80*i);
                     ctx.closePath();
                 }
             }
@@ -948,8 +938,8 @@
         color:white;
         height:40px;
         line-height:20px;
-        background:rgba(0, 0, 0, 0.4);
-        font-family: cwTeXYen;
+        background:rgba(0, 0, 0, 0.2);
+        font-family: DFKai-sb;
         font-weight: bold;
         ">
         </div>

@@ -1,23 +1,23 @@
 <!DOCTYPE >
 <html>
-<head>
-	<title>最佳動化_擺放最佳化遊戲模式</title>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<meta http-equiv="X-UA-Compatible"content="ie=edge">      <!--什麼版本IE 就用什麼版本的標準模式-->
-	<script src="./assets/js/jquery.min.js"></script><!--sidebar模式-->
-	<script src="./assets/js/bootstrap.min.js"></script><!--sidebar模式-->
-	<script src="./assets/js/c0cbf39b93.js" ></script><!--拿back.to.top的ICON-->
-	<script src="./assets/js/fontsize.js"></script>	
-	<link rel="stylesheet" href="./assets/css/main.css" />
-	<link rel="stylesheet" href="./assets/css/spotlight.css" /><!--照片文字的css-->
-	<link rel="stylesheet" href="./assets/css/slide.css" /><!--跑馬燈的css?????-->
-	<link rel="stylesheet" href="./assets/css/Button.css" />
-	<link rel="stylesheet" href="./assets/css/darkmode.css"/>
-	<link rel="stylesheet" href="./assets/css/Bootstrap.css" />
-</head>
-<style type="text/css">
+	<head>
+        <title>最佳動化_排列最佳化分析模式</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible"content="ie=edge">      <!--什麼版本IE 就用什麼版本的標準模式-->
+		<script src="./assets/js/jquery.min.js"></script><!--sidebar模式-->
+		<script src="./assets/js/bootstrap.min.js"></script><!--sidebar模式-->
+		<script src="./assets/js/c0cbf39b93.js" ></script><!--拿back.to.top的ICON-->
+		<script src="./assets/js/fontsize.js"></script>	
+		<link rel="stylesheet" href="./assets/css/main.css" />
+		<link rel="stylesheet" href="./assets/css/spotlight.css" /><!--照片文字的css-->
+		<link rel="stylesheet" href="./assets/css/slide.css" /><!--跑馬燈的css?????-->
+		<link rel="stylesheet" href="./assets/css/Button.css" />
+		<link rel="stylesheet" href="./assets/css/darkmode.css"/>
+		<link rel="stylesheet" href="./assets/css/Bootstrap.css" />
+	</head>
+	 <style type="text/css">
 		#mycanvas 
 		{
 			border: 2px dashed lightblue;
@@ -43,7 +43,7 @@
 			bottom: 0;*/
 			background :black;
 			float: left;
-            margin:100px 0px ;	
+            margin:100px 0px;	
 		}	
 
 		.button 
@@ -82,10 +82,6 @@
 			top: 500;
 			bottom: 0;
         }
-		#div2
-        {
-            display: inline-block;
-        }
 
 	</style>
 	<script src="./assets/js/breakpoints.min.js"></script>
@@ -98,7 +94,7 @@
 	<script src="./assets/js/multislider.js"></script> 
 	<script src="./assets/js/darkmode.js"></script>
 	<script src="./assets/js/html2canvas.min.js"></script>
-	
+
 	<script src="./assets/js/sweetalert.js"></script>
 </head>
 <body class="is-preload">
@@ -106,125 +102,119 @@
 		<!--sidebar-->
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
-				<div class="navbar-header">
-					   <a class="navbar-brand" href="./index.html">最佳動化</a>
-				  </div>
-				  <ul class="nav navbar-nav">
-					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">數值最佳化 <span class="caret"></span></a>
+			  <div class="navbar-header">
+				<a class="navbar-brand" href="#">最佳動化</a>
+			  </div>
+			  <ul class="nav navbar-nav">
+				 <li class="active"><a href="index.html">首頁</a></li>
+				 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">數值最佳化 <span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+					 <li><a href="#">分析模式</a></li>
+				  </ul>
+				 </li>
+				 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">組合最佳化 <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="./數值最佳化分析模式.html">分析模式</a></li>
+					  <li><a href="#">分析模式</a></li>
 					</ul>
-					</li>
-					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">組合最佳化 <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-						<li><a href="./組合最佳化分析模式.html">分析模式</a></li>
-						</ul>
-					</li>
-					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排列最佳化 <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-						<li><a href="./排列最佳化分析模式.html">分析模式</a></li>
-						<li><a href="./排列最佳化遊戲模式.html">遊戲模式</a></li>
-						</ul>
-					</li>
-					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">擺放最佳化 <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-						<li><a href="./擺放最佳化分析模式.html">分析模式</a></li>
-						<li><a href="./擺放最佳化遊戲模式.html">遊戲模式</a></li>
-						</ul>
-					</li>
-					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排行榜 <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-						<li><a href="#">排列最佳化--遊戲模式</a></li>
-						<li><a href="#">擺放最佳化--遊戲模式</a></li>
-						</ul>
-					</li>
-					<li class="dropdown"><a href="./setting.html">設定</a></li>
-				</ul>
+				  </li>
+				  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排列最佳化 <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+					  <li><a href="#">分析模式</a></li>
+					  <li><a href="#">遊戲模式</a></li>
+					</ul>
+				  </li>
+				  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">擺放最佳化 <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+					  <li><a href="#">分析模式</a></li>
+					  <li><a href="#">遊戲模式</a></li>
+					</ul>
+				  </li>
+				  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排行榜 <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+					  <li><a href="#">排列最佳化--遊戲模式</a></li>
+					  <li><a href="#">擺放最佳化--遊戲模式</a></li>
+					</ul>
+				  </li>
+				  <li class="active"><a href="setting.html">設定</a></li>
+			  </ul>
 			</div>
-		</nav>
+		  </nav>
 
 
 		<div id="main">
 			<div class="inner">
-				
-				<canvas id="mycanvas" width="800" height="800"style="margin-top:100px; margin-left: 20px;">
-					<p>Your Broswer not support canvas</p>
-				</canvas>
-				<canvas id="showcanvas" width="180" height="800" style="margin-top:100px; margin-left: -80px; margin-right: 30px;">
-					<p>Your Broswer not support canvas</p>
-				</canvas>
+				<!-- Banner -->
 
-				<div style="margin-right: -150px;">
-					<br><br><br><br>
-					<label style="color: black; font-family: cwTeXYen; font-size: 25px;">選擇地圖</label>
-					<div class="select">
-						<select name="maps" id="maps">
-							<option value="5">5*5</option>
-							<option value="10">10*10</option>
-							<option value="20">20*20</option>
-							<option value="50">50*50</option>
-						</select>
-						
-					</div>
-					<button onclick="confirm_map()">確認</button>
-					
-			
-					<br><br>
 
-					<button id="change_eye"  onclick="show_probability()"><img src="./icon/eye-slash-solid.svg" width="30" height="20">顯示機率</button>
-					<br><br>
+    <canvas id="mycanvas" width="350" height="350">
+		<p>Your Broswer not support canvas</p>
+	</canvas>
+	<canvas id="showcanvas" width="300" height="600">
+		<p>Your Broswer not support canvas</p>
+	</canvas>
 
-					<button id="change_cheese"  onclick="other()"><img src="./icon/black-cat.svg" width="30" height="20">切換感測器</button>
-					<br><br>
-
-					<button id="change_connect" onclick="draw_connect_line()"><img src="./icon/handshake-slash-solid.svg" width="30" height="20">顯示連通性</button>
-					<br><br>
-					<button onclick="down()"><img src="./icon/save.svg" width="15" height="15"> 儲存</button>
-					<br><br>
-
-					<h6></h6>
-					<input id="myfile" type="file" onchange="load()" onclick="this.value=null"/>
-					
-					<br><br>
-					<div class="table-wrapper">
-						<div class="select">
-							<br><br>
-							<table>
-								<thead>
-									<tr>
-										<th id="sensor_number"></th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td id="fitness"></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				
-					<div class="table-wrapper">
-						<div class="select">
-						<br><br>
-						<table>
-							<thead>
-								<tr>
-									<th>最低感測值</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td id="min_detect"></td>
-								</tr>
-							</tbody>
-						</table>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 	
+	<br><br><br><br>
+	<div class="select">
+	<label for="maps">Choose a map:</label>
+	<select name="maps" id="maps">
+	<option value="5">5*5</option>
+	<option value="10">10*10</option>
+	<option value="20">20*20</option>
+	<option value="25">25*25</option>
+	<option value="50">50*50</option>
+	</select>
+	</div>
+	
+	<br><br>
+	<button type="button" onclick="confirm_map()">確認</button>
+	<br><br>
+
+	<button id="change_eye" type="button" onclick="show_probability()"><img src="./icon/eye-slash-solid.svg" width="30" height="20">顯示機率</button>
+	<br><br>
+
+	<button id="change_cheese" type="button" onclick="other()"><img src="./icon/cheese-solid.svg" width="30" height="20">other</button>
+	<br><br>
+
+	<button id="change_connect" type="button" onclick="draw_connect_line()"><img src="./icon/handshake-slash-solid.svg" width="30" height="20">顯示連通性</button>
+	<br><br>
+
+	<br><br>
+	<div class="table-wrapper">
+		<div class="select">
+		<br><br>
+		<table>
+			<thead>
+				<tr>
+					<th>使用起司數量</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td id="fitness"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	</div>
+	<div class="table-wrapper">
+		<div class="select">
+		<br><br>
+		<table>
+			<thead>
+				<tr>
+					<th>最低感測值</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td id="min_detect"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	</div>
+
 	<script type="text/javascript">
 	var click_position_i=-1;		//尋找點擊在哪一格
 	var click_position_j=-1;
@@ -239,156 +229,20 @@
 	var probability_click_time=0;   //記錄點擊顯示機率幾次，藉此判斷甚麼時候變回來
 	var num=0;                      //記錄幾*幾畫布
 	var canvas_size;                //畫布大小調整
-    var sensor_position_move;       //感測器/貓 位置調整
-    var sensor_img_rate;            //感測器/貓 照片大小調整
-	var color=["red","orange","yellow","greenyellow","aqua"];
-	var percent=["90%","75%","60%","45%","30%"];
+    var cheese_position_move;       //起司位置調整
+    var cheese_img_rate;            //起司照片大小調整
+	var color=["red","sandybrown","orange","yellow","greenyellow","springgreen","aqua"];
+	var percent=["100%","90%","80%","70%","60%","50%","40%"];
 	var change=0;                   //改測器切換
 	var connect_line_click_time=0;  //顯示連通性點擊次數
 	var station_img_rate;           //收訊建築縮放比例
-	var readfile=[];				//紀錄讀檔讀進來的資料
-	var mouse_position_move;		//老鼠位置調整
-	var mouse_img_rate;				//老鼠照片大小調整
 
-
-    	//讀檔
-		function load()
-        {
-            var file = myfile.files[0];
-            if(file)
-            {
-                var reader = new FileReader();
-                reader.readAsText(file);
-                reader.onload = function(event)
-                {                            
-                    text(event.target.result);
-                }   
-            }
-        }
-
-		function text(content)
-        {
-			document.getElementById("sensor_number").innerHTML =  "使用貓咪數量";
-			probability_click_time=0;
-			document.getElementById("change_eye").innerHTML = '<img src="./icon/eye-slash-solid.svg" width="30" height="20">顯示機率';
-			click_times=0;
-			document.getElementById("change_connect").innerHTML = '<img src="./icon/handshake-slash-solid.svg" width="30" height="20">顯示連通性';
-			connect_line_click_time=0;
-            map=content.split("\n");
-            for(i=0;i<map.length;i++)
-            {
-				readfile[i]=map[i].split(" ");
-            }
-			num=map.length; 
-
-			for(i=0;i<num;i++)
-			{
-				position_check[i]=[];
-				for(j=0;j<num;j++)
-				{
-					position_check[i][j]=0;
-				}
-			}
-			
-			for(i=0;i<num;i++)
-			{
-				probability[i]=[];
-				for(j=0;j<num;j++)
-				{
-					probability[i][j]=-1;
-				}
-			}
-			
-			for(i=0;i<num;i++)
-			{
-				space_check[i]=[];
-				for(j=0;j<num;j++)
-				{
-					space_check[i][j]=0;
-				}
-			}
-			position_row=[];
-			position_column=[];
-			store_position_i=[];
-			store_position_j=[]; 
-
-			check_picture_rate();
-			canvas_size=800;
-			station_position=num/2;
-			draw();
-			for(i=0;i<num;i++)
-			{
-				for(j=0;j<num;j++)
-				{
-					if(parseInt(readfile[i][j])==1)
-					{
-						position_check[i][j]=1;
-						space_check[i][j]=1;
-						store_position_i.push(i);
-            			store_position_j.push(j);
-						click_times++;
-					}
-				}
-			} 
-			cal_probability();
-			document.getElementById("fitness").innerHTML =  click_times;
-			document.getElementById("min_detect").innerHTML =  0.3;
-			for(i=0;i<num;i++)
-			{
-				for(j=0;j<num;j++)
-				{
-					if(position_check[i][j]==1)
-					{
-						drawcheese(i,j);
-					}
-				}
-			}
-			success_check();
-        }
-
-		//儲存
-		function download(filename, text) 
-        {
-            var element = document.createElement('a');
-            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-            element.setAttribute('download', filename);
-            element.style.display = 'none';
-            document.body.appendChild(element);
-            element.click();
-            document.body.removeChild(element);
-        }
-
-		function down()
-        {
-            // Generate download of hello.txt file with some content
-			downtext="";
-            for(m=0;m<num;m++)
-            {
-                for(n=0;n<num;n++)
-                {
-                    downtext=downtext.concat(position_check[m][n]);
-                    if(n<position_check[m].length-1)
-                    {
-                        downtext=downtext.concat(" ");
-                    }
-                }
-                if(m<position_check[m].length-1)
-                {
-                    downtext=downtext.concat("\n");
-                }
-            }
-            var text = downtext;
-            var filename = "test.txt";
-            download(filename, text);
-        }
-
-		//畫線
         function draw()
 		{
 	        var canvas=document.getElementById('mycanvas');
 	        var context=canvas.getContext("2d");
-			context.clearRect(0, 0,1500, 1500);
 	        context.beginPath();
+			
 			position_row.push(0);
 			position_column.push(0);
 	        for(i=1;i<num;i++)
@@ -408,65 +262,24 @@
 			context.closePath();
         }
 
-		//畫機率對照圖
 		function draw_showcanvas()
 		{
 			var canvas1=document.getElementById("showcanvas");
             var ctx=canvas1.getContext("2d");
-			ctx.clearRect(0,0,180,800);
-			ctx.beginPath();
-			if(change==0)
-			{
-				var img1 = new Image();
-				img1.src="./images/cat.png";
-				img1.onload = function(){  
-				ctx.drawImage(img1, 15,30,img1.width*0.25, img1.height*0.25);
-				};
-			}
-			else
-			{
-				var img1 = new Image();
-				img1.src="./images/signal.svg";
-				img1.onload = function(){  
-				ctx.drawImage(img1, 15,30,img1.width*0.5, img1.height*0.5);
-				};
-			}
-			ctx.font="25px cwTeXYen";
-			ctx.fillStyle="white";
-			ctx.fillText("感測器",100,80);
-			ctx.closePath();
-
-			for(i=0;i<5;i++)
+			for(i=0;i<7;i++)
 			{
 				ctx.beginPath();
-				ctx.moveTo(115,20+100*(i+1));
+				ctx.moveTo(100,20+80*i);
 				ctx.fillStyle=color[i];
-				ctx.rect(30,50+100*(i+1),50,50);
+				ctx.rect(100,20+80*i,50,50);
 				ctx.fill();
-				ctx.strokeStyle="white";
-				ctx.lineWidth=3;
-				ctx.strokeRect(30,50+100*(i+1),50,50);
-                ctx.stroke();
 				ctx.font="25px DFKai-sb bold";
 				ctx.fillStyle="white";
-				ctx.fillText(percent[i],110,185+100*i);
+				ctx.fillText(percent[i],180,50+80*i);
 				ctx.closePath();
 			}
-
-			ctx.beginPath();
-			var img2 = new Image();
-			img2.src="./images/mouse.png";
-			img2.onload = function(){  
-			ctx.drawImage(img2, 20,660,img2.width*0.7, img2.height*0.7);
-			};
-			ctx.font="25px DFKai-sb bold";
-			ctx.fillStyle="white";
-			ctx.fillText("<30%",110,710);
-			ctx.closePath();
-
 		}
 
-		//點擊觸發事件
 		function clickdot()
         {
             var canvas=document.getElementById("mycanvas");
@@ -498,13 +311,13 @@
                 var ch=0;
 				for(i=0;i<num-1;i++)
 				{
-					if(-2+(canvas_size/num)*(i+1)<mouse_x && mouse_x<2+(canvas_size/num)*(i+1))
+					if(-4+(canvas_size/num)*(i+1)<mouse_x && mouse_x<4+(canvas_size/num)*(i+1))
 					{
 						//swal("唉呦...","請點擊在方框內","error");
                         ch=1;
                         break;
 					}
-					else if(-2+(canvas_size/num)*(i+1)<mouse_y && mouse_y<2+(canvas_size/num)*(i+1))
+					else if(-4+(canvas_size/num)*(i+1)<mouse_y && mouse_y<4+(canvas_size/num)*(i+1))
 					{
 						//swal("唉呦...","請點擊在方框內","error");
                         ch=1;
@@ -549,10 +362,8 @@
 				{
 					remain_probability();
 				}
-				if(ch!=1)
-				{
-					success_check();
-				}
+				success_check();
+				
             });
             
             canvas.addEventListener("mousemove",function(e)
@@ -605,7 +416,6 @@
             });
 		}
 
-		//檢查是否都擺滿了
 		function success_check()
 		{
 			for(i=0;i<num;i++)
@@ -634,37 +444,35 @@
 			}
 		}
 
-		//畫起司 or 感測器
 		function drawcheese(a,b)
 		{
 			var canvas=document.getElementById("mycanvas");
             var context=canvas.getContext("2d");
-			var x=position_row[b]+(canvas_size/(num*sensor_position_move));
-			var y=position_column[a]+(canvas_size/(num*sensor_position_move));
+			var x=position_row[b]+(canvas_size/(num*cheese_position_move));
+			var y=position_column[a]+(canvas_size/(num*cheese_position_move));
 			var img = new Image();
 			if(change==0)
 			{
-				img.src = "./images/cat.png";
+				img.src = "./images/cheese.svg";
 				img.onload = function(){  
-				context.drawImage(img, x,y,img.width*sensor_img_rate, img.height*sensor_img_rate);
+				context.drawImage(img, x,y,img.width*cheese_img_rate, img.height*cheese_img_rate);
 				};
 			}
 			else if(change==1)
 			{
 				img.src="./images/signal.svg";
 				img.onload = function(){  
-				context.drawImage(img, x,y,img.width*sensor_img_rate, img.height*sensor_img_rate);
+				context.drawImage(img, x,y,img.width*cheese_img_rate, img.height*cheese_img_rate);
 				};
 			}
 		}
 
-		//畫塔台
 		function draw_station()
 		{
 			var canvas=document.getElementById("mycanvas");
             var context=canvas.getContext("2d");
-			var x=position_row[Math.floor(num/2)]+(canvas_size/(num*sensor_position_move));
-			var y=position_column[Math.floor(num/2)]+(canvas_size/(num*sensor_position_move));
+			var x=position_row[Math.floor(num/2)]+(canvas_size/(num*cheese_position_move));
+			var y=position_column[Math.floor(num/2)]+(canvas_size/(num*cheese_position_move));
 			var img = new Image();
 			img.src = "./images/company.svg";
 			img.onload = function(){  
@@ -672,7 +480,6 @@
 			};
 		}
 
-		//保持連通性線還在
 		function remain_connect_line()
 		{
 			var canvas=document.getElementById("mycanvas");
@@ -688,7 +495,6 @@
 						ctx1.beginPath();
 						ctx1.moveTo(position_row[store_position_j[i]]+(canvas_size/(num*2)), position_column[store_position_i[i]]+(canvas_size/(num*2)));
 						ctx1.lineTo(position_row[Math.floor(num/2)]+(canvas_size/(num*2)), position_column[Math.floor(num/2)]+(canvas_size/(num*2)));
-						ctx1.lineWidth=3;
 						ctx1.strokeStyle="white";
 						ctx1.stroke();
 					} 
@@ -703,7 +509,6 @@
 							ctx1.beginPath();
 							ctx1.moveTo(position_row[store_position_j[i]]+(canvas_size/(num*2)), position_column[store_position_i[i]]+(canvas_size/(num*2)));
 							ctx1.lineTo(position_row[store_position_j[j]]+(canvas_size/(num*2)), position_column[store_position_i[j]]+(canvas_size/(num*2)));
-							ctx1.lineWidth=3;
 							ctx1.strokeStyle="white";
 							ctx1.stroke();
 						} 
@@ -713,7 +518,6 @@
 			}
 		}
 
-		//畫連通性的線
 		function draw_connect_line()
 		{
 			var canvas=document.getElementById("mycanvas");
@@ -726,7 +530,7 @@
 				document.getElementById("change_eye").innerHTML = '<img src="./icon/eye-slash-solid.svg" width="30" height="20">顯示機率';
 				connect_line_click_time++;
 			}
-			
+			console.log("line "+connect_line_click_time);
 			if(store_position_i.length>0 && change==1 && connect_line_click_time==1)
 			{
 				document.getElementById("change_connect").innerHTML = '<img src="./icon/handshake-regular.svg" width="30" height="20">顯示連通性';
@@ -759,7 +563,6 @@
 						ctx1.beginPath();
 						ctx1.moveTo(position_row[store_position_j[i]]+(canvas_size/(num*2)), position_column[store_position_i[i]]+(canvas_size/(num*2)));
 						ctx1.lineTo(position_row[Math.floor(num/2)]+(canvas_size/(num*2)), position_column[Math.floor(num/2)]+(canvas_size/(num*2)));
-						ctx1.lineWidth=3;
 						ctx1.strokeStyle="white";
 						ctx1.stroke();
 					} 
@@ -774,7 +577,6 @@
 							ctx1.beginPath();
 							ctx1.moveTo(position_row[store_position_j[i]]+(canvas_size/(num*2)), position_column[store_position_i[i]]+(canvas_size/(num*2)));
 							ctx1.lineTo(position_row[store_position_j[j]]+(canvas_size/(num*2)), position_column[store_position_i[j]]+(canvas_size/(num*2)));
-							ctx1.lineWidth=3;
 							ctx1.strokeStyle="white";
 							ctx1.stroke();
 						} 
@@ -829,7 +631,7 @@
 			}
 		}
 
-		//放感測器
+		
 		function put_sensor()
 		{
 			var canvas=document.getElementById("mycanvas");
@@ -856,9 +658,9 @@
 			space_check[click_position_i][click_position_j]=1;
 			store_position_i.push(click_position_i);
             store_position_j.push(click_position_j);
+            //console.log(position_check);
 		}
 
-		//拿掉感測器
 		function take_sensor()
 		{
 			var canvas=document.getElementById("mycanvas");
@@ -924,7 +726,6 @@
 			}*/
 		}
 
-		//計算感測機率
 		function cal_probability()
 		{
 			for(i=0;i<num;i++)
@@ -1069,22 +870,6 @@
 			draw_rect();
 		}
 		
-		//畫老鼠
-		function draw_mouse(a,b)
-		{
-			var canvas=document.getElementById("mycanvas");
-            var context=canvas.getContext("2d");
-			var x=position_row[b]+(canvas_size/(num*mouse_position_move));
-			var y=position_column[a]+(canvas_size/(num*mouse_position_move));
-			var img = new Image();
-
-			img.src="./images/mouse.png";
-			img.onload = function(){  
-			context.drawImage(img, x,y,img.width*mouse_img_rate, img.height*mouse_img_rate);
-			};
-		}
-
-		//畫感測機率方塊
 		function draw_rect()
 		{
 			var canvas=document.getElementById("mycanvas");
@@ -1096,13 +881,20 @@
 				{
 					if(position_check[i][j]!=1)
 					{
-						if(probability[i][j]>=0 && probability[i][j]<0.3)
+						if(probability[i][j]>0 && probability[i][j]<=0.1)
 						{
-							check_picture_rate();
-							draw_mouse(i,j);
+							/*context.beginPath();
+							context.moveTo(position_row[j]+(canvas_size/(num*2)),position_column[i]+(canvas_size/(num*2)));
+							context.arc(position_row[j]+(canvas_size/(num*2)),position_column[i]+(canvas_size/(num*2)),5,0,2*Math.PI);
+							space_check[i][j]=0;
+							context.closePath();
+							context.fillStyle="blue";
+							context.strokeStyle="black";
+							context.stroke();
+							context.fill();*/
 						}
-						//else if(probability[i][j]>0.1 && probability[i][j]<=0.2)
-						//{
+						else if(probability[i][j]>0.1 && probability[i][j]<=0.2)
+						{
 							/*context.beginPath();
 							context.moveTo(position_row[j]+(canvas_size/(num*2)),position_column[i]+(canvas_size/(num*2)));
 							context.arc(position_row[j]+(canvas_size/(num*2)),position_column[i]+(canvas_size/(num*2)),5,0,2*Math.PI);
@@ -1111,9 +903,9 @@
 							context.strokeStyle="black";
 							context.stroke();
 							context.fill();*/
-						//}
-						//else if(probability[i][j]>0.2 && probability[i][j]<=0.3)
-						//{
+						}
+						else if(probability[i][j]>0.2 && probability[i][j]<=0.3)
+						{
 							/*context.beginPath();
 						    context.moveTo(position_row[j]+(canvas_size/(num*2)),position_column[i]+(canvas_size/(num*2)));
 							context.arc(position_row[j]+(canvas_size/(num*2)),position_column[i]+(canvas_size/(num*2)),5,0,2*Math.PI);
@@ -1122,8 +914,8 @@
 							context.strokeStyle="black";
 							context.stroke();
 							context.fill();*/
-						//}
-						else if(probability[i][j]>=0.3 && probability[i][j]<0.4)
+						}
+						else if(probability[i][j]>=0.3 && probability[i][j]<=0.4)
 						{
 							context.beginPath();
                             context.moveTo(position_row[j]+2,position_column[i]+2);
@@ -1135,7 +927,7 @@
 							context.stroke();
 							context.fill();
 						}
-						else if(probability[i][j]>=0.4 && probability[i][j]<0.5)
+						else if(probability[i][j]>0.4 && probability[i][j]<=0.5)
 						{
 							context.beginPath();
                             context.moveTo(position_row[j]+2,position_column[i]+2);
@@ -1147,7 +939,7 @@
 							context.stroke();
 							context.fill();
 						}
-						else if(probability[i][j]>=0.5 && probability[i][j]<0.6)
+						else if(probability[i][j]>0.5 && probability[i][j]<=0.6)
 						{
 							context.beginPath();
                             context.moveTo(position_row[j]+2,position_column[i]+2);
@@ -1159,7 +951,7 @@
 							context.stroke();
 							context.fill();
 						}
-						else if(probability[i][j]>=0.6 && probability[i][j]<0.7)
+						else if(probability[i][j]>0.6 && probability[i][j]<=0.7)
 						{
 							context.beginPath();
                             context.moveTo(position_row[j]+2,position_column[i]+2);
@@ -1171,7 +963,7 @@
 							context.stroke();
 							context.fill();
 						}
-						else if(probability[i][j]>=0.7 && probability[i][j]<0.8)
+						else if(probability[i][j]>0.7 && probability[i][j]<=0.8)
 						{
 							context.beginPath();
                             context.moveTo(position_row[j]+2,position_column[i]+2);
@@ -1183,7 +975,7 @@
 							context.stroke();
 							context.fill();
 						}
-						else if(probability[i][j]>=0.8 && probability[i][j]<0.9)
+						else if(probability[i][j]>0.8 && probability[i][j]<=0.9)
 						{
 							context.beginPath();
                             context.moveTo(position_row[j]+2,position_column[i]+2);
@@ -1195,7 +987,7 @@
 							context.stroke();
 							context.fill();
 						}
-						else if(probability[i][j]>=0.9 && probability[i][j]<=1)
+						else if(probability[i][j]>0.9 && probability[i][j]<=1)
 						{
 							context.beginPath();
                             context.moveTo(position_row[j]+2,position_column[i]+2);
@@ -1223,7 +1015,6 @@
 			}
 		}
 
-		//保持感測機率顯示
 		function remain_probability()
 		{
 			var canvas=document.getElementById("mycanvas");
@@ -1249,7 +1040,7 @@
 				}
 		}
 
-		//顯示感測機率
+
 		function show_probability()
 		{
 			var canvas=document.getElementById("mycanvas");
@@ -1327,137 +1118,18 @@
 			}
 		}
 
-		//檢查圖片縮放比例
-		function check_picture_rate()
-		{
-			if(num==5)
-			{
-                sensor_position_move=8;
-                sensor_img_rate=0.4; 
-				station_img_rate=0.2;
-				mouse_img_rate=1;
-				mouse_position_move=6;
-				if(change==1)
-				{
-					sensor_img_rate=0.8;
-				}
-			}
-			else if(num==10)
-			{
-                sensor_position_move=7;
-                sensor_img_rate=0.2;  
-				station_img_rate=0.1;	
-				mouse_img_rate=0.5;
-				mouse_position_move=6;
-				if(change==1)
-				{
-					sensor_position_move=6;
-                    sensor_img_rate=0.4;
-				}
-			}
-			else if(num==20)
-			{
-                sensor_position_move=8;
-                sensor_img_rate=0.1; 
-				station_img_rate=0.05;
-				mouse_img_rate=0.25;
-				mouse_position_move=6;
-				if(change==1)
-				{
-					sensor_position_move=7;
-					sensor_img_rate=0.2;
-				}
-			}
-			else if(num==50)
-			{
-                sensor_position_move=9;
-                sensor_img_rate=0.04;  
-				station_img_rate=0.02;
-				mouse_img_rate=0.1;
-				mouse_position_move=6;	
-				if(change==1)
-				{
-					sensor_img_rate=0.08;  
-				}
-			}
-		}
-
-		//切換圖片
 		function other()
 		{
 			change=1-change;
-
-			if(change==1)
-			{
-				//$('#sensor_number').html('使用基地台數量');
-				document.getElementById("sensor_number").innerHTML =  "使用基地台數量";
-			}
-			else
-			{
-				//$('#sensor_number').html('使用貓咪數量');
-				 document.getElementById("sensor_number").innerHTML =  "使用貓咪數量";
-			}
-			draw_showcanvas();
-			/*if(num==5)
-			{
-                
-				if(change==1)
-				{
-					sensor_img_rate=0.8;
-				}
-				else
-				{
-					sensor_img_rate=2.5; 
-				}
-			}
-			else if(num==10)
-			{
-				if(change==1)
-				{
-					sensor_position_move=6;
-                    sensor_img_rate=0.4;
-				}
-				else
-				{
-					sensor_position_move=7;
-               		sensor_img_rate=1.3; 
-				}
-			}
-			else if(num==20)
-			{
-				if(change==1)
-				{
-					sensor_position_move=7;
-					sensor_img_rate=0.2;
-				}
-				else
-				{
-					sensor_position_move=8;
-                	sensor_img_rate=0.6;
-				}
-			}
-			else if(num==50)
-			{
-				if(change==1)
-				{
-					sensor_img_rate=0.08;  
-				}
-				else
-				{
-					sensor_img_rate=0.25;
-				}
-			}*/
-			check_picture_rate();
-
 			var canvas=document.getElementById("mycanvas");
             var context=canvas.getContext("2d");
 			if(change==1)
 			{
-				document.getElementById("change_cheese").innerHTML ='<img src="./icon/satellite-dish-solid.svg" width="30" height="20">感測器';
+				document.getElementById("change_cheese").innerHTML ='<img src="./icon/satellite-dish-solid.svg" width="30" height="20">other';
 			}
 			else
 			{
-				document.getElementById("change_cheese").innerHTML ='<img src="./icon/black-cat.svg" width="30" height="20">感測器';
+				document.getElementById("change_cheese").innerHTML ='<img src="./icon/cheese-solid.svg" width="30" height="20">other';
 				document.getElementById("change_connect").innerHTML = '<img src="./icon/handshake-slash-solid.svg" width="30" height="20">顯示連通性';
 				if(connect_line_click_time==1)
 				{
@@ -1493,9 +1165,39 @@
 			{
 				remain_probability();
 			}
+			/*for(i=0;i<num;i++)
+			{
+				position_check[i]=[];
+				for(j=0;j<num;j++)
+				{
+					position_check[i][j]=0;
+				}
+			}
+
+			for(i=0;i<num;i++)
+			{
+				probability[i]=[];
+				for(j=0;j<num;j++)
+				{
+					probability[i][j]=-1;
+				}
+			}
+
+			for(i=0;i<num;i++)
+			{
+				space_check[i]=[];
+				for(j=0;j<num;j++)
+				{
+					space_check[i][j]=0;
+				}
+			}
+			store_position_i=[];
+			store_position_j=[];
+			click_times=0;
+			document.getElementById("fitness").innerHTML = 0;
+			document.getElementById("min_detect").innerHTML =" ";*/
 		}
 
-		//選擇地圖大小
 		function confirm_map()
 		{
 			var canvas=document.getElementById("mycanvas");
@@ -1505,7 +1207,6 @@
 			num=form.options[range].value;
 			click_times=0;
 			connect_line_click_time=0;
-			document.getElementById("sensor_number").innerHTML =  "使用貓咪數量";
 			document.getElementById("fitness").innerHTML = click_times;
 			document.getElementById("min_detect").innerHTML =" ";
 			document.getElementById("tip").style.display='none';
@@ -1525,7 +1226,7 @@
 				probability[i]=[];
 				for(j=0;j<num;j++)
 				{
-					probability[i][j]=0;
+					probability[i][j]=-1;
 				}
 			}
 
@@ -1543,18 +1244,53 @@
 			store_position_i=[];
 			store_position_j=[];
 
-			check_picture_rate();
-			canvas_size=800;
+			if(num==5)
+			{
+				canvas.setAttribute('width', 350);       
+				canvas.setAttribute('height', 350);
+				canvas_size=350;
+                cheese_position_move=5;
+                cheese_img_rate=0.3; 
+				station_img_rate=0.1;
+			}
+			else if(num==10)
+			{
+				canvas.setAttribute('width', 450);       
+				canvas.setAttribute('height', 450);  
+				canvas_size=450;
+                cheese_position_move=6;
+                cheese_img_rate=0.2;  
+				station_img_rate=0.07;	
+			}
+			else if(num==20)
+			{
+				canvas.setAttribute('width', 650);       
+				canvas.setAttribute('height', 650);  
+				canvas_size=650;
+                cheese_position_move=7;
+                cheese_img_rate=0.17; 
+				station_img_rate=0.05;
+			}
+			else if(num==25)
+			{
+				canvas.setAttribute('width', 750);       
+				canvas.setAttribute('height', 750);  
+				canvas_size=750;
+                cheese_position_move=8;
+                cheese_img_rate=0.15;  	
+				station_img_rate=0.04;
+			}
+			else if(num==50)
+			{
+				canvas.setAttribute('width', 1150);       
+				canvas.setAttribute('height', 1150);  
+				canvas_size=1150;
+                cheese_position_move=9;
+                cheese_img_rate=0.13;  
+				station_img_rate=0.03;	
+			}
 			station_position=num/2;
 			draw();
-			for(i=0;i<num;i++)
-			{
-				for(j=0;j<num;j++)
-				{
-					draw_mouse(i,j);
-				}
-			}
-			
 		}
 		//swal("歡迎進入擺放最佳化遊戲模式","嘗試運用最少起司佔領所有範圍吧!!!","./images/mouse1.svg");
 		draw_showcanvas();
@@ -1568,7 +1304,7 @@
 	height:20px;
 	line-height:20px;
 	background:#d4d4d4;
-	font-family: cwTeXYen;
+	font-family: DFKai-sb;
 	font-weight: bold;
 	">
 	</div>

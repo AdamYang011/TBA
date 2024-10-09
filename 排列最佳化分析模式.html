@@ -22,43 +22,43 @@
 		<div id="wrapper">
 			<!--Sidebar-->
 			<nav class="navbar navbar-inverse">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                           <a class="navbar-brand" href="./index.html">最佳動化</a>
-                      </div>
-                      <ul class="nav navbar-nav">
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">數值最佳化 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="./數值最佳化分析模式.html">分析模式</a></li>
-                        </ul>
-                        </li>
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">組合最佳化 <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                            <li><a href="./組合最佳化分析模式.html">分析模式</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排列最佳化 <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                            <li><a href="./排列最佳化分析模式.html">分析模式</a></li>
-                            <li><a href="./排列最佳化遊戲模式.html">遊戲模式</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">擺放最佳化 <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                            <li><a href="./擺放最佳化分析模式.html">分析模式</a></li>
-                            <li><a href="./擺放最佳化遊戲模式.html">遊戲模式</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排行榜 <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                            <li><a href="#">排列最佳化--遊戲模式</a></li>
-                            <li><a href="#">擺放最佳化--遊戲模式</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a href="./setting.html">設定</a></li>
-                    </ul>
-                </div>
-            </nav>
+			<div class="container-fluid">
+				<div class="navbar-header">
+					   <a class="navbar-brand" href="index.html">最佳動化</a>
+				  </div>
+				  <ul class="nav navbar-nav">
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">數值最佳化 <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="數值最佳化分析模式.html">分析模式</a></li>
+					</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">組合最佳化 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						<li><a href="組合最佳化分析模式.html">分析模式</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排列最佳化 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						<li><a href="排列最佳化分析模式.html">分析模式</a></li>
+						<li><a href="排列最佳化遊戲模式.html">遊戲模式</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">擺放最佳化 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						<li><a href="擺放最佳化分析模式.html">分析模式</a></li>
+						<li><a href="擺放最佳化遊戲模式.html">遊戲模式</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排行榜 <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						<li><a href="#">排列最佳化--遊戲模式</a></li>
+						<li><a href="#">擺放最佳化--遊戲模式</a></li>
+						</ul>
+					</li>
+					<li class="dropdown"><a href="setting.html">設定</a></li>
+				</ul>
+			</div>
+			</nav>
 
 
 			<!--Main-->
@@ -93,31 +93,32 @@
 									</tbody>
 								</table>
 							</div>
-							<div>
-								<input type="file" id="file" onchange="upload()">
-								<button style="position: relative; left:250px; top:-35px;" class="button " onclick="upload2()"><img src="./icon/file-alt-solid.svg"  width="30" height="20" >讀檔</button>		
-								<br>
-								
-								<button  class="button" onclick="screenshot()"><img src="./icon/camera.svg"  width="30" height="20" >拍照</button>
-								<button  class="button" id="startrecord" onclick="media()"><img src="./icon/video.svg"  width="30" height="20">錄影</button>
-								<br>
-								<h6></h6>
-								<button  class="button " onclick="stop()"><img src="./icon/stop.svg"  width="30" height="20" >重置</button>
-								<button  class="button " onclick="active_pause()" id="pause"><img src="./icon/pause.svg"  width="30" height="20" >暫停</button>
-								<br>
-								<h6></h6>
-								<button  class="button " onclick="slower()"><img src="./icon/backward-solid.svg"  width="30" height="20" >變慢</button>
-								<button  class="button " onclick="faster()"><img src="./icon/forward-solid.svg"  width="30" height="20" >變快</button>
-								<br>
-								<h6></h6>
-								<button  class="button " onclick="last_generation()"><img src="./icon/angle-left.svg" width="30" height="20" >上代</button>
-								<button  class="button " onclick="next_generation()"><img src="./icon/angle-right.svg" width="30" height="20">下代</button>
-								<br>
-								<h6></h6>
-								<input id="generation" type="text" style="top:-5px; padding-left:10px; padding-right: 10px; margin-left: 5px; width: 95px; height: 50px; font-family: cwTeXYen; font-size: 20px;" placeholder="輸世代數"/>
-								<button style="position: relative; left:105px; top:-50px;" class="button " onclick="go_to()"><img src="./icon/fighter-jet-solid.svg"  width="30" height="20">Go To</button>
-								
-							</div>
+							<ul class="actions">
+								<input style="position: relative; top: 5px; width: 250px; padding-left: 20px" type="file" id="file" onchange="upload()">
+								<li><a class="button small icon solid fa-file-alt" onclick="upload2()">讀檔</a></li>
+							</ul>	
+							<br>
+							<ul class="actions">
+								<li><a class="button small icon solid fa-camera" onclick="screenshot()">拍照</a	></li>
+								<li><a class="button small icon solid fa-video" onclick="media()">錄影</a></li>
+								<li><a class="button small icon solid fa-chart-line" onclick="">斂散圖</a></li>
+							</ul>
+							<ul class="actions">
+								<li><a class="button small icon solid fa-stop" onclick="stop()">重置</a></li>
+								<li><a id="pause" class="button small icon solid fa-pause" onclick="active_pause()">暫停</a></li>
+							</ul>
+							<ul class="actions">
+								<li><a class="button small icon solid fa-backward" onclick="slower()">變慢</a></li>
+								<li><a class="button small icon solid fa-forward" onclick="faster()">變快</a></li>
+							</ul>	
+							<ul class="actions">
+								<li><a class="button small icon solid fa-chevron-left" onclick="last_generation()">上一代</a></li>
+								<li><a class="button small icon solid fa-chevron-right" onclick="next_generation()">下一代</a></li>
+							</ul>
+							<ul class="actions">
+								<input id="generation" type="text" style="position:relative; top:-5px; left:20px; width: 110px;" placeholder="請輸入世代數" />
+								<li><a style="position: relative; left: 18px;" class="button small icon solid fa-fighter-jet" onclick="go_to()">跳轉</a></li>
+							</ul>	
 							
 						</div>
 					</div>
@@ -134,7 +135,7 @@
 		<script src="./assets/js/slide.js"></script>
 		<script src="./assets/js/jquery-1.12.4.min.js"></script>
 		<script src="./assets/js/multislider.js"></script> 
-		<!-- <script src="./assets/js/darkmode.js"></script> -->
+		<script src="./assets/js/darkmode.js"></script>
 		<script src="./assets/js/html2canvas.min.js"></script>
 		<script type="text/javascript">
 		var file_inside;
@@ -163,7 +164,6 @@
 		var canvas_width = 600, canvas_height = 600;  //框框內的大小
 		var long;
 		var fastest_speed = 31.25, slowest_speed = 2000; //以秒為單位
-		var startre = 0; //判斷有沒有在錄影
 
 		function upload() {
 			let reads = new FileReader();
@@ -264,9 +264,9 @@
 						}
 					}
 				}
-				//console.log(test+"  "+sequence[test]);
 				data[doct_number+1] = data[1];
 				counting_distance();
+				//console.log(data_distance);
 				draw_line();
 				tooltip();
 				slider.value = test;
@@ -278,7 +278,7 @@
 		function draw(){	//draw the map
 			document.getElementById("test").innerHTML = test;
 			document.getElementById("speed").innerHTML = slowest_speed/speed + "倍";
-			document.getElementById("fitness").innerHTML = parseFloat(sequence[test][0]).toFixed(3);
+			document.getElementById("fitness").innerHTML = sequence[test][0];
 			
 			canvas=document.getElementById("canvas");
 			context=canvas.getContext('2d');
@@ -337,10 +337,9 @@
 			grd.addColorStop(1,'rgb(0,0,255)');
 			context.fillStyle = grd;
 			context.fillRect(670,y_edge,20,canvas_height);
-			context.font="20px cwTeXYen";
 			context.fillText(distance_max[0].toFixed(2),700,35);
 			context.fillText(distance_min[0].toFixed(2),700,620);
-			context.font="12px cwTeXYen";
+			
 			canvas.addEventListener("mousemove",function(evt){
 				var clickx,clicky,calcolor=0;;
 				rect=canvas.getBoundingClientRect();
@@ -416,12 +415,36 @@
 					document.getElementById("jump").style.display="";
 				}
 				calmove=0;
+
+			// 	//line tip
+			// 	for(var i=1; i<doct_number;i++){
+			// 		movex = (data[i][0]-X_min)*canvas_width/(X_max-X_min)+x_edge - evt.clientX + rect.left;
+			// 		movey = 625-((data[i][1]-Y_min)*canvas_height/(Y_max-Y_min)) - evt.clientY + rect.top;
+			// 		var distance = Math.sqrt(movex*movex + movey*movey);
+			// 		if(distance<8)
+			// 		{
+			// 			//console.log(distance);
+			// 			document.getElementById("jump").innerHTML = "名稱:" + sequence[test][i] + "<br>" + "x:" + data[i][0] + "  y:" + data[i][1];
+			// 			document.getElementById("jump").style.left = evt.clientX + scrollX + 10 + "px";
+			// 			document.getElementById("jump").style.top = evt.clientY + scrollY + 10 + "px";
+			// 		}
+			// 		else{
+			// 			calmove++;
+			// 		}
+			// 	}
+			// 	if(calmove == doct_number){
+			// 		document.getElementById("jump").style.display='none';
+			// 	}
+			// 	else{
+			// 		document.getElementById("jump").style.display="";
+			// 	}
+			// 	calmove=0;
+
             });
 		}
 
 		function drawgrid(){
 			context.beginPath();
-			context.font="cwTeXYen";
 			for(var i=1; i<5; i++){
 				context.moveTo(x_edge+i/5*canvas_width, y_edge);
 				context.lineTo(x_edge+i/5*canvas_width, y_edge+canvas_height);
@@ -433,8 +456,7 @@
 			}	
 			for(var i=0; i<=5; i++){
 				context.fillStyle = 'black';
-				context.font="12px cwTeXYen";
-				context.fillText(X_min+i/5*(X_max-X_min), x_edge+i/5*canvas_width-2, y_edge+612);
+				context.fillText(X_min+i/5*(X_max-X_min), x_edge+i/5*canvas_width-1, y_edge+612);
 				context.fillText(Y_max-i/5*(Y_max-Y_min), x_edge-22, y_edge+i/5*canvas_height+1);
 			}
 			context.closePath();
@@ -464,10 +486,14 @@
 		function active_pause(){
 			pause_counter++;	
 			if(pause_counter%2 == 0){
-				document.getElementById("pause").innerHTML = '<img src="./icon/play.svg" width="30" height="20">開始';
+				document.getElementById("pause").classList.remove("fa-pause");
+				document.getElementById("pause").classList.add("fa-play");
+				document.getElementById("pause").innerHTML = "開始";
 			}
 			else{
-				document.getElementById("pause").innerHTML = '<img src="./icon/pause.svg" width="30" height="20">暫停';
+				document.getElementById("pause").classList.remove("fa-play");
+				document.getElementById("pause").classList.add("fa-pause");
+				document.getElementById("pause").innerHTML = "暫停";
 			}					
 			pause();			
 		}
@@ -488,11 +514,8 @@
 		}
 
 		function next_generation(){
-			if((test + 1) <= generation_number){
-				document.getElementById("test").innerHTML =  test + 1;
-				draw_different_gneeration();
-			}
-			
+			document.getElementById("test").innerHTML =  test + 1;
+			draw_different_gneeration();
 		}
 
 		function faster(){
@@ -538,60 +561,51 @@
 			draw_different_gneeration();
 		}
 		
-		function media()
-            {
-                if(startre==0)
-                {
+		function media(){
+			if(startre==0){
+				document.getElementById("startrecord").innerHTML =" 停止錄影";
+				var canvas = document.getElementById("picture");
+				// Optional frames per second argument.
+				var stream = canvas.captureStream(1000);
+				var recordedChunks = [];
 
-                    document.getElementById("startrecord").innerHTML ='<img src="./icon/video.svg" width="30" height="20">停止錄影';
-                    var canvas = document.getElementById("canvas");
-                    // Optional frames per second argument.
-                    var stream = canvas.captureStream(1000);
-                    var recordedChunks = [];
+				console.log(stream);
+				var options = { mimeType: "video/webm; codecs=vp9" };
+				mediaRecorder = new MediaRecorder(stream, options);
 
-                    console.log(stream);
-                    var options = { mimeType: "video/webm; codecs=vp9" };
-                    mediaRecorder = new MediaRecorder(stream, options);
+				mediaRecorder.ondataavailable = handleDataAvailable;
+				mediaRecorder.start();
 
-                    mediaRecorder.ondataavailable = handleDataAvailable;
-                    mediaRecorder.start();
-
-                    async function handleDataAvailable(event) {
-                    console.log("data-available");
-                    if (event.data.size > 0) {
-                        recordedChunks.push(event.data);
-                        console.log(recordedChunks);
-                        download();
-                        } 
-                        else 
-                        {
-                            // ...
-                        }
-                    }
-                    async function download() {
-                    var blob = new Blob(recordedChunks, {
-                        type: "video/webm"
-                    });
-                    var url = URL.createObjectURL(blob);
-                    var a = document.createElement("a");
-                    document.body.appendChild(a);
-                    a.style = "display: none;";
-                    a.href= url;
-                    a.download = "test.mp4";
-                    a.click();
-                    window.URL.revokeObjectURL(url);
-                    }
-                    startre++;
-                }
-                else
-                {
-                    document.getElementById("startrecord").innerHTML ='<img src="./icon/video.svg" width="30" height="20">錄影';
-                    console.log(startre);
-                    mediaRecorder.stop();
-                    startre=0;
-                }
-                
-            }
+				async function handleDataAvailable(event){
+					console.log("data-available");
+					if (event.data.size > 0){
+						recordedChunks.push(event.data);
+						console.log(recordedChunks);
+						download();
+						} 
+				}
+				async function download(){
+					var blob = new Blob(recordedChunks, {
+						type: "video/webm"
+					});
+					var url = URL.createObjectURL(blob);
+					var a = document.createElement("a");
+					document.body.appendChild(a);
+					a.style = "display: none;";
+					a.href= url;
+					a.download = "test.mp4";
+					a.click();
+					window.URL.revokeObjectURL(url);
+				}
+				startre++;
+			}
+			else{
+				document.getElementById("startrecord").innerHTML =" 錄影";
+				console.log(startre);
+				mediaRecorder.stop();
+				startre=0;
+			}
+		}
 
 		function findMaxMin_distance(){
 			distance_max[0] = 0;
@@ -632,7 +646,7 @@
 				line-height:21px;
 				background-color: #ffd988;
 				opacity: 0.8;
-				font-family: cwTeXYen;
+				font-family: DFKai-sb;
 				font-weight: bold; ">
 		</div>
 
@@ -645,7 +659,7 @@
 				height:20px;
 				line-height:20px;
 				background:rgba(0, 0, 0, 0.4);
-				font-family: cwTeXYen;
+				font-family: DFKai-sb;
 				font-weight: bold; ">
 		</div>
 	</body>

@@ -1,7 +1,7 @@
 <!DOCTYPE >
 <html>
 <head>
-	<title>最佳動化_組合最佳化模式</title>
+	<title>最佳動化_組合最佳化分析模式</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -30,7 +30,7 @@
 	<link rel="stylesheet" href="./assets/css/Button.css" />
 	<link rel="stylesheet" href="./assets/css/darkmode.css"/>
 	<link rel="stylesheet" href="./assets/css/Bootstrap.css" />
-	<link rel="stylesheet" href="./assets/css/font-awesome.min.css" />
+	
 
 	</style>
 </head>
@@ -41,29 +41,29 @@
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					   <a class="navbar-brand" href="./index.html">最佳動化</a>
+					   <a class="navbar-brand" href="index.html">最佳動化</a>
 				  </div>
 				  <ul class="nav navbar-nav">
 					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">數值最佳化 <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="./數值最佳化分析模式.html">分析模式</a></li>
+						<li><a href="數值最佳化分析模式.html">分析模式</a></li>
 					</ul>
 					</li>
 					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">組合最佳化 <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-						<li><a href="./組合最佳化分析模式.html">分析模式</a></li>
+						<li><a href="組合最佳化分析模式.html">分析模式</a></li>
 						</ul>
 					</li>
 					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排列最佳化 <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-						<li><a href="./排列最佳化分析模式.html">分析模式</a></li>
-						<li><a href="./排列最佳化遊戲模式.html">遊戲模式</a></li>
+						<li><a href="排列最佳化分析模式.html">分析模式</a></li>
+						<li><a href="排列最佳化遊戲模式.html">遊戲模式</a></li>
 						</ul>
 					</li>
 					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">擺放最佳化 <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-						<li><a href="./擺放最佳化分析模式.html">分析模式</a></li>
-						<li><a href="./擺放最佳化遊戲模式.html">遊戲模式</a></li>
+						<li><a href="擺放最佳化分析模式.html">分析模式</a></li>
+						<li><a href="擺放最佳化遊戲模式.html">遊戲模式</a></li>
 						</ul>
 					</li>
 					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">排行榜 <span class="caret"></span></a>
@@ -72,21 +72,22 @@
 						<li><a href="#">擺放最佳化--遊戲模式</a></li>
 						</ul>
 					</li>
-					<li class="dropdown"><a href="./setting.html">設定</a></li>
+					<li class="dropdown"><a href="setting.html">設定</a></li>
 				</ul>
 			</div>
 		</nav>
 
 		<div id="main">
 			<div class="inner">
+
 				<div class="row">
 					<div id="TBA" class="col-10">
-						<div id="echart" style="width: 100%;height:100%;margin-top: 100px; margin-left: -100px; "></div>
+						<div id="echart" style="width: 100%;height:100%;margin-top: 100px"></div>
 					</div>
 					<canvas id="background-canvas"
 						style="position:absolute; top:-99999999px; left:-9999999999px;"></canvas>
-					<div class="col-2 col-2-medium" style="margin-top:200px;margin-left:-145px; ">
-						<div class="table-wrapper" style="margin-right: -180px;">
+					<div class="col-2 col-2-medium" style="margin-top:200px;margin-left:-80px;">
+						<div class="table-wrapper" style="margin-right: -150px;">
 							<br><br>
 							<table>
 								<thead>
@@ -108,72 +109,50 @@
 						<ul class="actions">
 							<input type="file" id="myfile" onchange="load()">
 						</ul>
+						<br>
 						<ul class="actions">
-							<div>
-								<button  type="button" onclick="save_img()"><img src="./icon/camera.svg"  width="30" height="20" >拍照</button>
-							</div>
-							<div id="start-recording"> 
-								<button type="button" id="btn-start-recording" onclick="media()"><img src="./icon/video.svg"  width="30" height="20">錄影</button>
+							<li><a class="button small icon solid fa-camera-retro" onclick="save_img()">拍照</a></li>
+							<div id="start-recording">
+								<li><a id="btn-start-recording"
+										class="button small icon solid fa-video btn-start-recording">錄影</a></li>
 							</div>
 							<div id="stop-recording">
-								<button  type="button" id="btn-stop-recording" onclick="media()"><img src="./icon/video.svg"  width="30" height="20">錄影</button>
+								<li><a id="btn-stop-recording"
+										class="button small icon solid fa-video btn-stop-recording">停止</a></li>
 							</div>
-							<div>
-								<button  type="button" data-toggle="modal" data-target="#exampleModal"><img src="./icon/chart-line-solid.svg"  width="30" height="20">斂散圖</button>
-							</div>
+							<li><a class="button small icon solid fa-chart-line" data-toggle="modal"
+									data-target="#exampleModal">斂散圖</a></li>
 						</ul>
-								
 						<ul class="actions">
-							<div>
-								<button  type="button" onclick="Eraser()"><img src="./icon/stop.svg"  width="30" height="20" >重置</button>
-							</div>
-							<div id="play">
-								<button  id="play" onclick="play()" id="play"><img src="./icon/play.svg"  width="30" height="20" >開始</button>
-							</div>
-							<div id="pause">
-								<button  onclick="pause()" id="pause" class="btn-primary"><img src="./icon/pause.svg"  width="30" height="20" >暫停</button>
-							</div>
-							<div id="zoom">
-								<button  onclick="zoom_in()" id="zoom"><img src="./icon/search-plus-solid.svg"  width="30" height="20" >放大</button>
-							</div>
-							<div id="unzoom">
-								<button  onclick="zoom_in()" id="unzoom" class="btn-primary"><img src="./icon/search-plus-solid.svg"  width="30" height="20" >放大</button>
-							</div>
+							<li><a class="button small icon solid fa-stop" onclick="Eraser()">從頭</a></li>
+							<li id="play"><a id="play" class="button small icon solid fa-play" onclick="play()">播放</a>
+							</li>
+							<li id="pause"><a id="pause" class="button small icon solid fa-pause"
+									onclick="pause()">暫停</a></li>
+							<li id="zoom"><a id="zoom" class="button small icon solid fa-search-plus"
+									onclick="zoom_in()">放大</a></li>
+							<li id="unzoom"><a id="unzoom" class="button btn-primary small icon solid fa-search-plus"
+									onclick="zoom_in()">放大</a></li>
 						</ul>
-						
 						<ul class="actions">
-							<div>
-								<button type="button" onclick="slow()"><img src="./icon/backward-solid.svg"  width="30" height="20" >變慢</button>
-							</div>
-							<div>
-								<button type="button" onclick="fast()"><img src="./icon/forward-solid.svg"  width="30" height="20" >變快</button>
-							</div>
-							<div id="dice">
-								<button id="dice" onclick="Dice()"><img src="./icon/dice-solid.svg"  width="30" height="20" >機率</button>
-							</div>
-							<div id="undice">
-								<button id="undice" onclick="UnDice()"><img src="./icon/dice-solid.svg"  width="30" height="20" >機率</button>
-							</div>
+							<li><a class="button small icon solid fa-backward" onclick="slow()">變慢</a></li>
+							<li><a class="button small icon solid fa-forward" onclick="fast()">變快</a></li>
+							<li id="dice"><a id="dice" class="button small icon solid fa-dice" onclick="Dice()">機率</a>
+							</li>
+							<li id="undice"><a id="undice" class="button btn-primary small icon solid fa-dice"
+									onclick="UnDice()">機率</a></li>
 						</ul>
-						
 						<ul class="actions">
-							<div>
-								<button type="button" onclick="previous()"><img src="./icon/chevron-left-solid.svg" width="30" height="20">上一代</button>
-							
-							</div>
-							<div>
-								<button type="button" onclick="next()"><img src="./icon/chevron-right-solid.svg" width="30" height="20">下一代</button>	
-							</div>
+							<li><a class="button small icon solid fa-chevron-left" onclick="previous()">上一代</a></li>
+							<li><a class="button small icon solid fa-chevron-right" onclick="next()">下一代</a></li>
 						</ul>
-						
 						<ul class="actions">
-							<input id="generation" type="text" style="position: relative;top: 0px; left: 20px; width: 100px;"
+							<input id="generation" type="text" style="position: relative;top: -5px; left: 20px;"
 								placeholder="請輸入世代數" />
-								<div>
-									<button style="position: relative; left: 38px; top: -3px" class="button " onclick="to()"><img src="./icon/fighter-jet-solid.svg"  width="30" height="20">Go To</button>
-								</div>
+							<li><a style="position: relative; left: 18px;"
+									class="button small icon solid fa-fighter-jet" onclick="to()">Go To</a></li>
 						</ul>
-						<ul style="margin-top: 10px; width: 400px;"  class="slidecontainer">  
+						<ul class="slidecontainer">  
 							<input type="range" min="1" max="100" value="1" class="slider" id="gen">
 							<p>當代世代數: <span id="demo"></span></p>
 						</ul>
@@ -192,24 +171,11 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<div id="echarts2" style="width: 1100px;height:500px;"></div>
+					<div id="echarts2" style="width: 1200px;height:500px;"></div>
 				</div>
 				<div class="modal-footer">
-					<a id="switch1"  class="button" onclick="switch_1()"><img src="./icon/toggle-off-solid.svg"  width="30" height="20" >切換</a>
-					<a id="switch2" class="button" onclick="switch_3()"><img src="./icon/toggle-on-solid.svg"  width="30" height="20" >切換:全域</a>
-					<!-- <a id="switch3" class="button" onclick="switch_3()"><img src="./icon/toggle-off-solid.svg"  width="30" height="20" >切換:當代</a> -->
-					<a id="datazoom" class="button " onclick="datazoom()"><img src="./icon/search-plus-solid.svg"  width="30" height="20" >縮放</a>
-					<a id="undatazoom" class="button " onclick="datazoom()"><img src="./icon/search-plus-solid.svg"  width="30" height="20" >縮放</a>
-					<a class="button" onclick="save_img2()"><img src="./icon/save-solid.svg"  width="30" height="20" >保存</a>
-					<a class="button" data-dismiss="modal"><img src="./icon/times-solid.svg"  width="30" height="20" >取消</a>
-			
-					<!-- <a id="switch1" style="width: 100%;" class="button small icon solid fa-toggle-off" onclick="switch_1()">切換</a>
-					<a id="switch2" style="width: 100%;" class="button small icon solid fa-toggle-on" onclick="switch_2()">切換:全域</a>
-					<a id="switch3" style="width: 100%;" class="button small icon solid fa-toggle-on" onclick="switch_3()">切換:當代</a>
-					<a id="datazoom" class="button small icon solid fa-search-plus" onclick="datazoom()">縮放</a>
-					<a id="undatazoom" class="button small icon solid fa-search-plus primary" onclick="datazoom()">縮放</a>
 					<a class="button small icon solid fa-camera-retro" onclick="save_img2()">保存</a>
-					<a class="button small icon solid fa-stop" data-dismiss="modal">取消</a> -->
+					<a class="button small icon solid fa-stop" data-dismiss="modal">取消</a>
 				</div>
 			</div>
 		</div>
@@ -328,7 +294,6 @@
 			dice_state: false, // 是否為幾率模式
 			zoom_state: false, // 是否為放大模式
 			play_state: false, // 播放狀態
-			datazoom_state: false, // 
 			index: 1 // 當前世代數
 		}
 		// 上傳文檔
@@ -425,7 +390,7 @@
 						interval: 0,
 						fontSize: 24
 					},
-					name: '適應值',
+					name: 'fitness',
 					nameLocation: 'start',
 					nameTextStyle:{
 						fontWeight: 'bold',
@@ -448,7 +413,7 @@
 							if (param.value[1] == '全域最佳解') {
 								return 'GBest,第'+ param.value[0] +'個bit,值:' + param.value[2].toFixed(0)
 							}
-							 return '第'+ param.value[0] +'個bit,'+ Generation[param.value[1]].X[Generation[param.value[1]].CBest].BitInfo[param.value[0]]
+							return '第' + param.value[1] + '世代,第'+ param.value[0] +'個bit,值:' + param.value[2].toFixed(0)
 						}
 					},
 					yAxisIndex: 0,
@@ -489,18 +454,6 @@
 				title: {
 					text: '斂散圖'
 				},
-				toolbox:{
-					feature:{
-						dataZoom:{
-							show: true,
-							title: {
-								zoom: '區域縮放',
-								back: '還原'
-							},
-							yAxisIndex: false
-						}
-					}
-				},
 				legend:{
 					data:[]
 				},
@@ -516,122 +469,7 @@
 					'#DB6EBA'],
 				tooltip: {
 					formatter: function (param, ticket, callback) {
-						return '第' + param.value[0] + '世代全域最佳解:' + param.value[1]
-					}
-				},
-				xAxis: {
-					type: 'value',
-					name:'世代數',
-					min: 1,
-					max: 2
-				},
-				yAxis: {
-					type: 'value',
-					name: '適應值',
-					max: 'dataMax',
-					min: 'dataMin'
-				},
-				dataZoom:[{
-					show: true,
-					realtime: true,
-					xAxisIndex: 0
-				},
-				{
-					type: 'inside',
-					xAxisIndex: 0
-				}],
-				animation: false,
-				series: []
-			}
-			var option3 = {
-				title: {
-					text: '斂散圖'
-				},
-				legend:{
-					data:[]
-				},
-				toolbox:{
-					feature:{
-						dataZoom:{
-							show: true,
-							title: {
-								zoom: '區域縮放',
-								back: '還原'
-							},
-							yAxisIndex: false
-						}
-					}
-				},
-				color:['#0000FF',
-					'#FF0000',
-					'#FF8106',
-					'#FCC565',
-					'#8150C7',
-					'#5AAAFA',
-					'#F06060',
-					'#FFA5B4',
-					'#2468A2',
-					'#DB6EBA'],
-				tooltip: {
-					formatter: function (param, ticket, callback) {
-						return '第' + param.value[0] + '世代當代最佳解:' + param.value[1]
-					}
-				},
-				xAxis: {
-					type: 'value',
-					name:'世代數',
-					min: 1,
-					max: 2
-				},
-				yAxis: {
-					type: 'value',
-					name: '適應值',
-					min: 'dataMin',
-					max: 'dataMax'
-				},
-				dataZoom:[{
-					show: true,
-					realtime: true,
-					xAxisIndex: 0
-				},
-				{
-					type: 'inside',
-					xAxisIndex: 0
-				}],
-				series: []
-			}
-			var option4 = {
-				title: {
-					text: '斂散圖'
-				},
-				legend:{
-					data:[]
-				},
-				toolbox:{
-					feature:{
-						dataZoom:{
-							show: true,
-							title: {
-								zoom: '區域縮放',
-								back: '還原'
-							},
-							yAxisIndex: false
-						}
-					}
-				},
-				color:['#0000FF',
-					'#FF0000',
-					'#FF8106',
-					'#FCC565',
-					'#8150C7',
-					'#5AAAFA',
-					'#F06060',
-					'#FFA5B4',
-					'#2468A2',
-					'#DB6EBA'],
-				tooltip: {
-					formatter: function (param, ticket, callback) {
-						return '第' + param.value[0] + '世代當代最佳解:' + param.value[1]
+						return '第' + param.value[0] + '世代 PBest:' + param.value[1]
 					}
 				},
 				xAxis: {
@@ -689,7 +527,7 @@
 			if (filename[0] == 'Rastrigin') {
 				window.location.replace('./3d.html')
 			}
-			if (filename[filename.length - 1] !== 'json') { // 如果是檔
+			if (filename[filename.length - 1] === 'epin') { // 如果是epin檔
 				var eachline = txt.trim().split('\n') // 每一行的內容
 				if (eachline[0].trim() === 'Particle:'  || eachline[0].trim() === 'Particle :') {
 					var Bit_tmp = 1
@@ -707,8 +545,7 @@
 						var Interval_tmp = tokens2.length
 						this.Generation.push({
 							Particle: Interval_tmp,
-							GBest: parseInt(tokens3[1]), // 文檔本來寫著的
-							GBest2: 0,  // 自己計算的
+							GBest: parseInt(tokens3[1]),
 							CBest: 0,
 							CWorst: 0,
 							Evaluation: null,
@@ -726,7 +563,7 @@
 							Bit_tmp = tokens4.length - 2 // 每個個體的bit數量
 							this.Generation[i].X.push({
 								Amount: Bit_tmp,
-								Fitness: parseInt(tokens4[0]),
+								Fitness: tokens4[0],
 								PInfo: tokens4[1],
 								Bit: new Array(Bit_tmp),
 								BitInfo: new Array(Bit_tmp),
@@ -750,19 +587,9 @@
 								this.Generation[i].X[k].BitInfo[l] = tokens5[2]
 							}
 						}
-						// GBest
-						if (i > 0) {
-							if (parseInt(this.Generation[i].X[this.Generation[i].CBest].Fitness) > parseInt(this.Generation[i - 1].GBest2)) {
-								this.Generation[i].GBest2 = parseInt(this.Generation[i].X[this.Generation[i].CBest].Fitness)
-							} else {
-								this.Generation[i].GBest2 = parseInt(this.Generation[i - 1].GBest2)
-							}
-						} else {
-							this.Generation[i].GBest2 = parseInt(this.Generation[i].X[this.Generation[i].CBest].Fitness)
-						}
 						if (i > 0) {
 							var gbest_gen = this.Generation[i - 1].GBest_gen
-							if (this.Generation[i].X[this.Generation[i].CBest].Fitness >= this.Generation[gbest_gen].X[this
+							if (this.Generation[i].X[this.Generation[i].CBest].Fitness > this.Generation[gbest_gen].X[this
 									.Generation[gbest_gen].CBest].Fitness) {
 								this.Generation[i].GBest_gen = i
 							} else {
@@ -783,7 +610,6 @@
 					this.Generation.push({
 						Particle: Particle_tmp,
 						GBest: txt[i].GBest,
-						GBest2: txt[i].GBest,
 						CBest: 0,
 						CWorst: 0,
 						Evaluation: null,
@@ -797,7 +623,7 @@
 					for (j = 0; j < Particle_tmp; j++) {
 						var Bit_Num = txt[i].gen[j].bit.length
 						var fitness = txt[i].gen[j].fitness
-						var PInfo = txt[i].gen[j].Info
+						var PInfo = txt[i].gen[j].name
 						// 存入粒子信息
 						this.Generation[i].X.push({
 							Amount: Bit_Num,
@@ -818,23 +644,14 @@
 						for (k = 0; k < Bit_Num; k++) {
 							this.Generation[i].X[j].Bit[k] = txt[i].gen[j].bit[k].value
 							this.Generation[i].X[j].Probability[k] = txt[i].gen[j].bit[k].probability
-							this.Generation[i].X[j].BitInfo[k] = txt[i].gen[j].bit[k].Info
+							this.Generation[i].X[j].BitInfo[k] = txt[i].gen[j].bit[k].name
 						}
 					}
-					// GBest
-					if (i > 0) {
-							if (parseInt(this.Generation[i].X[this.Generation[i].CBest].Fitness) > parseInt(this.Generation[i - 1].GBest2)) {
-								this.Generation[i].GBest2 = parseInt(this.Generation[i].X[this.Generation[i].CBest].Fitness)
-							} else {
-								this.Generation[i].GBest2 = parseInt(this.Generation[i - 1].GBest2)
-							}
-						} else {
-							this.Generation[i].GBest2 = parseInt(this.Generation[i].X[this.Generation[i].CBest].Fitness)
-						}
 					if (i > 0) {
 						var GBest_gen = this.Generation[i - 1].GBest_gen
-						if (this.Generation[i].X[this.Generation[i].CBest].Fitness >= this.Generation[GBest_gen].X[this.Generation[GBest_gen].CBest].Fitness) {
-							this.Generation[i].GBest_gen = i
+						if (this.Generation[i].X[this.Generation[i].CBest].Fitness > this.Generation[GBest_gen].X[this
+								.Generation[GBest_gen].CBest].Fitness) {
+							this.Generation[i].GBest_gen = i - 1
 						} else {
 							this.Generation[i].GBest_gen = this.Generation[i - 1].GBest_gen
 						}
@@ -844,7 +661,6 @@
 				}
 			}
 			this.param.index = 1
-			console.log(this.Generation)
 			this.goto(this.param.index)
 			myChart.hideLoading()
 			this.setechart2(filename[0])
@@ -858,7 +674,6 @@
 			var j = 0
 			var k = 0
 			var series_tmp = []
-			var series_tmp2 = []
 			var yAxis_tmp = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
 			var yAxis2_tmp = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
 			if (!this.param.dice_state && !this.param.zoom_state) { // 如果是一般模式
@@ -868,7 +683,7 @@
 							series_tmp.push([index + 1, String(i + 1), item])
 						})
 						yAxis_tmp[i] = String(i + 1) // index軸
-						yAxis2_tmp[i] = (this.Generation[i].X[this.Generation[i].CBest].Fitness) // fitnes軸
+						yAxis2_tmp[i] = (this.Generation[i].GBest) // fitnes軸
 					}
 					this.Generation[this.Generation[this.param.index - 1].GBest_gen].X[this.Generation[this.Generation[this.param.index - 1].GBest_gen].CBest].Bit.map(function (item, index) {
 						series_tmp.push([index + 1, '全域最佳解', item * 1.1])
@@ -886,7 +701,7 @@
 							series_tmp.push([index + 1, String(i + 1), item])
 						})
 						yAxis_tmp[k] = String(i + 1) // index軸
-						yAxis2_tmp[k] = (this.Generation[i].X[this.Generation[i].CBest].Fitness) // fitnes軸
+						yAxis2_tmp[k] = (this.Generation[i].GBest) // fitnes軸
 					}
 					this.Generation[this.Generation[this.param.index - 1].GBest_gen].X[this.Generation[this.Generation[this.param.index - 1].GBest_gen].CBest].Bit.map(function (item, index) {
 						series_tmp.push([index + 1, '全域最佳解', item * 1.1])
@@ -906,7 +721,7 @@
 							series_tmp.push([index + 1, String(i + 1), item])
 						})
 						yAxis_tmp[i] = String(i + 1) // index軸
-						yAxis2_tmp[i] = (this.Generation[i].X[this.Generation[i].CBest].Fitness) // fitnes軸
+						yAxis2_tmp[i] = (this.Generation[i].GBest) // fitnes軸
 					}
 				} else if (this.param.index >= 20) {
 					for (i = this.param.index - 20, k = 0; i < this.param.index; i++, k++) {
@@ -914,16 +729,16 @@
 							series_tmp.push([index + 1, String(i + 1), item])
 						})
 						yAxis_tmp[k] = String(i + 1) // index軸
-						yAxis2_tmp[k] = (this.Generation[i].X[this.Generation[i].CBest].Fitness)// fitnes軸
+						yAxis2_tmp[k] = (this.Generation[i].GBest) // fitnes軸
 					}
 				}
-				this.Generation[this.Generation[this.param.index - 1].GBest_gen].X[this.Generation[this.Generation[this.param.index - 1].GBest_gen].CBest].Bit.map(function (item, index) {
-						series_tmp2.push([index + 1, 20, (item * -1) - 0.1])
-					}) // GBest
+				// this.Generation[this.Generation[this.param.index - 1].GBest_gen].X[this.Generation[this.Generation[this.param
+				// 	.index - 1].GBest_gen].CBest].Bit.map(function (item, index) {
+				// 	series_tmp.push([index + 1, '當代最佳解', item * 1.1])
+				// })  // visualMap滑到下面時 GBest會出現藍色的bug fixed
 				yAxis_tmp[20] = '全域最佳解'
 				yAxis2_tmp[20] = (this.Generation[this.Generation[this.param.index - 1].GBest_gen].GBest)
 				option.series[0].data = series_tmp
-				option.series[1].data = series_tmp2
 				option.yAxis[0].data = yAxis_tmp
 				option.yAxis[1].data = yAxis2_tmp
 				myChart.setOption(option)
@@ -969,7 +784,7 @@
 						series_tmp.push([index + 1, String(i + 1), item])
 					})
 					yAxis_tmp[i] = String(i + 1) // index軸
-					yAxis2_tmp[i] = (this.Generation[i].X[this.Generation[i].CBest].Fitness) // fitnes軸
+					yAxis2_tmp[i] = (this.Generation[i].GBest) // fitnes軸
 				}
 			} else if (this.param.index >= 20) {
 				for (var j = this.param.index - 20, k = 0; j < this.param.index; j++, k++) {
@@ -977,7 +792,7 @@
 						series_tmp.push([index + 1, String(j + 1), item])
 					})
 					yAxis_tmp[k] = String(j + 1) // index軸
-					yAxis2_tmp[k] = (this.Generation[j].X[this.Generation[j].CBest].Fitness)// fitnes軸
+					yAxis2_tmp[k] = (this.Generation[j].GBest) // fitnes軸
 				}
 			}
 			this.Generation[this.Generation[this.param.index - 1].GBest_gen].X[this.Generation[this.Generation[this.param.index - 1].GBest_gen].CBest].Bit.map(function (item, index) {
@@ -1028,7 +843,7 @@
 			}]
 			option.series[0].data = series_tmp
 			option.series[0].tooltip.formatter = function (param, ticket, callback) {
-							return '第'+ param.value[0] +'個bit,機率:' + param.value[2]
+							return '第' + param.value[1] + '世代,第'+ param.value[0] +'個bit,機率:' + param.value[2]
 						}
 			option.series[1].data = series_tmp2
 			option.series[1].tooltip.formatter = function (param, ticket, callback) {
@@ -1056,7 +871,7 @@
 					})
 				}
 				this.Generation[this.Generation[this.param.index].GBest_gen].X[this.Generation[this.Generation[this.param
-					.index - 1].GBest_gen].CBest].Bit.map(function (item, index) {
+					.index].GBest_gen].CBest].Bit.map(function (item, index) {
 					series_tmp.push([index + 1, '全域最佳解', item * 1.1])
 				}) // GBest
 			} else if (this.param.index >= 20) {
@@ -1065,8 +880,8 @@
 						series_tmp.push([index + 1, String(i + 1), item])
 					})
 				}
-				this.Generation[this.Generation[this.param.index - 1].GBest_gen].X[this.Generation[this.Generation[this.param
-					.index - 1].GBest_gen].CBest].Bit.map(function (item, index) {
+				this.Generation[this.Generation[this.param.index].GBest_gen].X[this.Generation[this.Generation[this.param
+					.index].GBest_gen].CBest].Bit.map(function (item, index) {
 					series_tmp.push([index + 1, '全域最佳解', item * 1.1])
 				}) // GBest
 			}
@@ -1107,7 +922,7 @@
 				if (param.value[1] == '全域最佳解') {
 					return 'GBest,第'+ param.value[0] +'個bit,值:' + param.value[2].toFixed(0)
 				}
-				return '第'+ param.value[0] +'個bit,'+ Generation[param.value[1]].X[Generation[param.value[1]].CBest].BitInfo[param.value[0]]
+				return '第' + param.value[1] + '世代,第'+ param.value[0] +'個bit,值:' + param.value[2].toFixed(0)
 			}
 			option.series[1].data = []
 			myChart.setOption(option)
@@ -1153,7 +968,7 @@
 					categories: ['不拿','要拿','當代最佳解', '當代最差解'],
 					textStyle:{
 					fontWeight: 'bold',
-					fontSize: 24,
+					fontSize: 24
 					},
 					pieces: [{
 							value: 0,
@@ -1179,9 +994,8 @@
 				}
 				option.series[0].data = series_tmp
 				option.series[0].tooltip.formatter = function (param, ticket, callback) {
-					return '第'+ param.value[0] +'個bit,'+ Generation[param.value[1]].X[Generation[param.value[1]].CBest].BitInfo[param.value[0]]
+							return '第' + this.param.index + '世代,第' + param.value[1] + '項,第'+ param.value[0] +'個bit,值:' + param.value[2].toFixed(0)
 						}
-				option.series[1].data = []
 				option.yAxis[0].data = yAxis_tmp
 				option.yAxis[1].data = yAxis2_tmp
 				myChart.setOption(option)
@@ -1249,12 +1063,12 @@
 						yAxis_tmp[k] = String(i + 1) // index軸
 						yAxis2_tmp[k] = (this.Generation[i].GBest) // fitnes軸
 					}
-					this.Generation[this.Generation[this.param.index - 1].GBest_gen].X[this.Generation[this.Generation[this.param
-						.index - 1].GBest_gen].CBest].Bit.map(function (item, index) {
+					this.Generation[this.Generation[this.param.index].GBest_gen].X[this.Generation[this.Generation[this.param
+						.index].GBest_gen].CBest].Bit.map(function (item, index) {
 						series_tmp.push([index + 1, '全域最佳解', item * 1.1])
 					}) // GBest
 					yAxis_tmp[20] = '全域最佳解'
-					yAxis2_tmp[20] = (this.Generation[this.Generation[this.param.index - 1].GBest_gen].GBest)
+					yAxis2_tmp[20] = (this.Generation[this.Generation[this.param.index].GBest_gen].GBest)
 					// this.tableData[0].fitness = this.Generation[this.Generation[val].GBest_gen].GBest
 				}
 				option.yAxis[0].data = yAxis_tmp
@@ -1369,14 +1183,8 @@
 
 		function setechart2(filename) { // 斂散圖
 			var series_tmp = this.Generation.map(function (item, index) {
-				return [index + 1, item.GBest2]
-			}) // 程式計算的GBest
-			var series2_tmp = this.Generation.map(function (item, index) {
-				return [index + 1, item.X[item.CBest].Fitness]
-			}) // 程式計算的PBest
-			var series3_tmp = this.Generation.map(function (item, index) {
 				return [index + 1, item.GBest]
-			}) // epin原本的GBest
+			})
 			this.option2.series.push (
 				{
 					name: filename,
@@ -1385,70 +1193,14 @@
 					data: series_tmp
 				}
 			)
-			this.option3.series.push (
-				{
-					name: filename,
-					type: 'line',
-					showAllSymbol: false,
-					data: series2_tmp
-				}
-			)
-			this.option4.series.push (
-				{
-					name: filename,
-					type: 'line',
-					showAllSymbol: false,
-					data: series3_tmp
-				}
-			)
 			this.option2.legend.data.push(filename)
-			this.option3.legend.data.push(filename)
-			this.option4.legend.data.push(filename)
+			console.log(this.Generation.length > this.option2.xAxis.max)
 			if (this.Generation.length > this.option2.xAxis.max) {
 				this.option2.xAxis.max = this.Generation.length
-				this.option3.xAxis.max = this.Generation.length
-				this.option4.xAxis.max = this.Generation.length
 			}
-			myChart2.setOption(this.option4)
-		}
-		function switch_1() { // 切換pbest
 			myChart2.setOption(this.option2)
-			$('#switch1').hide()
-			$('#switch2').show()
 		}
-		function switch_2() { // 切換pbest
-			myChart2.setOption(this.option3)
-			$('#switch2').hide()
-			$('#switch1').show()
-		}
-		function switch_3() {
-			myChart2.setOption(this.option4)
-			$('#switch2').hide()
-			$('#switch1').show()
-		}
-		function datazoom() {
-			if (this.param.datazoom_state == false){
-			this.myChart2.dispatchAction({
-				type: 'takeGlobalCursor',
-				key: 'dataZoomSelect',
-				// 启动或关闭
-				dataZoomSelectActive: true
-			})
-			this.param.datazoom_state = true
-			$('#undatazoom').show()
-			$('#datazoom').hide()
-			} else {
-				this.myChart2.dispatchAction({
-				type: 'takeGlobalCursor',
-				key: 'dataZoomSelect',
-				// 启动或关闭
-				dataZoomSelectActive: false
-			})
-			this.param.datazoom_state = false
-			$('#undatazoom').hide()
-			$('#datazoom').show()
-			}
-		}
+
 		function to() {
 			this.param.index = parseInt(document.getElementById('generation').value)	
 			this.goto(parseInt(document.getElementById('generation').value))
@@ -1478,9 +1230,6 @@
 			}
 		})
 		
-		$('#undatazoom').hide()
-		$('#switch2').hide()
-		$('#switch3').hide()
 		$('#pause').hide()
 		$('#undice').hide()
 		$('#unzoom').hide()

@@ -1,0 +1,15 @@
+TSP :
+Dimension : 2
+XPosition : 30 ~ 10
+YPosition : 100 ~ 90
+Position : bit1,16.47,96.10 bit2,16.47,94.44 bit3,20.09,92.54 bit4,22.39,93.37 bit5,25.23,97.24 bit6,22.00,96.05 bit7,20.47,97.02 bit8,17.20,96.29 bit9,16.30,97.38 bit10,14.05,98.12 bit11,16.53,97.38 bit12,21.52,95.59 bit13,19.41,97.13 bit14,20.09,94.55
+*1 456 : bit1,bit3,bit14,bit6,bit7,bit9,bit5,bit13,bit8,bit12,bit2,bit10,bit11,bit4
+*2 423 : bit1,bit5,bit3,bit6,bit7,bit4,bit9,bit8,bit12,bit14,bit2,bit10,bit11,bit13
+*3 413 : bit1,bit5,bit3,bit6,bit4,bit9,bit7,bit8,bit12,bit14,bit2,bit10,bit11,bit13
+*4 403 : bit1,bit5,bit6,bit4,bit3,bit9,bit7,bit8,bit12,bit14,bit2,bit10,bit11,bit13
+*5 380 : bit1,bit5,bit6,bit4,bit2,bit3,bit9,bit7,bit8,bit12,bit14,bit10,bit11,bit13
+*6 333 : bit1,bit5,bit6,bit4,bit2,bit3,bit9,bit8,bit12,bit14,bit7,bit10,bit11,bit13
+*7 320 : bit1,bit5,bit3,bit9,bit14,bit6,bit7,bit4,bit2,bit10,bit11,bit8,bit12,bit13
+*8 288 : bit1,bit5,bit3,bit9,bit6,bit7,bit4,bit2,bit10,bit11,bit8,bit12,bit13,bit14	
+*9 258 : bit1,bit5,bit3,bit6,bit7,bit4,bit2,bit10,bit11,bit8,bit9,bit12,bit13,bit14
+*10 215 : bit1,bit2,bit3,bit4,bit5,bit6,bit7,bit8,bit9,bit10,bit11,bit12,bit13,bit14
